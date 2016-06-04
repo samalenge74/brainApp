@@ -109,11 +109,7 @@ angular.module('brainApp.controllers', [])
             title: 'Enter Password',
             scope: $scope,
             buttons: [
-            { text: 'Cancel',
-                role: 'cancel', 
-                onTap: function(e){
-                    console.log('Cancel clicked!!!');
-                }
+            { text: 'Cancel'
             },
             {
                 text: '<b>Login</b>',
@@ -131,32 +127,37 @@ angular.module('brainApp.controllers', [])
         });
         
         loginPopup.then(function(res){
-            $ionicLoading.show({
-                animation: 'fade-in',
-                showDelay: 0,
-                noBackdrop: true,
-                templateUrl: 'logging.html'
-            });
-            
-            var query = "SELECT student_no, name, grade FROM users WHERE student_no = ? AND password = ?";
-            $cordovaSQLite.execute(db, query, [user.snumber, res.pass]).then(function(res){
-                if(res.rows.length > 0){
+            if(res){
+                $ionicLoading.show({
+                    animation: 'fade-in',
+                    showDelay: 0,
+                    noBackdrop: true,
+                    templateUrl: 'logging.html'
+                });
                 
-                    var snum = res.rows.item(0).snumber;
-                    var stName = res.rows.item(0).name;
-                    var gd = res.rows.item(0).grade;
-                    var result = { user: snum, name: stName, grade: gd};
-                    $ionicLoading.hide();
-                    $state.go('eventmenu.subjects', result);
+                var query = "SELECT student_no, name, grade FROM users WHERE student_no = ? AND password = ?";
+                $cordovaSQLite.execute(db, query, [user.snumber, res.pass]).then(function(res){
+                    if(res.rows.length > 0){
                     
-                } else {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        template: 'Either the s-number/password is incorrect or you do not have an active account with Brainline',
-                    });
-                    $scope.err = "";   
-                } 
-            });// end of execute
+                        var snum = res.rows.item(0).snumber;
+                        var stName = res.rows.item(0).name;
+                        var gd = res.rows.item(0).grade;
+                        var result = { user: snum, name: stName, grade: gd};
+                        $ionicLoading.hide();
+                        $state.go('eventmenu.subjects', result);
+                        
+                    } else {
+                        $ionicLoading.hide();
+                        $ionicPopup.alert({
+                            template: 'Either the s-number/password is incorrect or you do not have an active account with Brainline',
+                        });
+                        $scope.err = "";   
+                    } 
+                });// end of execute
+            }else{
+                console.log('Cancel was clicked');
+            }
+            // else
         });
     }; 
      
@@ -275,7 +276,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('config');
+                                                                $state.go('config', null, {reload: true});
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -406,7 +407,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('config');
+                                                                $state.go('config', null, {reload: true});
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -471,8 +472,24 @@ angular.module('brainApp.controllers', [])
 .controller('DeleteUserCtrl', function($scope){  
 })
 .controller('FPassowrdCtrl', function($scope){  
+    $scope.sendEmail = function(){
+        if(window.plugins && window.plugins.emailComposer){
+            window.plugins.emailComposer.showEmailComposerWithCallback(function(result){
+                console.log("Email Success");
+            },
+            "Brainapp Support",
+            "",
+            "support@brainline.com",
+            null,
+            null,
+            false,
+            null,
+            null
+            );
+        }
+    }
 })
-.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite){
+.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, getSubjects, $ionicPopup, $cordovaDialogs){
   
     getSubjectsDetails();
     
@@ -503,16 +520,65 @@ angular.module('brainApp.controllers', [])
             if(res.rows.length > 0){
                 $scope.subjects = res.rows;
             }else{
-                console.log("No subjects found");
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'No Subjects Found!!!',
+                    template: 'Do you want to add Subjects now?'
+                });
+
+                 confirmPopup.then(function(res) {
+                    if(res) { // if yes
+                        console.log("No subjects found");
+                        $ionicLoading.show({
+                            animation: 'fade-in',
+                            showDelay: 0,
+                            noBackdrop: true,
+                            templateUrl: 'checking.html'
+                        });
+                        
+                        getSubjects.getDetails(snum).then(function(det){
+                            $scope.subjecstDetails = det.data;
+                            
+                            var s = $scope.subjecstDetails.length;
+                            
+                            for (var i = 0; i < $scope.subjecstDetails.length; i++){
+                                
+                                subj_id = $scope.subjecstDetails[i].subject_id; 
+                                subj_name = $scope.subjecstDetails[i].subject_name; 
+                                subj_desc = $scope.subjecstDetails[i].subject_description; 
+                                subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
+                                subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
+                                subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
+                            
+                                var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
+                                $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
+                                    console.log(JSON.stringify($scope.subjecstDetails, null, 4));
+                                    
+                                    $state.go($state.$current, null, { reload: true });
+                                
+                                }, function(error){
+                                    $ionicLoading.hide(); 
+                                    console.log(error);
+                                });
+                                
+                            }
+                                                                                        
+                        }, function (err) {
+                            $ionicLoading.hide(); 
+                            console.error(err);
+                        }); // end of getDetails Subjects
+                
+                    }else{
+                        $ionicHistory.clearCache();
+                        $ionicHistory.clearHistory();
+                        $state.go('config');
+                    }
+           
+                }, function (err) {
+                    console.error(err);
+                });
             }
-            
-        }, function (err) {
-            console.error(err);
         });
-    };
-    
-    $scope.content() = function(){
-        // view subject contents
+        
     };
   
 })
@@ -526,7 +592,7 @@ angular.module('brainApp.controllers', [])
             window.plugins.emailComposer.showEmailComposerWithCallback(function(result){
                 console.log("Email Success");
             },
-            "Brainapp Support",
+            "BrainApp Support",
             "",
             "support@brainline.com",
             null,
