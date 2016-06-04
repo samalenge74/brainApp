@@ -1,0 +1,88 @@
+
+<ion-view hide-back-button="true" view-title="{{studentName}}Student Name" class="padding">
+    
+      <ion-nav-buttons side="left">
+              <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+              </button>
+            </ion-nav-buttons>
+<div class="bar bar-subheader bar-positive">
+    <h3 class="light">Subjects</h3>
+</div>
+    <ion-content class="padding bg has-subheader">
+        
+    <ion-list >
+
+    <div ng-repeat="subject in subjects track by $index" class="list card">
+        <div class="item item-avatar">
+           <div ng-if="subject.name = 'English Home Language' or subject.name = 'English First Additional Language'">
+                <img src="img/icons/1.png">
+           </div>
+           <div ng-if="subject.name = 'Afrikaans Huistaal' or subject.name = 'Afrikaans Eerste Addisionele Taal'">
+                <img src="img/icons/2.png">
+           </div>
+           <div ng-if="subject.name = 'Wiskunde' or subject.name = 'Mathematics' or subject.name = 'Wiskundige Geletterdheid' or subject.name = 'Mathematical Literacy'">
+                <img src="img/icons/3.png">
+           </div>
+           <div ng-if="subject.name = 'Lewensoriëntering' or subject.name = 'Life Orientation'">
+                <img src="img/icons/4.png">
+           </div>
+           <div ng-if="subject.name = 'Rekeningkunde' or subject.name = 'Accounting'">
+                <img src="img/icons/5.png">
+           </div>
+           <div ng-if="subject.name = 'Agricultural Sciences'">
+                <img src="img/icons/6.png">
+           </div>
+           <div ng-if="subject.name = 'Besigheidstudies' or subject.name = 'Business Studies'">
+                <img src="img/icons/7.png">
+           </div>
+           <div ng-if="subject.name = 'Computer Applications Technology'">
+                <img src="img/icons/8.png">
+           </div>
+           <div ng-if="subject.name = 'Ekonomie' or subject.name = 'Economics'">
+                <img src="img/icons/9.png">
+           </div>
+           <div ng-if="subject.name = 'Fisiese Wetenskappe' or subject.name = 'Physical Sciences'">
+                <img src="img/icons/10.png">
+           </div>
+           <div ng-if="subject.name = 'Geografie' or subject.name = 'Geography'">
+                <img src="img/icons/11.png">
+           </div>
+           <div ng-if="subject.name = 'Geskiedenis' or subject.name = 'History'">
+                <img src="img/icons/12.png">
+           </div>
+           <div ng-if="subject.name = 'Ingenieursgrafika en Ontwerp' or subject.name = 'Engineering Graphics and Design'">
+                <img src="img/icons/13.png">
+           </div>
+           <div ng-if="subject.name = 'Lewenswetenskappe' or subject.name = 'Life Sciences'">
+                <img src="img/icons/14.png">
+           </div>
+           <div ng-if="subject.name = 'Toerisme' or subject.name = 'Tourism'">
+                <img src="img/icons/15.png">
+           </div>
+           <div ng-if="subject.name = 'Verbruikerstudies' or subject.name = 'Consumer Studies'">
+                <img src="img/icons/16.png">
+           </div>
+           <div ng-if="subject.name = 'IsiZulu First Additional Language'">
+                <img src="img/icons/17.png">
+           </div>
+       </div> 
+           <h2>{{subject.name}}</h2>
+           <p>{{subject.grade}}</p>
+       
+        <div class="item item-body">
+            <p>
+                {{subject.desc}}
+            </p>
+            <p>
+            <button class="button button-outline button-balanced" ng-click="content(subject.id)">
+            View Content
+        </button>
+            </p>
+        </div>
+        </div>
+
+    </ion-list>
+    
+    </ion-content>
+  
+</ion-view>

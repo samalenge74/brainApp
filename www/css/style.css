@@ -1,0 +1,389 @@
+@font-face {
+    font-family: 'fontawesome';
+    src: url('../fonts/fontawesome-webfont.eot');
+    src: url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'),
+         url('../fonts/fontawesome-webfont.woff') format('woff'),
+         url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+         url('../fonts/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal; 
+}
+
+.icon-repeat::before {
+    font-family: "fontawesome";
+    content: "\f01e";
+}
+
+.icon-logout::before {
+    font-family: "fontawesome";
+    content: "\f08b";
+}
+
+.icon-login::before {
+    font-family: "fontawesome";
+    content: "\f090";
+}
+
+.icon-account::before {
+    font-family: "fontawesome";
+    content: "\f007";
+}
+
+.icon-add-user::before {
+    font-family: "fontawesome";
+    content: "\f234";
+}
+
+.icon-remove-user::before {
+    font-family: "fontawesome";
+    content: "\f235";
+}
+
+.icon-support::before {
+    font-family: "fontawesome";
+    content: "\f1cd";
+}
+
+.icon-view-content::before {
+    font-family: "fontawesome";
+    content: "\f07c";
+}
+
+.icon-web::before {
+    font-family: "fontawesome";
+    content: "\f0ac";
+}
+
+.icon-phone::before {
+    font-family: "fontawesome";
+    content: "\f098";
+}
+
+.icon-email::before {
+    font-family: "fontawesome";
+    content: "\f0e0";
+}
+
+.icon-info::before {
+    font-family: "fontawesome";
+    content: "\f05a";
+}
+
+.icon-forgot-password::before {
+    font-family: "fontawesome";
+    content: "\f084";
+}
+
+.icon-email::before {
+    font-family: "fontawesome";
+    content: "\f0e0";
+}
+
+.icon-menu::before {
+    font-family: "fontawesome";
+    content: "\f0c9";
+}
+
+.icon-facebook::before {
+    font-family: "fontawesome";
+    content: "\f082";
+}
+
+.icon-twitter::before {
+    font-family: "fontawesome";
+    content: "\f081";
+}
+
+.icon-legal::before {
+    font-family: "fontawesome";
+    content: "\f0e3";
+}
+
+.icon-rate::before {
+    font-family: "fontawesome";
+    content: "\f005";
+}
+
+.icon-subjects::before {
+    font-family: "fontawesome";
+    content: "\f02d";
+}
+
+.icon-faq::before {
+    font-family: "fontawesome";
+    content: "\f059";
+}
+
+.icon-updates::before {
+    font-family: "fontawesome";
+    content: "\f0ed";
+}
+
+.icon-off::before {
+    font-family: "fontawesome";
+    content: "\f011";
+}
+
+.icon-radio::before {
+    font-family: "fontawesome";
+    content: "\f001";
+}
+
+
+ i {
+        font-size: 40px;
+        color: #fff;
+        vertical-align: middle;
+}
+
+/* Empty. Add your own CSS if you like */
+.float-button-add {
+ 
+background-color:#8EC638;
+opacity: 0.9;
+color: white;
+border-radius: 50%;
+/*border-radius:15% 0 0 0;*/
+width: 30px;
+padding: 25px;
+font-size: 20px;
+position: fixed;
+/*bottom: 5%; /* Adjust height */
+/*right: 5%; /* Adjust position */
+z-index: 1000;
+}
+ 
+.float-button-add .height_fix {
+  margin-top: 100%;
+  border: 1px solid red;
+}
+ 
+.float-button-add .content {
+  position: absolute;
+  left: 0;
+  top: 40%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+
+.col .float-button-add, .col .float-button-remove {
+    margin: 0 auto;
+}
+
+.account {
+    min-height: 80px;
+    margin-bottom: 10px;
+}
+
+.float-button-remove {
+ 
+    background-color: red;
+    opacity: 0.9;
+    color: white;
+    border-radius: 50%;
+    /*border-radius:15% 0 0 0;*/
+    width: 30px;
+    padding: 25px;
+    font-size: 40px;
+    position: fixed;
+    /*bottom: 5%; /* Adjust height */
+    /*right: 5%; /* Adjust position */
+    z-index: 1000;
+    margin-bottom: 20px;
+}
+ 
+.float-button-remove .height_fix {
+  margin-top: 100%;
+  border: 1px solid red;
+}
+ 
+.float-button-remove .content {
+  position: absolute;
+  left: 0;
+  top: 40%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+
+.border {
+    /*border: saddlebrown 1px solid;*/
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    
+}
+.bar {
+    background-size: 100% 0px;
+}
+    
+.blue {
+    background-color: #303f9f;
+}
+
+.bg{
+  /*background-color: #00629f;*/
+  background: url('../img/brainline_bg.png') no-repeat center center fixed;
+  background-size: cover;
+  
+}
+
+.container {
+    width: 100%;
+}
+
+p.main{
+    width: 100px;
+    height: 100px;
+    
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+h5.info{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+}
+
+.slider {
+  height: 100%;
+  text-align: center;
+}
+
+.slider-slide {
+  padding: 100px 30px 0;
+  color: chartreuse;
+  background-color: #387EF5;
+  text-align: center;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+
+.slider-slide img {
+    width: 80%;
+    margin: 10px 0;
+}
+
+.slider-slide h5{
+    color: chartreuse;
+}
+
+.tablets{
+    margin: 20px auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+.main-content{
+    margin: 0 auto 20px;
+    max-width: 70%;
+}
+
+div.left {
+    text-align: left;
+}
+
+
+.move-down-a{
+    margin-top: 10px;
+}
+
+img.logo {
+  
+  margin-top: 15px; 
+  max-width: 100px;
+}
+
+#list {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+#list ol {
+  margin-top: 30px;
+}
+#list ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
+
+.button.ng-hide{
+  display:none;
+}
+
+.icon.new-item {
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+  bottom: 13px;
+}
+.cancel-create {
+  position: absolute;
+  right: 20px;
+  font-size: 14px;
+  bottom: 13px;
+  color:#ef4e3a;
+}
+[ng-click], [data-ng-click], [x-ng-click] {
+    cursor: pointer;
+}
+/* Ionic Overwrite! */
+.item-icon-left .icon, .item-icon-right .icon {
+  font-size: 22px;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+/* Landscape width*/
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  .bg{
+      
+        background-color: #ffffff;
+        background: url('../img/brainline_bg.png') no-repeat center center fixed;
+        background-size: cover;
+    
+    }
+}
+
+/* Landscape height*/
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  .bg{
+      
+        background-color: #ffffff;
+        background: url('../img/brainline_bg.png') no-repeat center center fixed;
+        background-size: cover;
+    
+    }
+}

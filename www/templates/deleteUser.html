@@ -1,0 +1,25 @@
+<ion-view hide-back-button="true" view-title="Dashboard">
+  <ion-content class="padding bg">
+      <div class="main-content">
+        <p class="text-center">
+             <img class="logo" src="img/icon.png" />
+        </p>
+       
+         <form ng-submit="submit(snumber)" class="move-down-a">
+            <div class="list">
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="s-number" ng-model="snumber" required>
+                    </label>
+                    <button class="button button-balanced" ng-click="deleteUser()">
+                        <i class="icon icon-remove-user"></i>
+                    </button>
+                </div>
+            </div>
+          </form>
+          <p class="text-center">
+              <button class="button icon-left ion-chevron-left button-outline button-dark" ng-click="$ionicGoBack()">Back</button>
+          </p>
+        </div>
+    </ion-content>
+</ion-view>

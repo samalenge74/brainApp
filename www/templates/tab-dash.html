@@ -1,0 +1,57 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding bg container" has-header="true" overflow-scroll="true">
+      <div class="main-content">
+            <p class="text-center">
+                <img class="logo" src="img/icon.png" />
+            </p>
+            
+            <div class="list card">
+                <button href="#" ng-repeat="user in users" class="item item-icon-right" ng-click="promptLogin(user.snum)">
+                    <i class="icon icon-login"></i>
+                    {{user.snum}}
+                </button>
+               
+                <h5 class="info" ng-hide="users.length">No Users Added Yet!!</h5>
+            </div>
+            
+            
+                <div class="row account">
+                    
+                    <div class="col col-20 border"></div>
+                    
+                    <div class="col col-20 border">
+                        
+                            <div class="float-button-add">
+                                <span class="height-fix">
+                                    <a class="button button-clear content" href="#/tab/addUser">
+                                        <i class="icon icon-add-user"> </i>
+                                    </a>
+                                </span>
+                            </div>
+                        
+                    </div>
+                    
+                    <div class="col col-20 border"></div>    
+                    
+                    <div class="col col-20 border">
+                        
+                            <div class="float-button-remove">
+                                <span class="height-fix">
+                                    <a class="button button-clear content" href="#/tab/deleteUser">
+                                        <i class="icon icon-remove-user"> </i>
+                                    </a>
+                                </span>
+                            </div>
+                        
+                    </div>
+                    
+                    <div class="col col-20 border"></div>
+                </div>
+                
+            <p class="text-center">  
+                 <a class="button button-block button-positive"  href="#/tab/forgotPassword"">Forgot Password?</a>                        
+            </p>  
+           
+      </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view hide-back-button="true" view-title="Dashboard">
+  <ion-content class="padding bg" has-header="true">
+      <div class="main-content">
+        <p class="text-center">
+             <img class="logo" src="img/icon.png" />
+        </p>
+        <form class="move-down-a">
+            <div class="list list-inset">
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">S-Number</span>
+                    <input type="text" placeholder="S-Number" ng-model="snumber" required>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="Password" ng-model="password" required>
+                </label>
+            </div>
+            <p class="text-center">
+                <button class="button button-block button-balanced" ng-click="add(snumber, password)" name="submit">Add User</button>
+            </p>
+        </form> 
+        <p class="text-center">
+              <button class="button icon-left ion-chevron-left button-outline button-dark" ng-click="$ionicGoBack()">BacK</button>
+          </p>
+      </div>
+    </ion-content>
+</ion-view>

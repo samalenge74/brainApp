@@ -1,0 +1,35 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding bg" has-header="true"  overflow-scroll="true">
+      <div class="main-content">
+      <p class="text-center">
+             <img class="logo" src="img/icon.png" />
+        </p>
+         <div class="list move-down-a left">
+             <div class="item item-button-right item-positive">
+                Email Us
+                <button class="button button-balanced" ng-click="sendEmail()">
+                <i class="icon icon-email"></i>
+                </button>
+            </div>
+            <div class="item item-button-right item-positive">
+                Call Us
+                <a class="button button-balanced" href="tel:+27125435000">
+                <i class="icon icon-phone"></i>
+                </a>
+            </div>
+            <div class="item item-button-right item-positive">
+                Our Contact Details
+                <a class="button button-balanced" href="" onclick="window.open('https://www.brainline.com/contact-us/', '_system', 'location=yes'); return false;">
+                <i class="icon icon-web"></i>
+                </a>
+            </div>
+            <div class="item item-button-right item-positive">
+                View Tutorial
+                <button class="button button-balanced" ng-click="toIntro()">
+                <i class="icon icon-info"></i>
+                </button>
+            </div>
+           </div>
+          </div>
+        </ion-content>
+</ion-view>
