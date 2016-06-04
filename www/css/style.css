@@ -252,6 +252,7 @@ p.main{
 h5.info{
     font-family: "Comic Sans MS", cursive, sans-serif;
     text-align: center;
+    color: #ffffff;
 }
 
 .slider {
@@ -356,6 +357,21 @@ img.logo {
   display: block !important;
 }
 
+.popup-container{
+    background-color: #ffffff;
+}
+
+.popup {
+    border: 5px solid #8EC638;
+}
+
+.popup-head {
+    background-color: #387EF5;
+}
+
+.popup-title {
+    color: #ffffff;
+}
 /* Landscape width*/
 @media only screen 
   and (min-device-width: 768px) 

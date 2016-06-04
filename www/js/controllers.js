@@ -100,7 +100,66 @@ angular.module('brainApp.controllers', [])
         }, function (err) {
             console.error(err);
         });
-    });   
+    });  
+    
+      $scope.promptLogin = function(user) {
+        $scope.data = {};
+        var loginPopup = $ionicPopup.show({
+            template: '<input type="password"  ng-model="data.password">',
+            title: 'Enter Password',
+            scope: $scope,
+            buttons: [
+            { text: 'Cancel',
+                role: 'cancel', 
+                onTap: function(e){
+                    console.log('Cancel clicked!!!');
+                }
+            },
+            {
+                text: '<b>Login</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    if (!$scope.data.password) {
+                        //don't allow the user to close unless he enters wifi password
+                        e.preventDefault();
+                    }else{
+                        var pass = $scope.data.password;
+                        return pass;
+                    }
+                }// end of onTap
+            }]
+        });
+        
+        loginPopup.then(function(res){
+            $ionicLoading.show({
+                animation: 'fade-in',
+                showDelay: 0,
+                noBackdrop: true,
+                templateUrl: 'logging.html'
+            });
+            
+            var query = "SELECT student_no, name, grade FROM users WHERE student_no = ? AND password = ?";
+            $cordovaSQLite.execute(db, query, [user.snumber, res.pass]).then(function(res){
+                if(res.rows.length > 0){
+                
+                    var snum = res.rows.item(0).snumber;
+                    var stName = res.rows.item(0).name;
+                    var gd = res.rows.item(0).grade;
+                    var result = { user: snum, name: stName, grade: gd};
+                    $ionicLoading.hide();
+                    $state.go('eventmenu.subjects', result);
+                    
+                } else {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        template: 'Either the s-number/password is incorrect or you do not have an active account with Brainline',
+                    });
+                    $scope.err = "";   
+                } 
+            });// end of execute
+        });
+    }; 
+     
      
 })
 .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, $ionicPopup, $cordovaDialogs){
@@ -216,7 +275,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.forceReload();
+                                                                $state.go('config');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -347,7 +406,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.forceReload();
+                                                                $state.go('config');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });

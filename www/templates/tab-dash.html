@@ -5,14 +5,14 @@
                 <img class="logo" src="img/icon.png" />
             </p>
             
-            <div class="list card">
-                <button href="#" ng-repeat="user in users" class="item item-icon-right" ng-click="promptLogin(user.snum)">
+            <ion-list>
+                <button ng-repeat="user in users" class="item item-icon-left" ng-click="promptLogin(user.snum)">
                     <i class="icon icon-login"></i>
                     {{user.snum}}
                 </button>
                
                 <h5 class="info" ng-hide="users.length">No Users Added Yet!!</h5>
-            </div>
+            </ion-list>
             
             
                 <div class="row account">
