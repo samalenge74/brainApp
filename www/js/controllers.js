@@ -37,7 +37,7 @@ angular.module('brainApp.controllers', [])
     $ionicPlatform.ready(function(){
         if(window.cordova){
             db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, student_email TEXT, gender TEXT, student_paid INTEGER, OLD_student_status INTEGER, password TEXT, academic_year TEXT, name TEXT, grade INTEGER, status INTEGER, brainonline_sync_status INTEGER, year_from TEXT, year_to TEXT)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, student_email TEXT, gender TEXT, student_paid INTEGER, OLD_student_status INTEGER, password TEXT, academic_year TEXT, name TEXT, grade INTEGER, status INTEGER, brainonline_sync_status INTEGER, year_from TEXT, year_to TEXT, date_status_last_checked TEXT)");
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT)");
             $location.path("/tab/dash");
             
@@ -91,7 +91,10 @@ angular.module('brainApp.controllers', [])
         $cordovaSQLite.execute(db, query, []).then(function(res) {
             if(res.rows.length > 0){
                 for (var i = 0; i < res.rows.length; i++){
-                    $scope.users.push({snum: res.rows.item(i).student_no});
+                    if (res.rows.item(i).student_no != ""){
+                        $scope.users.push({snum: res.rows.item(i).student_no});
+                    }
+                    
                 }
                 
                 console.log(JSON.stringify($scope.users, null, 4));
@@ -137,14 +140,22 @@ angular.module('brainApp.controllers', [])
                     templateUrl: 'logging.html'
                 });
                 
-                var query = "SELECT student_no, name, grade FROM users WHERE student_no = ? AND password = ?";
+                var query = "SELECT student_no, name, grade, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
                 $cordovaSQLite.execute(db, query, [user.snumber, res.pass]).then(function(res){
                     if(res.rows.length > 0){
-                    
-                        var snum = res.rows.item(0).snumber;
+                        
+                        
+                        var snum = res.rows.item(0).student_no;
                         var stName = res.rows.item(0).name;
                         var gd = res.rows.item(0).grade;
                         var result = { user: snum, name: stName, grade: gd};
+                        var date_status_last_checked = res.rows.item(0).date_status_last_checked;
+                        
+                        var date = new Date();
+                        var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+                        
+                        
+                        
                         $ionicLoading.hide();
                         
                         $state.go('eventmenu.subjects', result);
@@ -173,8 +184,10 @@ angular.module('brainApp.controllers', [])
     $scope.status;
     $scope.user;
     
-    var i = 0; var snum = ''; var stName = ''; var gd = ''; var ac_year = ''; var email =  ''; var gender = ''; var old_status = ''; var paid = ''; var sync_status = ''; var pass = ''; var ac_year_from = ''; var ac_year_to = ''; var status = '';
-   
+    var moment = require('moment');
+    var status_date = moment(new Date(), 'YYYY-M-DD HH:mm:ss');
+    
+    var i = 0; var snum = ''; var stName = ''; var gd = ''; var ac_year = ''; var email =  ''; var gender = ''; var old_status = ''; var paid = ''; var sync_status = ''; var pass = ''; var ac_year_from = ''; var ac_year_to = ''; var status = ''; 
     
     function checkConnection() {
         var networkState = navigator.connection.type;
@@ -269,8 +282,8 @@ angular.module('brainApp.controllers', [])
                                             
                                             // Insert into user new user details
                                       
-                                            var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
-                                            $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status]).then(function(res){
+                                            var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                                            $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
                                                 
                                                 $ionicLoading.hide();
                                                 var alertPopup = $ionicPopup.alert({
@@ -279,7 +292,8 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('config', null, {reload: true});
+                                                                $state.go('tab.dash', null, {reload: true});
+                                                                console.log(status_date);
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
