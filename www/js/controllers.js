@@ -92,7 +92,7 @@ angular.module('brainApp.controllers', [])
             if(res.rows.length > 0){
                 for (var i = 0; i < res.rows.length; i++){
                     if (res.rows.item(i).student_no != ""){
-                        $scope.users.push({snum: res.rows.item(i).student_no});
+                        $scope.users = res.rows;
                     }
                     
                 }
@@ -184,8 +184,8 @@ angular.module('brainApp.controllers', [])
     $scope.status;
     $scope.user;
     
-    var moment = require('moment');
-    var status_date = moment(new Date(), 'YYYY-M-DD HH:mm:ss');
+    //var moment = require('moment');
+    var status_date = '';
     
     var i = 0; var snum = ''; var stName = ''; var gd = ''; var ac_year = ''; var email =  ''; var gender = ''; var old_status = ''; var paid = ''; var sync_status = ''; var pass = ''; var ac_year_from = ''; var ac_year_to = ''; var status = ''; 
     
