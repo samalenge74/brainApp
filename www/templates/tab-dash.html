@@ -4,48 +4,47 @@
             <p class="text-center">
                 <img class="logo" src="img/icon.png" />
             </p>
-            
+            <p class="text-center">
                 <ion-list>
-                    <button class="item button icon icon-login" ng-repeat="user in users track by $index" ng-click="login(user.snum)">
+                    <button class="item button icon icon-login" ng-repeat="user in users" ng-click="login(user.snum)">
                             {{user.snum}}
                     </button>
-
                     <h5 class="info" ng-hide="users.length">No Users Added Yet!!</h5>
                 </ion-list>
+            </p>
             
-            
-                <div class="row account">
+            <div class="row account">
+                
+                <div class="col col-20 border"></div>
+                
+                <div class="col col-20 border">
                     
-                    <div class="col col-20 border"></div>
+                        <div class="float-button-add">
+                            <span class="height-fix">
+                                <a class="button button-clear content" href="#/tab/addUser">
+                                    <i class="icon icon-add-user"> </i>
+                                </a>
+                            </span>
+                        </div>
                     
-                    <div class="col col-20 border">
-                        
-                            <div class="float-button-add">
-                                <span class="height-fix">
-                                    <a class="button button-clear content" href="#/tab/addUser">
-                                        <i class="icon icon-add-user"> </i>
-                                    </a>
-                                </span>
-                            </div>
-                        
-                    </div>
-                    
-                    <div class="col col-20 border"></div>    
-                    
-                    <div class="col col-20 border">
-                        
-                            <div class="float-button-remove">
-                                <span class="height-fix">
-                                    <a class="button button-clear content" href="#/tab/deleteUser">
-                                        <i class="icon icon-remove-user"> </i>
-                                    </a>
-                                </span>
-                            </div>
-                        
-                    </div>
-                    
-                    <div class="col col-20 border"></div>
                 </div>
+                
+                <div class="col col-20 border"></div>    
+                
+                <div class="col col-20 border">
+                    
+                        <div class="float-button-remove">
+                            <span class="height-fix">
+                                <a class="button button-clear content" href="#/tab/deleteUser">
+                                    <i class="icon icon-remove-user"> </i>
+                                </a>
+                            </span>
+                        </div>
+                    
+                </div>
+                
+                <div class="col col-20 border"></div>
+            </div>
                 
             <p class="text-center">  
                  <a class="button button-block button-positive"  href="#/tab/forgotPassword"">Forgot Password?</a>                        
