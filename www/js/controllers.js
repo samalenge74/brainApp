@@ -634,4 +634,6 @@ angular.module('brainApp.controllers', [])
         window.localStorage['didTutorial'] = "false";
         $state.go('intro');
     }  
+    
+    $scope.phoneno = "+27125435000";
 })
