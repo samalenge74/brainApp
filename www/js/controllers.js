@@ -55,6 +55,8 @@ angular.module('brainApp.controllers', [])
 })
 .controller('MainCtrl', function($scope, $state,  $ionicHistory, $ionicSideMenuDelegate, $ionicPopup) {
     
+    
+    
      $scope.logout = function(){
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
@@ -144,6 +146,7 @@ angular.module('brainApp.controllers', [])
                         var gd = res.rows.item(0).grade;
                         var result = { user: snum, name: stName, grade: gd};
                         $ionicLoading.hide();
+                        
                         $state.go('eventmenu.subjects', result);
                         
                     } else {
@@ -538,7 +541,7 @@ angular.module('brainApp.controllers', [])
                         getSubjects.getDetails(snum).then(function(det){
                             $scope.subjecstDetails = det.data;
                             
-                            var s = $scope.subjecstDetails.length;
+                            var s = 0;
                             
                             for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                 
@@ -551,15 +554,22 @@ angular.module('brainApp.controllers', [])
                             
                                 var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
                                 $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
-                                    console.log(JSON.stringify($scope.subjecstDetails, null, 4));
-                                    
-                                    $state.go($state.$current, null, { reload: true });
+                                    console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
                                 
                                 }, function(error){
                                     $ionicLoading.hide(); 
                                     console.log(error);
                                 });
                                 
+                                $++;
+                                
+                            }
+                            
+                            if (s == $scope.subjecstDetails.length){
+                                $ionicLoading.hide();
+                                $state.go($state.$current, null, { reload: true });
+                            }else{
+                                console.log('Loading Subjects failed!!!!');
                             }
                                                                                         
                         }, function (err) {
