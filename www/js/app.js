@@ -10,7 +10,7 @@ var remoteLink = 'http://192.168.0.63/brainApp/';
 var subjects_content_download_link = '';
 'use strict';
 
-angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb'])
+angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment'])
 
 .run(function($ionicPlatform, $ionicPopup, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
