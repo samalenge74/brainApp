@@ -85,15 +85,11 @@ angular.module('brainApp.controllers', [])
 .controller('DashCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
 
     $ionicPlatform.ready(function(){
-        $scope.users = [];
-    
+        
         var query = "SELECT student_no FROM users";
         $cordovaSQLite.execute(db, query, []).then(function(res) {
             if(res.rows.length > 0){
-                for (var i = 0; i < res.rows.length; i++){
-                    $scope.users.push({snum: res.rows.item(i).student_no});
-                    console.log(res.rows.item(i).student_no);
-                }
+                $state.go('tab.login');
  
             }else{
                 console.log("No Users found");
@@ -103,78 +99,45 @@ angular.module('brainApp.controllers', [])
             console.error(err);
         });
     });  
-    
-      $scope.promptLogin = function(user) {
+     
+})
+.controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
+
+      $scope.Login = function(snumber, password) {
         $scope.data = {};
-        var loginPopup = $ionicPopup.show({
-            template: '<input type="password"  ng-model="data.password">',
-            title: 'Enter Password',
-            scope: $scope,
-            buttons: [
-            { text: 'Cancel'
-            },
-            {
-                text: '<b>Login</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                    if (!$scope.data.password) {
-                        //don't allow the user to close unless he enters wifi password
-                        e.preventDefault();
-                    }else{
-                        var pass = $scope.data.password;
-                        return pass;
-                    }
-                }// end of onTap
-            }]
-        });
-        
-        loginPopup.then(function(res){
-            if(res){
-                $ionicLoading.show({
-                    animation: 'fade-in',
-                    showDelay: 0,
-                    noBackdrop: true,
-                    templateUrl: 'logging.html'
-                });
+      
+        var query = "SELECT student_no, name, grade, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
+        $cordovaSQLite.execute(db, query, [snumber, password]).then(function(res){
+            if(res.rows.length > 0){
+
+                var snum = res.rows.item(0).student_no;
+                var stName = res.rows.item(0).name;
+                var gd = res.rows.item(0).grade;
+                var result = { user: snum, name: stName, grade: gd};
+                var date_status_last_checked = moment(res.rows.item(0).date_status_last_checked);
+                var now = moment(new Date());
                 
-                var query = "SELECT student_no, name, grade, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
-                $cordovaSQLite.execute(db, query, [user.snumber, res.pass]).then(function(res){
-                    if(res.rows.length > 0){
-                        
-                        
-                        var snum = res.rows.item(0).student_no;
-                        var stName = res.rows.item(0).name;
-                        var gd = res.rows.item(0).grade;
-                        var result = { user: snum, name: stName, grade: gd};
-                        var date_status_last_checked = moment(res.rows.item(0).date_status_last_checked);
-                        var now = moment(new Date());
-                        
-                        var daysDiff = now.diff(date_status_last_checked, 'days');
-                        
-                        console.log(date_status_last_checked);
-                        console.log(now);
-                        console.log(daysDiff);
-                       
-                        $ionicLoading.hide();
-                        
-                        //$state.go('eventmenu.subjects', result);
-                        
-                    } else {
-                        $ionicLoading.hide();
-                        $ionicPopup.alert({
-                            template: 'Either the s-number/password is incorrect or you do not have an active account with Brainline',
-                        });
-                        $scope.err = "";   
-                    } 
-                });// end of execute
-            }else{
-                console.log('Cancel was clicked');
-            }
-            // else
-        });
+                var daysDiff = now.diff(date_status_last_checked, 'days');
+                
+                console.log(date_status_last_checked);
+                console.log(now);
+                console.log(daysDiff);
+                
+                $ionicLoading.hide();
+                
+                $state.go('eventmenu.subjects', result);
+                
+            } else {
+                $ionicLoading.hide();
+                $ionicPopup.alert({
+                    template: 'Either the s-number/password is incorrect',
+                });
+               
+            } 
+        });// end of execute
+  
     }; 
-     
-     
+
 })
 .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, $ionicPopup, $cordovaDialogs){
     
@@ -510,7 +473,7 @@ angular.module('brainApp.controllers', [])
   
     getSubjectsDetails();
     
-    var usermane = $stateParams.user;
+    var usermane = $scope.studentName =$stateParams.snum;
     $scope.studentName = $stateParams.name;
     $scope.grade = $stateParams.grade;
     
@@ -533,7 +496,7 @@ angular.module('brainApp.controllers', [])
 
     function getSubjectsDetails(username){
         var query = "SELECT id, name, description FROM subjects WHERE studentID = ?";
-        $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
+        $cordovaSQLite.execute(db, query, [username]).then(function(res) {
             if(res.rows.length > 0){
                 $scope.subjects = res.rows;
             }else{
@@ -549,10 +512,10 @@ angular.module('brainApp.controllers', [])
                             animation: 'fade-in',
                             showDelay: 0,
                             noBackdrop: true,
-                            templateUrl: 'checking.html'
+                            templateUrl: 'subjects.html'
                         });
                         
-                        getSubjects.getDetails(snum).then(function(det){
+                        getSubjects.getDetails(usermane).then(function(det){
                             $scope.subjecstDetails = det.data;
                             
                             var s = 0;

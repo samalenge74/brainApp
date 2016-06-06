@@ -5,17 +5,23 @@
                 <img class="logo" src="img/icon.png" />
             </p>
             <p class="text-center">
-                <ion-list>
-                    
-                     <button class="item item-icon-left item-icon-right" ng-repeat="user in users" ng-click="login(user.snum)">
-                        <i class="icon ion-chatbubble-working"></i>
-                        {{user.snum}}
-                        <i class="icon icon-login"></i>
-                    </button>
-                    <h5 class="info" ng-hide="users.length">No Users Added Yet!!</h5>
-                </ion-list>
+                <form class="move-down-a">
+                    <div class="list list-inset">
+                        <label class="item item-input">
+                            <input type="text" placeholder="S-Number" ng-model="snumber" required>
+                        </label>
+                        <label class="item item-input">
+                            <input type="password" placeholder="Password" ng-model="password" required>
+                        </label>
+                    </div>
+                    <p class="text-center">
+                        <button class="button button-block button-balanced" ng-click="add(snumber, password)" name="submit">Login</button>
+                    </p>
+                </form> 
             </p>
-            
+            <p class="text-center">  
+                 <a class="button button-block button-positive"  href="#/tab/forgotPassword"">Forgot Password?</a>                        
+            </p>  
             <div class="row account">
                 
                 <div class="col col-20 border"></div>
@@ -48,6 +54,9 @@
                 
                 <div class="col col-20 border"></div>
             </div>
+                
+            
+           
       </div>
     </ion-content>
 </ion-view>

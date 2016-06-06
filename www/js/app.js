@@ -93,6 +93,16 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     }
   })
   
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
   .state('tab.addUser', {
     url: '/addUser',
     views: {
