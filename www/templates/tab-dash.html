@@ -6,8 +6,8 @@
             </p>
             <p class="text-center">
                 <ion-list>
-                    <button class="item button icon icon-login" ng-repeat="user in users" ng-click="login(user.snum)">
-                            {{user.snum}}
+                    <button class="item button icon icon-login" ng-repeat="user in users" ng-click="login(user.student_no)">
+                            {{user.student_no}}
                     </button>
                     <h5 class="info" ng-hide="users.length">No Users Added Yet!!</h5>
                 </ion-list>

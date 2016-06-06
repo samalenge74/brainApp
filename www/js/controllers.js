@@ -85,23 +85,20 @@ angular.module('brainApp.controllers', [])
 .controller('DashCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
 
     $ionicPlatform.ready(function(){
-        $scope.users = [{snum: ""}];
+        $scope.users = [{snum: ''}];
     
         var query = "SELECT student_no FROM users";
         $cordovaSQLite.execute(db, query, []).then(function(res) {
             if(res.rows.length > 0){
                 for (var i = 0; i < res.rows.length; i++){
-                    if (res.rows.item(i).student_no != ""){
-                        $scope.users = res.rows;
-                    }
-                    
+                    $scope.users.push({snum: res.rows.item(i).student_no});
+                    console.log(res.rows.item(i).student_no);
                 }
-                
-                console.log(JSON.stringify($scope.users, null, 4));
+ 
             }else{
                 console.log("No Users found");
             }
-            
+            console.log(JSON.stringify($scope.users, null, 4));
         }, function (err) {
             console.error(err);
         });
@@ -149,16 +146,18 @@ angular.module('brainApp.controllers', [])
                         var stName = res.rows.item(0).name;
                         var gd = res.rows.item(0).grade;
                         var result = { user: snum, name: stName, grade: gd};
-                        var date_status_last_checked = res.rows.item(0).date_status_last_checked;
+                        var date_status_last_checked = moment(res.rows.item(0).date_status_last_checked);
+                        var now = moment(new Date());
                         
-                        var date = new Date();
-                        var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+                        var daysDiff = now.diff(date_status_last_checked, 'days');
                         
-                        
-                        
+                        console.log(date_status_last_checked);
+                        console.log(now);
+                        console.log(daysDiff);
+                       
                         $ionicLoading.hide();
                         
-                        $state.go('eventmenu.subjects', result);
+                        //$state.go('eventmenu.subjects', result);
                         
                     } else {
                         $ionicLoading.hide();
@@ -184,8 +183,9 @@ angular.module('brainApp.controllers', [])
     $scope.status;
     $scope.user;
     
-    //var moment = require('moment');
-    var status_date = '';
+   
+    var status_date = this;
+    status_date.timeOne = new Date();
     
     var i = 0; var snum = ''; var stName = ''; var gd = ''; var ac_year = ''; var email =  ''; var gender = ''; var old_status = ''; var paid = ''; var sync_status = ''; var pass = ''; var ac_year_from = ''; var ac_year_to = ''; var status = ''; 
     
@@ -292,8 +292,8 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('tab.dash', null, {reload: true});
-                                                                console.log(status_date);
+                                                                $state.go('tab.dash');
+                                                                
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -424,7 +424,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('config', null, {reload: true});
+                                                                $state.go('tab.dash');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
