@@ -85,7 +85,7 @@ angular.module('brainApp.controllers', [])
 .controller('DashCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
 
     $ionicPlatform.ready(function(){
-        $scope.users = [{snum: ''}];
+        $scope.users = [];
     
         var query = "SELECT student_no FROM users";
         $cordovaSQLite.execute(db, query, []).then(function(res) {
@@ -292,7 +292,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('tab.dash');
+                                                                $state.transitionTo('tab.dash', null, { reload: true, inherit: true, notify: true });
                                                                 
                                                             }, function(error){
                                                                     console.log(error);
@@ -424,7 +424,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('tab.dash');
+                                                               $state.transitionTo('tab.dash', null, { reload: true, inherit: true, notify: true });
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
