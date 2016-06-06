@@ -538,7 +538,7 @@ angular.module('brainApp.controllers', [])
                                     console.log(error);
                                 });
                                 
-                                $++;
+                                s++;
                                 
                             }
                             
@@ -557,7 +557,7 @@ angular.module('brainApp.controllers', [])
                     }else{
                         $ionicHistory.clearCache();
                         $ionicHistory.clearHistory();
-                        $state.go('config');
+                        $state.go('tab.login');
                     }
            
                 }, function (err) {
