@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-motion": "^0.4.4",
-    "ionic-ion-swipe-cards": "*"
+    "ionic-ion-swipe-cards": "*",
+    "angular-moment": "^0.10.3"
   }
 }
