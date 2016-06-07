@@ -87,19 +87,22 @@ angular.module('brainApp.controllers', [])
       $scope.login = function(snumber, password) {
         $scope.data = {};
       
-        var query = "SELECT student_no, name, grade, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
-        $cordovaSQLite.execute(db, query, [snumber, password]).then(function(res){
+        var query = "SELECT student_no, name, grade, password, date_status_last_checked FROM users WHERE student_no = ?";
+        $cordovaSQLite.execute(db, query, [snumber]).then(function(res){
             if(res.rows.length > 0){
 
                 var snum = res.rows.item(0).student_no;
                 var stName = res.rows.item(0).name;
                 var gd = res.rows.item(0).grade;
+                var pass = res.rows.item(0).password;
                 var result = { user: snum, name: stName, grade: gd};
                 var date_status_last_checked = moment(res.rows.item(0).date_status_last_checked);
                 var now = moment(new Date());
                 
                 var daysDiff = now.diff(date_status_last_checked, 'days');
                 
+                console.log(snumber+' '+password);
+                console.log(pass);
                 console.log(date_status_last_checked);
                 console.log(now);
                 console.log(daysDiff);
@@ -111,6 +114,7 @@ angular.module('brainApp.controllers', [])
                 $state.go('eventmenu.subjects', result);
                 
             } else {
+                 console.log(snumber+' '+password);
                 $ionicLoading.hide();
                 $ionicPopup.alert({
                     template: 'Either the s-number/password is incorrect',
@@ -390,6 +394,7 @@ angular.module('brainApp.controllers', [])
                                                 $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
                                                     
                                                     $ionicLoading.hide();
+                                                    console.log(snum+' '+pass);
                                                     this.snumber = null;
                                                     this.password = null;
                                                     var alertPopup = $ionicPopup.alert({
