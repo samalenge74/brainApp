@@ -1,0 +1,27 @@
+<html ng-app="App">
+	<head>
+		<title>Ionic Toggle Password</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<link href="http://code.ionicframework.com/1.2.4/css/ionic.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<ion-header-bar class="bar-calm">
+			<h1 class="title">Ionic Toggle Password</h1>
+		</ion-header-bar>
+		<ion-content class="padding">
+			<div ng-controller="AppController">
+				<ion-list>
+					<ion-item class="item-input item-stacked-label">
+						<span class="input-label">Enter password</span>
+						<input type="password" placeholder="Enter the fucking password" toggle-password-input />
+					</ion-item>
+					<toggle-password-checkbox label="Show password" checkbox-class="checkbox-balanced"></toggle-password-checkbox>
+				</ion-list>
+			</div>
+		</ion-content>
+		<script src="http://code.ionicframework.com/1.2.4/js/ionic.bundle.min.js"></script>
+		<script src="../dist/ion-toggle-password.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

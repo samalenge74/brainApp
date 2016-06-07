@@ -1,0 +1,30 @@
+{
+  "name": "ionic-toggle-password",
+  "version": "0.0.1",
+  "homepage": "https://github.com/xchilenox/ionic-toggle-password",
+  "authors": [
+    "Rodrigo Albornoz <rodrigo.albornoz.f@gmail.com>"
+  ],
+  "description": "Directive to show/hide password for Ionic apps.",
+  "license": "MIT",
+  "main": [
+    "./dist/ion-toggle-password.js",
+    "./dist/ion-toggle-password.min.js"
+  ],
+  "keywords": [
+    "AngularJS",
+    "Ionic",
+    "toggle",
+    "password"
+  ],
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "8b00c250a6824f3bc69c13bbf76ca1647128300c"
+  },
+  "_source": "https://github.com/xchilenox/ionic-toggle-password.git",
+  "_target": "^0.0.1",
+  "_originalSource": "ionic-toggle-password",
+  "_direct": true
+}

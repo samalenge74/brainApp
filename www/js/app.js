@@ -10,7 +10,7 @@ var remoteLink = 'http://192.168.0.63/brainApp/';
 var subjects_content_download_link = '';
 'use strict';
 
-angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment'])
+angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment', 'ionTogglePassword'])
 
 .run(function($ionicPlatform, $ionicPopup, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
@@ -218,38 +218,5 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
        
         
     });
-})
+});
 
-.directive('uiShowPassword', [
-  function () {
-  return {
-    restrict: 'A',
-    scope: true,
-    link: function (scope, elem, attrs) {
-      var btnShowPass = angular.element('<button class="button button-clear"><i class="ion-eye"></i></button>'),
-        elemType = elem.attr('type');
-
-      // this hack is needed because Ionic prevents browser click event 
-      // from elements inside label with input
-      btnShowPass.on('mousedown', function (evt) {
-        (elem.attr('type') === elemType) ?
-          elem.attr('type', 'text') : elem.attr('type', elemType);
-        btnShowPass.toggleClass('button-positive');
-        //prevent input field focus
-        evt.stopPropagation();
-      });
-
-      btnShowPass.on('touchend', function (evt) {
-        var syntheticClick = new Event('mousedown');
-        evt.currentTarget.dispatchEvent(syntheticClick);
-
-        //stop to block ionic default event
-        evt.stopPropagation();
-      });
-
-      if (elem.attr('type') === 'password') {
-        elem.after(btnShowPass);
-      }
-    }
-  };
-}]);
