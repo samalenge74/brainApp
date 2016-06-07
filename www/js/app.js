@@ -73,12 +73,12 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+    .state('tab.login', {
+    url: '/login',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-login': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -86,27 +86,17 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
   .state('tab.deleteUser', {
     url: '/deleteUser',
     views: {
-      'tab-dash': {
+      'tab-account': {
         templateUrl: 'templates/deleteUser.html',
         controller: 'DeleteUserCtrl'
       }
     }
   })
-  
-  .state('tab.login', {
-    url: '/login',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
-  
+
   .state('tab.addUser', {
     url: '/addUser',
     views: {
-      'tab-dash': {
+      'tab-account': {
         templateUrl: 'templates/addUser.html',
         controller: 'AddUserCtrl'
       }
@@ -116,7 +106,7 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
   .state('tab.forgotPassword', {
     url: '/forgotPassword',
     views: {
-      'tab-dash': {
+      'tab-login': {
         templateUrl: 'templates/forgotPassword.html',
         controller: 'FPassowrdCtrl'
       }

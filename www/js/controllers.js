@@ -82,25 +82,6 @@ angular.module('brainApp.controllers', [])
     
     
 })
-.controller('DashCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
-
-    $ionicPlatform.ready(function(){
-        
-        var query = "SELECT student_no FROM users";
-        $cordovaSQLite.execute(db, query, []).then(function(res) {
-            if(res.rows.length > 0){
-                $state.go('tab.login');
- 
-            }else{
-                console.log("No Users found");
-            }
-            console.log(JSON.stringify($scope.users, null, 4));
-        }, function (err) {
-            console.error(err);
-        });
-    });  
-     
-})
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
 
       $scope.Login = function(snumber, password) {
@@ -255,7 +236,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.transitionTo('tab.dash', null, { reload: true, inherit: true, notify: true });
+                                                                $state.go('tab.login');
                                                                 
                                                             }, function(error){
                                                                     console.log(error);
@@ -270,7 +251,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('tab.dash');
+                                                                $state.go('tab.account');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -285,7 +266,7 @@ angular.module('brainApp.controllers', [])
                                                         });
                                                         
                                                         alertPopup.then(function(res) {
-                                                            $state.go('tab.dash');
+                                                            $state.go('tab.account');
                                                         }, function(error){
                                                                 
                                                                 console.log(error);
@@ -387,7 +368,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                               $state.transitionTo('tab.dash', null, { reload: true, inherit: true, notify: true });
+                                                               $state.go('tab.login');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -401,7 +382,7 @@ angular.module('brainApp.controllers', [])
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
-                                                                $state.go('tab.dash');
+                                                                $state.go('tab.account');
                                                             }, function(error){
                                                                     console.log(error);
                                                             });
@@ -416,7 +397,7 @@ angular.module('brainApp.controllers', [])
                                                         });
                                                         
                                                         alertPopup.then(function(res) {
-                                                            $state.go('tab.dash');
+                                                            $state.go('tab.account');
                                                         }, function(error){
                                                                 
                                                                 console.log(error);

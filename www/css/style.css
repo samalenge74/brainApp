@@ -176,6 +176,7 @@ z-index: 1000;
 .account {
     min-height: 80px;
     margin-bottom: 10px;
+    margin-top: 30px;
 }
 
 .float-button-remove {
@@ -295,12 +296,12 @@ div.left {
 
 
 .move-down-a{
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 img.logo {
   
-  margin-top: 15px; 
+  margin-top: 10px; 
   max-width: 100px;
 }
 
