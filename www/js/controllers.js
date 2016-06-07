@@ -84,7 +84,7 @@ angular.module('brainApp.controllers', [])
 })
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform) {
 
-      $scope.Login = function(snumber, password) {
+      $scope.login = function(snumber, password) {
         $scope.data = {};
       
         var query = "SELECT student_no, name, grade, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
@@ -105,7 +105,9 @@ angular.module('brainApp.controllers', [])
                 console.log(daysDiff);
                 
                 $ionicLoading.hide();
-                
+                this.snumber = null;
+                this.password = null;
+
                 $state.go('eventmenu.subjects', result);
                 
             } else {
@@ -121,6 +123,10 @@ angular.module('brainApp.controllers', [])
 
 })
 .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, $ionicPopup, $cordovaDialogs){
+
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = true;
+    });
     
     $scope.userDetails = [];
     $scope.subjecstDetails = [];
@@ -148,9 +154,12 @@ angular.module('brainApp.controllers', [])
         return states[networkState];
     }; 
 
-    $scope.add = function(username, password){
+    $scope.addUser = function(username, password){
         
         var internet_conn = checkConnection();
+        var u = username;
+        var p = password;
+
         switch(internet_conn){
             case "No network connection":
                 $ionicPopup.alert({
@@ -179,7 +188,7 @@ angular.module('brainApp.controllers', [])
                         });
                     
                             var query = "SELECT student_no FROM users WHERE student_no = ? AND password = ?";
-                            $cordovaSQLite.execute(db, query, [username, password]).then(function(res){
+                            $cordovaSQLite.execute(db, query, [u, p]).then(function(res){
                                 if(res.rows.length > 0){
                                     $ionicLoading.hide();
                                     $scope.showAlert = function() {
@@ -202,7 +211,7 @@ angular.module('brainApp.controllers', [])
                                     });
                                     
                                    
-                                    activateAccount.getDetails(username).then(function(user){
+                                    activateAccount.getDetails(u).then(function(user){
                                         
                                         $scope.userDetails = user.data;
                                         
@@ -223,46 +232,66 @@ angular.module('brainApp.controllers', [])
                                             ac_year_from = $scope.userDetails[0].academic_year_from_date;
                                             ac_year_to = $scope.userDetails[0].academic_year_to_date
                                             status = $scope.userDetails[0].student_status;
-                                            
-                                            // Insert into user new user details
+
+                                            if (p === pass) {
+                                                // Insert into user new user details
                                       
-                                            var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-                                            $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
-                                                
-                                                $ionicLoading.hide();
-                                                var alertPopup = $ionicPopup.alert({
-                                                                title: 'Alert!!!!',
-                                                                template: 'Account successfully activated.'
-                                                            });
-                                                            
-                                                            alertPopup.then(function(res) {
-                                                                $state.go('tab.login');
+                                                var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
+                                                    
+                                                    $ionicLoading.hide();
+                                                    var alertPopup = $ionicPopup.alert({
+                                                                    title: 'Alert!!!!',
+                                                                    template: 'Account successfully activated.'
+                                                                });
                                                                 
-                                                            }, function(error){
-                                                                    console.log(error);
-                                                            });
-                                               
-                                                            
-                                            }, function(error){
+                                                                alertPopup.then(function(res) {
+                                                                    $state.go('tab.login');
+                                                                    
+                                                                }, function(error){
+                                                                        console.log(error);
+                                                                });
+                                                
+                                                                
+                                                }, function(error){
+                                                    $ionicLoading.hide();
+                                                    var alertPopup = $ionicPopup.alert({
+                                                                    title: 'Alert!!!!',
+                                                                    template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
+                                                                });
+                                                                
+                                                                alertPopup.then(function(res) {
+                                                                    $state.go('tab.account');
+                                                                }, function(error){
+                                                                        console.log(error);
+                                                                });
+                                                    console.log(error);
+                                                });   
+
+                                            }else{
                                                 $ionicLoading.hide();
                                                 var alertPopup = $ionicPopup.alert({
                                                                 title: 'Alert!!!!',
-                                                                template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
+                                                                template: 'Either username/password is wrong.'
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
                                                                 $state.go('tab.account');
                                                             }, function(error){
+                                                                    
                                                                     console.log(error);
                                                             });
-                                                console.log(error);
-                                            });
+                                                            
+                                                console.log("No connecttion to db....");
+                                            }
+                                            
+                                            
                                         
                                         }else{
                                             $ionicLoading.hide();
                                             var alertPopup = $ionicPopup.alert({
                                                             title: 'Alert!!!!',
-                                                            template: 'Connection to Server Failed, please contact Brainline @ 012 543 5000.'
+                                                            template: 'Adding account failed, Check that you entered the correct s-number/password.'
                                                         });
                                                         
                                                         alertPopup.then(function(res) {
@@ -353,47 +382,68 @@ angular.module('brainApp.controllers', [])
                                             ac_year_from = $scope.userDetails[0].academic_year_from_date;
                                             ac_year_to = $scope.userDetails[0].academic_year_to_date
                                             status = $scope.userDetails[0].student_status;
-                                            
-                                            // Insert into user new user details
+
+                                            if (p === pass) {
+                                                // Insert into user new user details
                                       
-                                            var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
-                                            $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status]).then(function(res){
+                                                var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
+                                                    
+                                                    $ionicLoading.hide();
+                                                    this.snumber = null;
+                                                    this.password = null;
+                                                    var alertPopup = $ionicPopup.alert({
+                                                                    title: 'Alert!!!!',
+                                                                    template: 'Account successfully activated.'
+                                                                });
+                                                                
+                                                                alertPopup.then(function(res) {
+                                                                    $state.go('tab.login');
+                                                                    
+                                                                }, function(error){
+                                                                        console.log(error);
+                                                                });
                                                 
+                                                                
+                                                }, function(error){
+                                                    $ionicLoading.hide();
+                                                    var alertPopup = $ionicPopup.alert({
+                                                                    title: 'Alert!!!!',
+                                                                    template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
+                                                                });
+                                                                
+                                                                alertPopup.then(function(res) {
+                                                                    $state.go('tab.account');
+                                                                }, function(error){
+                                                                        console.log(error);
+                                                                });
+                                                    console.log(error);
+                                                });   
+
+                                            }else{
                                                 $ionicLoading.hide();
-                                                console.log(JSON.stringify($scope.userDetails, null, 4));   
-                                                console.log(snum);
                                                 var alertPopup = $ionicPopup.alert({
                                                                 title: 'Alert!!!!',
-                                                                template: 'Account successfully activated.'
-                                                            });
-                                                            
-                                                            alertPopup.then(function(res) {
-                                                               $state.go('tab.login');
-                                                            }, function(error){
-                                                                    console.log(error);
-                                                            });
-                                               
-                                                            
-                                            }, function(error){
-                                                $ionicLoading.hide();
-                                                var alertPopup = $ionicPopup.alert({
-                                                                title: 'Alert!!!!',
-                                                                template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
+                                                                template: 'Either username/password is wrong.'
                                                             });
                                                             
                                                             alertPopup.then(function(res) {
                                                                 $state.go('tab.account');
                                                             }, function(error){
+                                                                    
                                                                     console.log(error);
                                                             });
-                                                console.log(error);
-                                            });
+                                                            
+                                                console.log("No connecttion to db....");
+                                            }
+                                            
+                                            
                                         
                                         }else{
                                             $ionicLoading.hide();
                                             var alertPopup = $ionicPopup.alert({
                                                             title: 'Alert!!!!',
-                                                            template: 'Connection to Server Failed, please contact Brainline @ 012 543 5000.'
+                                                            template: 'Adding account failed, Check that you entered the correct s-number/password.'
                                                         });
                                                         
                                                         alertPopup.then(function(res) {

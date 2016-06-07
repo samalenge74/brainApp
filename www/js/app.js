@@ -73,12 +73,31 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
 
   // Each tab has its own nav history stack:
 
-    .state('tab.login', {
+  .state('tab.login', {
     url: '/login',
     views: {
       'tab-login': {
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
+      }
+    }
+  })
+    
+  .state('tab.forgotPassword', {
+    url: '/forgotPassword',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/forgotPassword.html',
+        controller: 'FPassowrdCtrl'
+      }
+    }
+  })
+
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/account.html',
       }
     }
   })
@@ -102,16 +121,17 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
       }
     }
   })
-  
-  .state('tab.forgotPassword', {
-    url: '/forgotPassword',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/forgotPassword.html',
-        controller: 'FPassowrdCtrl'
+
+
+  .state('tab.support', {
+      url: '/support',
+      views: {
+        'tab-support': {
+          templateUrl: 'templates/support.html',
+          controller: 'supportCtrl'
+        }
       }
-    }
-  })
+    })
   
   .state('eventmenu', {
       url: "/menu",
@@ -163,17 +183,7 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
         }
       }
     })
-    
-    .state('tab.support', {
-      url: '/support',
-      views: {
-        'tab-support': {
-          templateUrl: 'templates/support.html',
-          controller: 'supportCtrl'
-        }
-      }
-    })
-    
+
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
             return $delegate.go($delegate.current, $stateParams, {
@@ -208,4 +218,38 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
        
         
     });
-});
+})
+
+.directive('uiShowPassword', [
+  function () {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function (scope, elem, attrs) {
+      var btnShowPass = angular.element('<button class="button button-clear"><i class="ion-eye"></i></button>'),
+        elemType = elem.attr('type');
+
+      // this hack is needed because Ionic prevents browser click event 
+      // from elements inside label with input
+      btnShowPass.on('mousedown', function (evt) {
+        (elem.attr('type') === elemType) ?
+          elem.attr('type', 'text') : elem.attr('type', elemType);
+        btnShowPass.toggleClass('button-positive');
+        //prevent input field focus
+        evt.stopPropagation();
+      });
+
+      btnShowPass.on('touchend', function (evt) {
+        var syntheticClick = new Event('mousedown');
+        evt.currentTarget.dispatchEvent(syntheticClick);
+
+        //stop to block ionic default event
+        evt.stopPropagation();
+      });
+
+      if (elem.attr('type') === 'password') {
+        elem.after(btnShowPass);
+      }
+    }
+  };
+}]);
