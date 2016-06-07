@@ -39,7 +39,7 @@ angular.module('brainApp.controllers', [])
             db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, student_email TEXT, gender TEXT, student_paid INTEGER, OLD_student_status INTEGER, password TEXT, academic_year TEXT, name TEXT, grade INTEGER, status INTEGER, brainonline_sync_status INTEGER, year_from TEXT, year_to TEXT, date_status_last_checked TEXT)");
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT)");
-            $location.path("/tab/dash");
+            $location.path("/tab/login");
             
         }else{
             db = openDatabase("websql.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -48,7 +48,7 @@ angular.module('brainApp.controllers', [])
                 tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER)");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT");
             });
-            $location.path("/tab/dash");
+            $location.path("/tab/login");
             
         }
     })
