@@ -37,7 +37,7 @@ angular.module('brainApp.controllers', [])
     $ionicPlatform.ready(function(){
         if(window.cordova){
             db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, student_email TEXT, gender TEXT, student_paid INTEGER, OLD_student_status INTEGER, password TEXT, academic_year TEXT, name TEXT, grade INTEGER, status INTEGER, brainonline_sync_status INTEGER, year_from TEXT, year_to TEXT, date_status_last_checked TEXT)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT)");
             $location.path("/tab/login");
             
@@ -45,7 +45,7 @@ angular.module('brainApp.controllers', [])
             db = openDatabase("websql.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS users");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER)");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT");
             });
             $location.path("/tab/login");
@@ -87,8 +87,10 @@ angular.module('brainApp.controllers', [])
       $scope.login = function(snumber, password) {
         $scope.data = {};
       
-        var query = "SELECT student_no, name, grade, password, date_status_last_checked FROM users WHERE student_no = ?";
-        $cordovaSQLite.execute(db, query, [snumber]).then(function(res){
+        var query = "SELECT student_no, name, grade, password, date_status_last_checked FROM users WHERE student_no = ? AND password = ?";
+        $cordovaSQLite.execute(db, query, [snumber, password]).then(function(res){
+            
+            console.log(JSON.stringify(res.rows, null, 4));
             if(res.rows.length > 0){
 
                 var snum = res.rows.item(0).student_no;
