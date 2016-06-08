@@ -84,23 +84,21 @@ angular.module('brainApp.controllers', [])
 })
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter) {
 
-    function diffDays(d1, d2){
-        var ndays;
-        var tv1 = d1.valueOf();
-        var tv2 = d2.valueOf();
-
-        ndays = (tv2 - tv1) / 1000 / 86400;
-        ndays = Math.round(ndays - 0.5);
-        return ndays;
+    function diffDays(d1){
+        var eventE = new Date(d1);
+        var today =  new Date();
+        return dateDiffInDays(today, eventE);
     }
 
-      $scope.login = function(snumber, password) {
+    $scope.login = function(snumber, password) {
         $scope.data = {};
-      
-        var query = "SELECT student_no, name, password, grade, date_status_last_checked FROM users";
-        $cordovaSQLite.execute(db, query, []).then(function(res){
+
+        
+        //var query = "SELECT student_no, name, password, grade, date_status_last_checked FROM users";
+        $cordovaSQLite.execute(db, "SELECT student_no, name, password, grade, date_status_last_checked FROM users where student_no=? and password=?", [snumber, password]).then(function(res){
             
-            console.log(JSON.stringify(res.rows.item(0), null, 4));
+            console.log(JSON.stringify(res.rows.length, null, 4));
+            
             if(res.rows.length > 0){
 
                 var snum = res.rows.item(0).student_no;
@@ -108,7 +106,7 @@ angular.module('brainApp.controllers', [])
                 var gd = res.rows.item(0).grade;
                 var pass = res.rows.item(0).password;
                 var result = { user: snum, name: stName, grade: gd};
-                var date_status_last_checked = $filter('date')(new Date(res.rows.item(0).date_status_last_checked));
+                var date_status_last_checked = $filter('date')(new Date(res.rows.item(0).date_status_last_checked), 'dd-MM-yyyy');
                 var now = $filter('date')(new Date(), 'dd-MM-yyyy');
 
                 var daysDiff = diffDays(now, date_status_last_checked);
@@ -127,12 +125,12 @@ angular.module('brainApp.controllers', [])
                 $state.go('eventmenu.subjects', result);
                 
             } else {
-                 console.log(snumber+' '+password);
+                    console.log(snumber+' '+password);
                 $ionicLoading.hide();
                 $ionicPopup.alert({
                     template: 'Either the s-number/password is incorrect',
                 });
-               
+                
             } 
         });// end of execute
   
@@ -141,10 +139,6 @@ angular.module('brainApp.controllers', [])
 })
 .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, $ionicPopup, $cordovaDialogs, $filter){
 
-    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-        viewData.enableBack = true;
-    });
-    
     $scope.userDetails = [];
     $scope.subjecstDetails = [];
     $scope.status;
@@ -202,8 +196,8 @@ angular.module('brainApp.controllers', [])
                             templateUrl: 'checking.html'
                         });
                     
-                            var query = "SELECT student_no FROM users WHERE student_no = ? AND password = ?";
-                            $cordovaSQLite.execute(db, query, [u, p]).then(function(res){
+                           // var query = ;
+                            $cordovaSQLite.execute(db, "SELECT student_no FROM users where student_no=?", [u]).then(function(res){
                                 if(res.rows.length > 0){
                                     $ionicLoading.hide();
                                     $scope.showAlert = function() {
@@ -255,8 +249,10 @@ angular.module('brainApp.controllers', [])
                                                 $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
                                                     
                                                     $ionicLoading.hide();
+                                                    this.snumber = null;
+                                                    this.password = null;
                                                     var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Alert!!!!',
+                                                                    title: 'Congratulations',
                                                                     template: 'Account successfully activated.'
                                                                 });
                                                                 
@@ -353,7 +349,7 @@ angular.module('brainApp.controllers', [])
                             templateUrl: 'checking.html'
                         });
                     
-                            var query = "SELECT student_no FROM users WHERE student_no = ? AND password = ?";
+                            var query = "SELECT student_no FROM users where student_no = ? AND password = ?";
                             $cordovaSQLite.execute(db, query, [username, password]).then(function(res){
                                 if(res.rows.length > 0){
                                     $ionicLoading.hide();
@@ -409,7 +405,7 @@ angular.module('brainApp.controllers', [])
                                                     this.snumber = null;
                                                     this.password = null;
                                                     var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Alert!!!!',
+                                                                    title: 'Congratulations',
                                                                     template: 'Account successfully activated.'
                                                                 });
                                                                 
