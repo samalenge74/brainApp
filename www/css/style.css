@@ -130,10 +130,18 @@
 }
 
 
- i {
+i {
         font-size: 40px;
         color: #fff;
         vertical-align: middle;
+}
+
+.capitalize {
+  display: inline-block;  
+}
+
+.capitalize::first-letter {
+  text-transform: uppercase;
 }
 
 /* Empty. Add your own CSS if you like */

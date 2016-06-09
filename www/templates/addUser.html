@@ -7,10 +7,10 @@
         <p class="text-center">
              <img class="logo" src="img/icon.png" />
         </p>
-        <form class="move-down-a" ng-submit="addUser(snumber, password)" name="addUserForm">
+        <form class="move-down-a">
             <div class="list list-inset">
                 <label class="item item-input">
-                    <input type="text" placeholder="S-Number" ng-model="snumber" required>
+                    <input type="text" class="capitalize" placeholder="S-Number" ng-model="snumber" required>
                 </label>
                 <label class="item item-input">
                     <input type="password" placeholder="Password" ng-model="password" toggle-password-input required>
@@ -18,7 +18,7 @@
                 <toggle-password-checkbox label="Show password" checkbox-class="checkbox-balanced"></toggle-password-checkbox>
             </div>
             <p class="text-center">
-                <button type="submit" class="button button-balanced" ng-disabled="addUserForm.$invalid">Add User</button>
+                <button type="submit" class="button button-balanced" ng-click="addUser(snumber, password)"  ng-disabled="addUserForm.$invalid">Add User</button>
             </p>
         </form> 
         
