@@ -84,6 +84,9 @@ angular.module('brainApp.controllers', [])
 })
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter) {
 
+    $scope.snumber = "";
+    $scope.password = "";
+
     function dateDiffInDays(a, b){
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -122,8 +125,6 @@ angular.module('brainApp.controllers', [])
                 var daysDiff = diffDays(date_status_last_checked);
                 
                 $ionicLoading.hide();
-                this.snumber = null;
-                this.password = null;
                 
                 $state.go('eventmenu.subjects', result);
                 
@@ -142,12 +143,14 @@ angular.module('brainApp.controllers', [])
     }; 
 
 })
-.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, $ionicPopup, $cordovaDialogs, $filter){
+.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter){
 
     $scope.userDetails = [];
     $scope.subjecstDetails = [];
     $scope.status;
     $scope.user;
+    $scope.snumber = "";
+    $scope.password = "";
 
     var status_date = $filter('date')(new Date(), 'dd-MM-yyyy');
 
@@ -253,21 +256,70 @@ angular.module('brainApp.controllers', [])
                                       
                                                 var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
                                                 $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
-                                                    
-                                                    $ionicLoading.hide();
-                                                    this.snumber = null;
-                                                    this.password = null;
-                                                    var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Congratulations',
-                                                                    template: 'Account successfully activated.'
-                                                                });
+
+                                                    getSubjects.getDetails(snum).then(function(det){
+                                                        $scope.subjecstDetails = det.data;
+                                                        console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
+                                                        var s = 0;
+                                                        for (var i = 0; i < $scope.subjecstDetails.length; i++){
+                                                            
+                                                            subj_id = $scope.subjecstDetails[i].subject_id; 
+                                                            subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            subj_desc = $scope.subjecstDetails[i].subject_description; 
+                                                            subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
+                                                            subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
+                                                            subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
+                                                        
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
                                                                 
-                                                                alertPopup.then(function(res) {
-                                                                    $state.go('tab.login');
-                                                                    
-                                                                }, function(error){
-                                                                        console.log(error);
-                                                                });
+                                                            
+                                                            }, function(error){
+                                                                $ionicLoading.hide(); 
+                                                                console.log(error);
+                                                            });
+                                                            
+                                                            s++;
+                                                            
+                                                        }
+
+                                                        if (s == $scope.subjecstDetails.length){
+                                                                $ionicLoading.hide();
+                                                                $scope.snumber = "";
+                                                                $scope.password = "";
+                                                                var alertPopup = $ionicPopup.alert({
+                                                                                title: 'Congratulations',
+                                                                                template: 'Account successfully activated.'
+                                                                            });
+                                                                            
+                                                                            alertPopup.then(function(res) {
+                                                                                $state.go('tab.login');
+                                                                                
+                                                                            }, function(error){
+                                                                                    console.log(error);
+                                                                            });
+                                                        }else{
+                                                            $ionicLoading.hide();
+                                                            var alertPopup = $ionicPopup.alert({
+                                                                                title: 'Alert!!!!',
+                                                                                template: 'There was a problem loading your subjects.'
+                                                                            });
+                                                                            
+                                                                            alertPopup.then(function(res) {
+                                                                                $state.go('tab.login');
+                                                                                
+                                                                            }, function(error){
+                                                                                    console.log(error);
+                                                                            });
+                                                        }
+                                                
+                                                                                                                    
+                                                    }, function (err) {
+                                                        $ionicLoading.hide(); 
+                                                        console.error(err);
+                                                    }); // end of getDetails Subjects
+                                                    
+                                                   
                                                 
                                                                 
                                                 }, function(error){
@@ -407,21 +459,66 @@ angular.module('brainApp.controllers', [])
                                                 var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
                                                 $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
                                                     
-                                                    $ionicLoading.hide();
-                                                    
-                                                    this.snumber = null;
-                                                    this.password = null;
-                                                    var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Congratulations',
-                                                                    template: 'Account successfully activated.'
-                                                                });
-                                                                
-                                                                alertPopup.then(function(res) {
-                                                                    $state.go('tab.login');
-                                                                    
-                                                                }, function(error){
-                                                                        console.log(error);
-                                                                });
+                                                    getSubjects.getDetails(snum).then(function(det){
+                                                        $scope.subjecstDetails = det.data;
+                                                        var s = 0;
+                                                        for (var i = 0; i < $scope.subjecstDetails.length; i++){
+                                                            
+                                                            subj_id = $scope.subjecstDetails[i].subject_id; 
+                                                            subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            subj_desc = $scope.subjecstDetails[i].subject_description; 
+                                                            subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
+                                                            subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
+                                                            subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
+                                                        
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
+                                                                console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
+                                                            
+                                                            }, function(error){
+                                                                $ionicLoading.hide(); 
+                                                                console.log(error);
+                                                            });
+                                                            
+                                                            s++;
+                                                            
+                                                        }
+
+                                                        if (s == $scope.subjecstDetails.length){
+                                                                $ionicLoading.hide();
+                                                                $scope.snumber = "";
+                                                                $scope.password = "";
+                                                                var alertPopup = $ionicPopup.alert({
+                                                                                title: 'Congratulations',
+                                                                                template: 'Account successfully activated.'
+                                                                            });
+                                                                            
+                                                                            alertPopup.then(function(res) {
+                                                                                $state.go('tab.login');
+                                                                                
+                                                                            }, function(error){
+                                                                                    console.log(error);
+                                                                            });
+                                                        }else{
+                                                            $ionicLoading.hide();
+                                                            var alertPopup = $ionicPopup.alert({
+                                                                                title: 'Alert!!!!',
+                                                                                template: 'There was a problem loading your subjects.'
+                                                                            });
+                                                                            
+                                                                            alertPopup.then(function(res) {
+                                                                                $state.go('tab.login');
+                                                                                
+                                                                            }, function(error){
+                                                                                    console.log(error);
+                                                                            });
+                                                        }
+                                                
+                                                                                                                    
+                                                    }, function (err) {
+                                                        $ionicLoading.hide(); 
+                                                        console.error(err);
+                                                    }); // end of getDetails Subjects
                                                 
                                                                 
                                                 }, function(error){
@@ -519,104 +616,29 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, getSubjects, $ionicPopup, $cordovaDialogs){
+.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs){
   
-    getSubjectsDetails();
     
-    var usermane = $scope.studentName = $stateParams.snum;
+    
+    var usermane = $stateParams.user;
+    $scope.studentName = $stateParams.user;
     $scope.studentName = $stateParams.name;
     $scope.grade = $stateParams.grade;
-    
-    //$scope.subject_app_named = '';
-    
-    var subj_id = ''; var subj_name = ''; var subj_desc = ''; var subj_lastupdate_date = ''; var subj_added_date = ''; var subj_app_name = ''; 
-     
-    function checkConnection() {
-        var networkState = navigator.connection.type;
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
+    $scope.subjects = [];
 
-        return states[networkState];
-    }; 
+    getSubjectsDetails(usermane);
 
-    function getSubjectsDetails(username){
-        var query = "SELECT name, description, student_no FROM subjects where student_no = ?";
+    function getSubjectsDetails(usermane){
+        console.log(usermane);
+        var query = "SELECT name, description FROM subjects where student_no = ?";
         $cordovaSQLite.execute(db, query, [usermane]).then(function(res) {
             if(res.rows.length > 0){
-    
-                $scope.subjects.push({name: res.rows.item(0).name, desc: res.rows.item(0).description})
-                   
+                for (var j = 0; j < res.rows.length; j++){
+                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description})
+                }
+       
             }else{
-                var confirmPopup = $ionicPopup.confirm({
-                    title: 'No Subjects Found!!!',
-                    template: 'Do you want to add Subjects now?'
-                });
-
-                 confirmPopup.then(function(res) {
-                    if(res) { // if yes
-                        console.log("No subjects found");
-                        $ionicLoading.show({
-                            animation: 'fade-in',
-                            showDelay: 0,
-                            noBackdrop: true,
-                            templateUrl: 'subjects.html'
-                        });
-                        
-                        getSubjects.getDetails(usermane).then(function(det){
-                            $scope.subjecstDetails = det.data;
-                            
-                            var s = 0;
-                            
-                            for (var i = 0; i < $scope.subjecstDetails.length; i++){
-                                
-                                subj_id = $scope.subjecstDetails[i].subject_id; 
-                                subj_name = $scope.subjecstDetails[i].subject_name; 
-                                subj_desc = $scope.subjecstDetails[i].subject_description; 
-                                subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
-                                subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
-                                subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
-                            
-                                var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
-                                $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
-                                    console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
-                                
-                                }, function(error){
-                                    $ionicLoading.hide(); 
-                                    console.log(error);
-                                });
-                                
-                                s++;
-                                
-                            }
-                            
-                            if (s == $scope.subjecstDetails.length){
-                                $ionicLoading.hide();
-                                $state.go($state.$current, null, { reload: true });
-                            }else{
-                                console.log('Loading Subjects failed!!!!');
-                            }
-                                                                                        
-                        }, function (err) {
-                            $ionicLoading.hide(); 
-                            console.error(err);
-                        }); // end of getDetails Subjects
-                
-                    }else{
-                        $ionicHistory.clearCache();
-                        $ionicHistory.clearHistory();
-                        $state.go('tab.login');
-                    }
-           
-                }, function (err) {
-                    console.error(err);
-                });
+                console.log('Could not load subjects.')
             }
         });
         
