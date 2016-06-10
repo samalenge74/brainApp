@@ -38,7 +38,7 @@ angular.module('brainApp.controllers', [])
         if(window.cordova){
             db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, student_no TEXT)");
             $location.path("/tab/login");
             
         }else{
@@ -46,7 +46,7 @@ angular.module('brainApp.controllers', [])
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS users");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, student_no TEXT");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, student_no TEXT");
             });
             $location.path("/tab/login");
             
@@ -263,15 +263,105 @@ angular.module('brainApp.controllers', [])
                                                         var s = 0;
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
-                                                            subj_id = $scope.subjecstDetails[i].subject_id; 
-                                                            subj_name = $scope.subjecstDetails[i].subject_name; 
-                                                            subj_desc = $scope.subjecstDetails[i].subject_description; 
-                                                            subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
-                                                            subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
-                                                            subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
+                                                            var subj_id = $scope.subjecstDetails[i].subject_id; 
+                                                            var subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            var subj_desc = $scope.subjecstDetails[i].subject_description; 
+                                                            var subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
+                                                            var subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
+                                                            var subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name;
+                                                            var subj_version = $scope.subjecstDetails[i].version;
+                                                            var subj_filesize = $scope.subjecstDetails[i].filesize; 
+
+                                                            var icon = '';
+
+                                                            switch(subj_name){
+                                                                case 'English Home Language': 
+                                                                case 'English First Additional Language':
+                                                                    icon = 'img/icons/1.png';
+                                                                break;
+
+                                                                case 'Afrikaans Huistaal': 
+                                                                case 'Afrikaans Eerste Addisionele Taal':
+                                                                    icon = 'img/icons/2.png';
+                                                                break;
+
+                                                                case 'Wiskunde': 
+                                                                case 'Mathematics': 
+                                                                case 'Wiskundige Geletterdheid': 
+                                                                case 'Mathematical Literacy':
+                                                                    icon = 'img/icons/3.png';
+                                                                break;
+
+                                                                case 'Lewensoriëntering': 
+                                                                case 'Life Orientation':
+                                                                    icon = 'img/icons/4.png';
+                                                                break;
+                                                                
+                                                                case 'Rekeningkunde': 
+                                                                case 'Accounting':
+                                                                    icon = 'img/icons/5.png';
+                                                                break;
+
+                                                                case 'Agricultural Sciences':
+                                                                    icon = 'img/icons/6.png';
+                                                                break;
+
+                                                                case 'Besigheidstudies':
+                                                                case 'Business Studies':
+                                                                    icon = 'img/icons/7.png';
+                                                                break;
+
+                                                                case 'Computer Applications Technology':
+                                                                    icon = 'img/icons/8.png';
+                                                                break;
+
+                                                                case 'Ekonomie':
+                                                                case 'Economics':
+                                                                    icon = 'img/icons/9.png';
+                                                                break;
+
+                                                                case 'Fisiese Wetenskappe':
+                                                                case 'Physical Sciences':
+                                                                    icon = 'img/icons/10.png';
+                                                                break;
+
+                                                                case 'Geografie':
+                                                                case 'Geography':
+                                                                    icon = 'img/icons/11.png';
+                                                                break;
+
+                                                                case 'Geskiedenis': 
+                                                                case 'History':
+                                                                    icon = 'img/icons/12.png';
+                                                                break;
+
+                                                                case 'Ingenieursgrafika en Ontwerp':
+                                                                case 'Engineering Graphics and Design':
+                                                                    icon = 'img/icons/13.png';
+                                                                break;
+
+                                                                case 'Lewenswetenskappe': 
+                                                                case 'Life Sciences':
+                                                                    icon = 'img/icons/14.png';
+                                                                break;
+
+                                                                case 'Toerisme':
+                                                                case 'Tourism':
+                                                                    icon = 'img/icons/15.png';
+                                                                break;
+
+                                                                case 'Verbruikerstudies':
+                                                                case 'Consumer Studies':
+                                                                    icon = 'img/icons/16.png';
+                                                                break;
+
+                                                                case 'IsiZulu First Additional Language':
+                                                                    icon = 'img/icons/17.png';
+
+                                                            }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, student_no) VALUES (?,?,?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, snum]).then(function(r){
                                                                 
                                                             
                                                             }, function(error){
@@ -470,7 +560,100 @@ angular.module('brainApp.controllers', [])
                                                             subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
                                                             subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
                                                             subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
-                                                        
+
+                                                            var icon = '';
+
+                                                            switch(subj_name){
+                                                                case 'English Home Language': 
+                                                                case 'English First Additional Language':
+                                                                    icon = 'img/icons/1.png';
+                                                                break;
+
+                                                                case 'Afrikaans Huistaal': 
+                                                                case 'Afrikaans Eerste Addisionele Taal':
+                                                                    icon = 'img/icons/2.png';
+                                                                break;
+
+                                                                case 'Wiskunde': 
+                                                                case 'Mathematics': 
+                                                                case 'Wiskundige Geletterdheid': 
+                                                                case 'Mathematical Literacy':
+                                                                    icon = 'img/icons/3.png';
+                                                                break;
+
+                                                                case 'Lewensoriëntering': 
+                                                                case 'Life Orientation':
+                                                                    icon = 'img/icons/4.png';
+                                                                break;
+                                                                
+                                                                case 'Rekeningkunde': 
+                                                                case 'Accounting':
+                                                                    icon = 'img/icons/5.png';
+                                                                break;
+
+                                                                case 'Agricultural Sciences':
+                                                                    icon = 'img/icons/6.png';
+                                                                break;
+
+                                                                case 'Besigheidstudies':
+                                                                case 'Business Studies':
+                                                                    icon = 'img/icons/7.png';
+                                                                break;
+
+                                                                case 'Computer Applications Technology':
+                                                                    icon = 'img/icons/8.png';
+                                                                break;
+
+                                                                case 'Ekonomie':
+                                                                case 'Economics':
+                                                                    icon = 'img/icons/9.png';
+                                                                break;
+
+                                                                case 'Fisiese Wetenskappe':
+                                                                case 'Physical Sciences':
+                                                                    icon = 'img/icons/10.png';
+                                                                break;
+
+                                                                case 'Geografie':
+                                                                case 'Geography':
+                                                                    icon = 'img/icons/11.png';
+                                                                break;
+
+                                                                case 'Geskiedenis': 
+                                                                case 'History':
+                                                                    icon = 'img/icons/12.png';
+                                                                break;
+
+                                                                case 'Ingenieursgrafika en Ontwerp':
+                                                                case 'Engineering Graphics and Design':
+                                                                    icon = 'img/icons/13.png';
+                                                                break;
+
+                                                                case 'Lewenswetenskappe': 
+                                                                case 'Life Sciences':
+                                                                    icon = 'img/icons/14.png';
+                                                                break;
+
+                                                                case 'Toerisme':
+                                                                case 'Tourism':
+                                                                    icon = 'img/icons/15.png';
+                                                                break;
+
+                                                                case 'Verbruikerstudies':
+                                                                case 'Consumer Studies':
+                                                                    icon = 'img/icons/16.png';
+                                                                break;
+
+                                                                case 'IsiZulu First Additional Language':
+                                                                    icon = 'img/icons/17.png';
+                                                                break;
+
+                                                                case 'default':
+                                                                    icon = '';
+                                                                break;
+
+                                                            }
+
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
                                                                 console.log(JSON.stringify($scope.subjecstDetails, null, 4));   

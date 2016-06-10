@@ -377,6 +377,14 @@ img.logo {
 .popup-title {
     color: #ffffff;
 }
+
+.item-avatar {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 50px;
+    max-height: 50px;
+}
+
 /* Landscape width*/
 @media only screen 
   and (min-device-width: 768px) 
