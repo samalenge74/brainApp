@@ -187,6 +187,10 @@ z-index: 1000;
     margin-top: 30px;
 }
 
+div.acc-buttons{
+    max-width: 100px;
+}
+
 .float-button-remove {
  
     background-color: red;
@@ -295,7 +299,7 @@ h5.info{
 
 .main-content{
     margin: 0 auto 20px;
-    max-width: 70%;
+    max-width: 60%;
 }
 
 div.left {
@@ -385,22 +389,6 @@ img.logo {
     max-height: 50px;
 }
 
-/* Landscape width*/
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-  .bg{
-      
-        background-color: #ffffff;
-        background: url('../img/brainline_bg.png') no-repeat center center fixed;
-        background-size: cover;
-    
-    }
-}
-
 /* Landscape height*/
 @media only screen 
   and (min-device-width: 768px) 
@@ -414,5 +402,10 @@ img.logo {
         background: url('../img/brainline_bg.png') no-repeat center center fixed;
         background-size: cover;
     
+    }
+
+    .main-content{
+        margin: 0 auto 20px;
+        max-width: 60%;
     }
 }

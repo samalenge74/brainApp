@@ -10,28 +10,24 @@
 </div>
     <ion-content class="padding bg has-subheader">
         
-    <ion-list >
+            <div ng-repeat="subject in subjects track by $index" class="list card">
+                <div class="item item-avatar">
+                        <img src="">
+                        <h2>{{subject.name}}</h2>
+                        <p>{{grade}}</p>
+                </div> 
+                <div class="item item-body">
+                    <p>
+                        {{subject.desc}}
+                    </p>
+                    <p>
+                    <button class="button button-outline button-balanced" ng-click="content(subject.id)">
+                        View Content
+                    </button>
+                    </p>
+                </div>
+            </div>
 
-    <div ng-repeat="subject in subjects track by $index" class="list card">
-        <div class="item item-avatar">
-                <img src="{{icon}}">
-                <h2>{{subject.name}}</h2>
-                <p>{{grade}}</p>
-        </div> 
-        <div class="item item-body">
-            <p>
-                {{subject.desc}}
-            </p>
-            <p>
-            <button class="button button-outline button-balanced" ng-click="content(subject.id)">
-                View Content
-            </button>
-            </p>
-        </div>
-        </div>
-
-    </ion-list>
-    
     </ion-content>
   
 </ion-view>

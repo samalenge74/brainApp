@@ -654,8 +654,8 @@ angular.module('brainApp.controllers', [])
 
                                                             }
 
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, student_no) VALUES (?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, snum]).then(function(r){
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, icon, student_no) VALUES (?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, icon, snum]).then(function(r){
                                                                 console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
                                                             
                                                             }, function(error){
@@ -804,7 +804,7 @@ angular.module('brainApp.controllers', [])
     
     
     var usermane = $stateParams.user;
-    $scope.studentName = $stateParams.user;
+    $scope.studentNumber = $stateParams.user;
     $scope.studentName = $stateParams.name;
     $scope.grade = $stateParams.grade;
     $scope.subjects = [];
@@ -813,13 +813,13 @@ angular.module('brainApp.controllers', [])
 
     function getSubjectsDetails(usermane){
         console.log(usermane);
-        var query = "SELECT name, description FROM subjects where student_no = ?";
+        var query = "SELECT name, description, icon FROM subjects where student_no = ?";
         $cordovaSQLite.execute(db, query, [usermane]).then(function(res) {
             if(res.rows.length > 0){
                 for (var j = 0; j < res.rows.length; j++){
-                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description})
+                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description, icon: res.rows.item(j).icon})
                 }
-       
+            console.log(JSON.stringify($scope.subjects, null, 4));
             }else{
                 console.log('Could not load subjects.')
             }
