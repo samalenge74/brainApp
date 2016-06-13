@@ -137,12 +137,9 @@ i {
 }
 
 .capitalize {
-  display: inline-block;  
-}
-
-.capitalize::first-letter {
   text-transform: uppercase;
 }
+
 
 /* Empty. Add your own CSS if you like */
 .float-button-add {
@@ -189,6 +186,10 @@ z-index: 1000;
 
 div.acc-buttons{
     max-width: 100px;
+}
+
+div.card-background{
+    background-color: #387EF5;
 }
 
 .float-button-remove {
@@ -404,8 +405,30 @@ img.logo {
     
     }
 
-    .main-content{
+   
+}
+
+@media screen and (min-width: 768px) {
+  
+  .pane.menu-content {
+    /* !important for disabling dragging */
+    width: calc(100% - 275px) !important;
+    -webkit-transform: translate3d(275px,0,0) !important;
+       -moz-transform: translate3d(275px,0,0) !important;
+            transform: translate3d(275px,0,0) !important;
+  }
+
+  .buttons.left-buttons .icon.ion-navicon {
+    display: none;
+  }
+
+   .main-content{
         margin: 0 auto 20px;
-        max-width: 60%;
+        max-width: 50%;
     }
+
+    div.acc-buttons{
+        max-width: 50%;
+    }
+  
 }

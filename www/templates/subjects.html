@@ -11,8 +11,8 @@
     <ion-content class="padding bg has-subheader">
         
             <div ng-repeat="subject in subjects track by $index" class="list card">
-                <div class="item item-avatar">
-                        <img src="">
+                <div class="item item-avatar card-background">
+                        <img src="{{subject.icon}}">
                         <h2>{{subject.name}}</h2>
                         <p>{{grade}}</p>
                 </div> 

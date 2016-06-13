@@ -259,7 +259,7 @@ angular.module('brainApp.controllers', [])
 
                                                     getSubjects.getDetails(snum).then(function(det){
                                                         $scope.subjecstDetails = det.data;
-                                                        console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
+                                                        
                                                         var s = 0;
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
@@ -357,6 +357,11 @@ angular.module('brainApp.controllers', [])
 
                                                                 case 'IsiZulu First Additional Language':
                                                                     icon = 'img/icons/17.png';
+                                                                break;
+
+                                                                case 'default':
+                                                                    icon = '';
+                                                                break;
 
                                                             }
                                                         
@@ -552,16 +557,16 @@ angular.module('brainApp.controllers', [])
                                                     getSubjects.getDetails(snum).then(function(det){
                                                         $scope.subjecstDetails = det.data;
                                                         var s = 0;
+                                                        var icon = '';
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
                                                             subj_id = $scope.subjecstDetails[i].subject_id; 
-                                                            subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            subj_name = $scope.subjecstDetails[i].subject_name;
+                                                            subj_name = subj_name.trim(); 
                                                             subj_desc = $scope.subjecstDetails[i].subject_description; 
                                                             subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
                                                             subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
                                                             subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
-
-                                                            var icon = '';
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -653,10 +658,10 @@ angular.module('brainApp.controllers', [])
                                                                 break;
 
                                                             }
-
+                                                            console.log(icon);
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, icon, student_no) VALUES (?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, icon, snum]).then(function(r){
-                                                                console.log(JSON.stringify($scope.subjecstDetails, null, 4));   
+                                        
                                                             
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
