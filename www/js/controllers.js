@@ -1,3 +1,6 @@
+var subjects_content_download_link = '/home/mybrainline/googledrive/DVD/';
+var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
+
 angular.module('brainApp.controllers', [])
 
 .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
@@ -143,7 +146,7 @@ angular.module('brainApp.controllers', [])
     }; 
 
 })
-.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter){
+.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, getSubjectsContents){
 
     $scope.userDetails = [];
     $scope.subjecstDetails = [];
@@ -242,7 +245,13 @@ angular.module('brainApp.controllers', [])
                                             gd = $scope.userDetails[0].grade;
                                             var lang = gd.substr(0, 5);
                                             var n = gd.substr(5, 1);
-                                            gd = lang+" "+n;
+                                            gd1 = lang+" "+n;
+                                            if (lang == 'Grade'){
+                                                lang = 'eng';
+                                            }else{
+                                                lang = 'afr';
+                                            }
+
                                             ac_year = $scope.userDetails[0].student_academicyear;
                                             email =  $scope.userDetails[0].student_email;
                                             gender = $scope.userDetails[0].student_sex;
@@ -258,7 +267,7 @@ angular.module('brainApp.controllers', [])
                                                 // Insert into user new user details
                                       
                                                 var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-                                                $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
+                                                $cordovaSQLite.execute(db, query, [snum, stName, gd1, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
 
                                                     getSubjects.getDetails(snum).then(function(det){
                                                         $scope.subjecstDetails = det.data;
@@ -275,6 +284,8 @@ angular.module('brainApp.controllers', [])
                                                             var subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name;
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
+                                                            var yr = new Date().getFullYear();
+                                                            var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -392,8 +403,53 @@ angular.module('brainApp.controllers', [])
                                                         
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, student_no) VALUES (?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, snum]).then(function(r){
-                                                                
-                                                            
+
+                                                               /* 
+                                                                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+                                                                    fs.root.getDirectory(
+                                                                        snum,
+                                                                        {
+                                                                            create: true
+                                                                        },
+                                                                        function(dirLang){
+                                                                            dirLang.getDirectory(
+                                                                                lang,
+                                                                                {
+                                                                                    create: true
+                                                                                },
+                                                                                function(dirGrade){
+                                                                                    dirGrade.getDirectory(
+                                                                                        gd,
+                                                                                        {
+                                                                                            create: true
+                                                                                        },
+                                                                                        function(dirSubj){
+                                                                                            subj_app_name,
+                                                                                            {
+                                                                                                create: true
+                                                                                            },
+                                                                                            function getZipFile(){
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    );
+
+                                                                                },
+                                                                            );
+                                                                        },
+                                                                        function(){
+                                                                            console.error(error);
+                                                                        }
+                                                                    );
+                                                                    },
+                                                                    function(){
+                                                                        console.error(error);
+                                                                    }
+                                                                );
+
+                                                                */
+                                                                console.log(downloadLink);
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -551,7 +607,7 @@ angular.module('brainApp.controllers', [])
                                         templateUrl: 'activating.html'
                                     });
                                     
-                                     activateAccount.getDetails(username).then(function(user){
+                                    activateAccount.getDetails(u).then(function(user){
                                         
                                         $scope.userDetails = user.data;
                                         
@@ -564,7 +620,13 @@ angular.module('brainApp.controllers', [])
                                             gd = $scope.userDetails[0].grade;
                                             var lang = gd.substr(0, 5);
                                             var n = gd.substr(5, 1);
-                                            gd = lang+" "+n;
+                                            gd1 = lang+" "+n;
+                                            if (lang == 'Grade'){
+                                                lang = 'eng';
+                                            }else{
+                                                lang = 'afr';
+                                            }
+
                                             ac_year = $scope.userDetails[0].student_academicyear;
                                             email =  $scope.userDetails[0].student_email;
                                             gender = $scope.userDetails[0].student_sex;
@@ -580,21 +642,25 @@ angular.module('brainApp.controllers', [])
                                                 // Insert into user new user details
                                       
                                                 var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-                                                $cordovaSQLite.execute(db, query, [snum, stName, gd, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
-                                                    
+                                                $cordovaSQLite.execute(db, query, [snum, stName, gd1, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
+
                                                     getSubjects.getDetails(snum).then(function(det){
                                                         $scope.subjecstDetails = det.data;
+                                                        
                                                         var s = 0;
                                                         var icon = '';
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
-                                                            subj_id = $scope.subjecstDetails[i].subject_id; 
-                                                            subj_name = $scope.subjecstDetails[i].subject_name;
-                                                            subj_name = subj_name.trim(); 
-                                                            subj_desc = $scope.subjecstDetails[i].subject_description; 
-                                                            subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
-                                                            subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
-                                                            subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name; 
+                                                            var subj_id = $scope.subjecstDetails[i].subject_id; 
+                                                            var subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            var subj_desc = $scope.subjecstDetails[i].subject_description; 
+                                                            var subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
+                                                            var subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
+                                                            var subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name;
+                                                            var subj_version = $scope.subjecstDetails[i].version;
+                                                            var subj_filesize = $scope.subjecstDetails[i].filesize; 
+                                                            var yr = new Date().getFullYear();
+                                                            var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -709,11 +775,56 @@ angular.module('brainApp.controllers', [])
                                                                 break;
 
                                                             }
-                                                            console.log(icon);
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, icon, student_no) VALUES (?,?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, icon, snum]).then(function(r){
-                                        
-                                                            
+                                                        
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, student_no) VALUES (?,?,?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, snum]).then(function(r){
+
+                                                               /* 
+                                                                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+                                                                    fs.root.getDirectory(
+                                                                        snum,
+                                                                        {
+                                                                            create: true
+                                                                        },
+                                                                        function(dirLang){
+                                                                            dirLang.getDirectory(
+                                                                                lang,
+                                                                                {
+                                                                                    create: true
+                                                                                },
+                                                                                function(dirGrade){
+                                                                                    dirGrade.getDirectory(
+                                                                                        gd,
+                                                                                        {
+                                                                                            create: true
+                                                                                        },
+                                                                                        function(dirSubj){
+                                                                                            subj_app_name,
+                                                                                            {
+                                                                                                create: true
+                                                                                            },
+                                                                                            function getZipFile(){
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    );
+
+                                                                                },
+                                                                            );
+                                                                        },
+                                                                        function(){
+                                                                            console.error(error);
+                                                                        }
+                                                                    );
+                                                                    },
+                                                                    function(){
+                                                                        console.error(error);
+                                                                    }
+                                                                );
+
+                                                                */
+                                                                console.log(downloadLink);
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -758,6 +869,8 @@ angular.module('brainApp.controllers', [])
                                                         $ionicLoading.hide(); 
                                                         console.error(err);
                                                     }); // end of getDetails Subjects
+                                                    
+                                                   
                                                 
                                                                 
                                                 }, function(error){

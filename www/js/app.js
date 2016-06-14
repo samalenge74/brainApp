@@ -7,8 +7,6 @@
 // 'brainApp.controllers' is found in controllers.js
 var db = null;
 var remoteLink = 'http://192.168.0.63/brainApp/';
-var subjects_content_download_link = '/home/mybrainline/googledrive/DVD/';
-var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
 'use strict';
 
 angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment', 'ionTogglePassword'])
