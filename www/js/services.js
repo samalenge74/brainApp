@@ -28,4 +28,14 @@ angular.module('brainApp.services', [])
             }
         }
          
-}]);
+}])
+
+.factory("getSubjectsContents", ['$http', function($http){
+    var zip_file = '';
+
+    return{
+        getZipFile: function (moms, link) {
+            
+        }
+    }
+}])

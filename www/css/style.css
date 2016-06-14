@@ -188,8 +188,8 @@ div.acc-buttons{
     max-width: 100px;
 }
 
-div.card-background{
-    background-color: #387EF5;
+h2.name, p.grade{
+    color: #387EF5;
 }
 
 .float-button-remove {
@@ -383,7 +383,7 @@ img.logo {
     color: #ffffff;
 }
 
-.item-avatar {
+.item-avatar img{
     width: 100% !important;
     height: 100% !important;
     max-width: 50px;

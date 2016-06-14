@@ -240,6 +240,9 @@ angular.module('brainApp.controllers', [])
                                             snum = $scope.userDetails[0].student_no;
                                             stName = $scope.userDetails[0].name;
                                             gd = $scope.userDetails[0].grade;
+                                            var lang = gd.substr(0, 5);
+                                            var n = gd.substr(5, 1);
+                                            gd = lang+" "+n;
                                             ac_year = $scope.userDetails[0].student_academicyear;
                                             email =  $scope.userDetails[0].student_email;
                                             gender = $scope.userDetails[0].student_sex;
@@ -261,6 +264,7 @@ angular.module('brainApp.controllers', [])
                                                         $scope.subjecstDetails = det.data;
                                                         
                                                         var s = 0;
+                                                        var icon = '';
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
                                                             var subj_id = $scope.subjecstDetails[i].subject_id; 
@@ -271,8 +275,6 @@ angular.module('brainApp.controllers', [])
                                                             var subj_app_name = $scope.subjecstDetails[i].subject_old_dvd_name;
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
-
-                                                            var icon = '';
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -296,7 +298,22 @@ angular.module('brainApp.controllers', [])
                                                                 case 'Life Orientation':
                                                                     icon = 'img/icons/4.png';
                                                                 break;
-                                                                
+
+                                                                case 'Natuurwetenskappe':
+                                                                case 'Natural Sciences':
+                                                                    icon = 'img/icons/18.png';
+                                                                break;
+
+                                                                case 'Skeppende Kunste':
+                                                                case 'Creative Arts':
+                                                                    icon = 'img/icons/19.png';
+                                                                break;
+
+                                                                case 'Sosiale Wetenskappe':
+                                                                case 'Social Sciences':
+                                                                    icon = 'img/icons/20.png';
+                                                                break;
+ 
                                                                 case 'Rekeningkunde': 
                                                                 case 'Accounting':
                                                                     icon = 'img/icons/5.png';
@@ -305,6 +322,12 @@ angular.module('brainApp.controllers', [])
                                                                 case 'Agricultural Sciences':
                                                                     icon = 'img/icons/6.png';
                                                                 break;
+
+                                                                case 'Tegnologie':
+                                                                case 'Technology':
+                                                                    icon = 'img/icons/21.png';
+                                                                break;
+
 
                                                                 case 'Besigheidstudies':
                                                                 case 'Business Studies':
@@ -317,6 +340,8 @@ angular.module('brainApp.controllers', [])
 
                                                                 case 'Ekonomie':
                                                                 case 'Economics':
+                                                                case 'Economic and Management Sciences':
+                                                                case 'Ekonomiese en Bestuurswetenskappe':
                                                                     icon = 'img/icons/9.png';
                                                                 break;
 
@@ -537,6 +562,9 @@ angular.module('brainApp.controllers', [])
                                             snum = $scope.userDetails[0].student_no;
                                             stName = $scope.userDetails[0].name;
                                             gd = $scope.userDetails[0].grade;
+                                            var lang = gd.substr(0, 5);
+                                            var n = gd.substr(5, 1);
+                                            gd = lang+" "+n;
                                             ac_year = $scope.userDetails[0].student_academicyear;
                                             email =  $scope.userDetails[0].student_email;
                                             gender = $scope.userDetails[0].student_sex;
@@ -590,7 +618,22 @@ angular.module('brainApp.controllers', [])
                                                                 case 'Life Orientation':
                                                                     icon = 'img/icons/4.png';
                                                                 break;
-                                                                
+
+                                                                case 'Natuurwetenskappe':
+                                                                case 'Natural Sciences':
+                                                                    icon = 'img/icons/18.png';
+                                                                break;
+
+                                                                case 'Skeppende Kunste':
+                                                                case 'Creative Arts':
+                                                                    icon = 'img/icons/19.png';
+                                                                break;
+
+                                                                case 'Sosiale Wetenskappe':
+                                                                case 'Social Sciences':
+                                                                    icon = 'img/icons/20.png';
+                                                                break;
+ 
                                                                 case 'Rekeningkunde': 
                                                                 case 'Accounting':
                                                                     icon = 'img/icons/5.png';
@@ -599,6 +642,12 @@ angular.module('brainApp.controllers', [])
                                                                 case 'Agricultural Sciences':
                                                                     icon = 'img/icons/6.png';
                                                                 break;
+
+                                                                case 'Tegnologie':
+                                                                case 'Technology':
+                                                                    icon = 'img/icons/21.png';
+                                                                break;
+
 
                                                                 case 'Besigheidstudies':
                                                                 case 'Business Studies':
@@ -611,6 +660,8 @@ angular.module('brainApp.controllers', [])
 
                                                                 case 'Ekonomie':
                                                                 case 'Economics':
+                                                                case 'Economic and Management Sciences':
+                                                                case 'Ekonomiese en Bestuurswetenskappe':
                                                                     icon = 'img/icons/9.png';
                                                                 break;
 
