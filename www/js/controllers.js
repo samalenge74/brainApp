@@ -41,7 +41,7 @@ angular.module('brainApp.controllers', [])
         if(window.cordova){
             db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
             $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, student_no TEXT)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, content_link TEXT, student_no TEXT)");
             $location.path("/tab/login");
             
         }else{
@@ -49,7 +49,7 @@ angular.module('brainApp.controllers', [])
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS users");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, student_no TEXT");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, content_link TEXT, student_no TEXT");
             });
             $location.path("/tab/login");
             
@@ -87,8 +87,8 @@ angular.module('brainApp.controllers', [])
 })
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter) {
 
-    $scope.snumber = "";
-    $scope.password = "";
+    $scope.snumber = null;
+    $scope.password = null;
 
     function dateDiffInDays(a, b){
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -130,9 +130,7 @@ angular.module('brainApp.controllers', [])
                 $ionicLoading.hide();
                 
                 $state.go('eventmenu.subjects', result);
-                
-                     
- 
+
             } else {
                     console.log(snumber+' '+password);
                 $ionicLoading.hide();
@@ -247,9 +245,9 @@ angular.module('brainApp.controllers', [])
                                             var n = gd.substr(5, 1);
                                             gd1 = lang+" "+n;
                                             if (lang == 'Grade'){
-                                                lang = 'eng';
+                                                lang = 'Eng';
                                             }else{
-                                                lang = 'afr';
+                                                lang = 'Afr';
                                             }
 
                                             ac_year = $scope.userDetails[0].student_academicyear;
@@ -286,6 +284,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
+                                                            var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -401,13 +400,13 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, student_no) VALUES (?,?,?,?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, snum]).then(function(r){
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
 
-                                                               /* 
+                                                              
                                                                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
                                                                     fs.root.getDirectory(
-                                                                        snum,
+                                                                        Data,
                                                                         {
                                                                             create: true
                                                                         },
@@ -428,28 +427,28 @@ angular.module('brainApp.controllers', [])
                                                                                             {
                                                                                                 create: true
                                                                                             },
-                                                                                            function getZipFile(){
+                                                                                                 function(dirEntry) {
+                                                                                                    
+                                                                                                }
 
                                                                                             }
+                                                                                        );
 
-                                                                                        }
-                                                                                    );
-
-                                                                                },
-                                                                            );
-                                                                        },
-                                                                        function(){
-                                                                            console.error(error);
-                                                                        }
-                                                                    );
+                                                                                    },
+                                                                                )
+                                                                            },
+                                                                            function(){
+                                                                                console.error(error);
+                                                                            }
+                                                                        );
                                                                     },
                                                                     function(){
                                                                         console.error(error);
                                                                     }
                                                                 );
 
-                                                                */
                                                                 console.log(downloadLink);
+                                                                console.log(link_to_content);
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -622,9 +621,9 @@ angular.module('brainApp.controllers', [])
                                             var n = gd.substr(5, 1);
                                             gd1 = lang+" "+n;
                                             if (lang == 'Grade'){
-                                                lang = 'eng';
+                                                lang = 'Eng';
                                             }else{
-                                                lang = 'afr';
+                                                lang = 'Afr';
                                             }
 
                                             ac_year = $scope.userDetails[0].student_academicyear;
@@ -661,6 +660,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
+                                                            var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -776,13 +776,13 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, student_no) VALUES (?,?,?,?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, snum]).then(function(r){
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
 
-                                                               /* 
+                                                              
                                                                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
                                                                     fs.root.getDirectory(
-                                                                        snum,
+                                                                        Data,
                                                                         {
                                                                             create: true
                                                                         },
@@ -803,28 +803,28 @@ angular.module('brainApp.controllers', [])
                                                                                             {
                                                                                                 create: true
                                                                                             },
-                                                                                            function getZipFile(){
+                                                                                                 function(dirEntry) {
+                                                                                                    
+                                                                                                }
 
                                                                                             }
+                                                                                        );
 
-                                                                                        }
-                                                                                    );
-
-                                                                                },
-                                                                            );
-                                                                        },
-                                                                        function(){
-                                                                            console.error(error);
-                                                                        }
-                                                                    );
+                                                                                    },
+                                                                                );
+                                                                            },
+                                                                            function(){
+                                                                                console.error(error);
+                                                                            }
+                                                                        );
                                                                     },
                                                                     function(){
                                                                         console.error(error);
                                                                     }
                                                                 );
 
-                                                                */
                                                                 console.log(downloadLink);
+                                                                console.log(link_to_content);
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -948,7 +948,8 @@ angular.module('brainApp.controllers', [])
     }
          
 })
-.controller('DeleteUserCtrl', function($scope){  
+.controller('DeleteUserCtrl', function($scope, $cordovaSQLite){  
+    
 })
 .controller('FPassowrdCtrl', function($scope){  
     $scope.sendEmail = function(){

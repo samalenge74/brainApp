@@ -5,13 +5,13 @@
              <img class="logo" src="img/icon.png" />
         </p>
        
-         <form ng-submit="submit(snumber)" class="move-down-a">
+         <form class="move-down-a">
             <div class="list">
                 <div class="item item-input-inset">
                     <label class="item-input-wrapper">
                         <input type="text" placeholder="s-number" ng-model="snumber" required>
                     </label>
-                    <button class="button button-balanced" ng-click="deleteUser()">
+                    <button class="button button-balanced" ng-click="deleteUser(snumber)">
                         <i class="icon icon-remove-user"></i>
                     </button>
                 </div>
