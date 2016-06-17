@@ -7,6 +7,7 @@
 // 'brainApp.controllers' is found in controllers.js
 var db = null;
 var remoteLink = 'http://192.168.0.63/brainApp/';
+var appVersion = '0.0.0';
 'use strict';
 
 angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment', 'ionTogglePassword'])
@@ -24,6 +25,11 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    cordova.getAppVersion(function(version){
+      appVersion = version;
+    });
+
     
   })
   

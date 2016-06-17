@@ -7,9 +7,9 @@
          <div class="list move-down-a left">
              <div class="item item-button-right item-positive">
                 Email Us
-                <button class="button button-balanced" ng-click="sendEmail()">
+                <a class="button button-balanced" ng-href="mailto:{{emailAddress}}">
                 <i class="icon icon-email"></i>
-                </button>
+                </a>
             </div>
             <div class="item item-button-right item-positive">
                 Call Us
@@ -18,16 +18,19 @@
                 </a>
             </div>
             <div class="item item-button-right item-positive">
-                Our Contact Details
+                Contacts 
                 <a class="button button-balanced" href="" onclick="window.open('https://www.brainline.com/contact-us/', '_system', 'location=yes'); return false;">
                 <i class="icon icon-web"></i>
                 </a>
             </div>
             <div class="item item-button-right item-positive">
-                View Tutorial
+                Tutorial
                 <button class="button button-balanced" ng-click="toIntro()">
                 <i class="icon icon-info"></i>
                 </button>
+            </div>
+            <div class="item item-positive">
+                Version: {{version}}   
             </div>
            </div>
           </div>

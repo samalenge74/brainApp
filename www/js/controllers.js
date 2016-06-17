@@ -266,7 +266,15 @@ angular.module('brainApp.controllers', [])
                                       
                                                 var query = 'INSERT INTO users (student_no, name, grade, password, student_email, academic_year,  year_from, year_to, gender, status, OLD_student_status, student_paid, brainonline_sync_status, date_status_last_checked) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
                                                 $cordovaSQLite.execute(db, query, [snum, stName, gd1, pass, email, ac_year, ac_year_from, ac_year_to, gender, status, old_status, paid, sync_status, status_date]).then(function(res){
-
+                                                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+                                                        fs.root.getDirectory(data, {create: true}, function(dirLang){
+                                                            lang, {create: true}, function(dirGrade){
+                                                                dirGrade.getDirectory(gd, {create: true}, function(dirSubj){
+                                                                    
+                                                                });
+                                                            }
+                                                        });
+                                                    });
                                                     getSubjects.getDetails(snum).then(function(det){
                                                         $scope.subjecstDetails = det.data;
                                                         
@@ -283,7 +291,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
-                                                            var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
+                                                            var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
                                                             var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
@@ -405,47 +413,14 @@ angular.module('brainApp.controllers', [])
 
                                                               
                                                                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-                                                                    fs.root.getDirectory(
-                                                                        Data,
-                                                                        {
-                                                                            create: true
-                                                                        },
-                                                                        function(dirLang){
-                                                                            dirLang.getDirectory(
-                                                                                lang,
-                                                                                {
-                                                                                    create: true
-                                                                                },
-                                                                                function(dirGrade){
-                                                                                    dirGrade.getDirectory(
-                                                                                        gd,
-                                                                                        {
-                                                                                            create: true
-                                                                                        },
-                                                                                        function(dirSubj){
-                                                                                            subj_app_name,
-                                                                                            {
-                                                                                                create: true
-                                                                                            },
-                                                                                                 function(dirEntry) {
-                                                                                                    
-                                                                                                }
-
-                                                                                            }
-                                                                                        );
-
-                                                                                    },
-                                                                                )
-                                                                            },
-                                                                            function(){
-                                                                                console.error(error);
-                                                                            }
-                                                                        );
-                                                                    },
-                                                                    function(){
-                                                                        console.error(error);
-                                                                    }
-                                                                );
+                                                                    fs.root.getDirectory(Data, {create: false}, function(dirLang){
+                                                                        lang, {create: false}, function(dirGrade){
+                                                                            dirGrade.getDirectory(gd, {create: false}, function(dirSubj){
+                                                                                subj_app_name, {create: true}, function(dirEntry){}
+                                                                            });
+                                                                        }
+                                                                    });
+                                                                });
 
                                                                 console.log(downloadLink);
                                                                 console.log(link_to_content);
@@ -659,7 +634,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
-                                                            var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
+                                                            var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
                                                             var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
@@ -781,47 +756,14 @@ angular.module('brainApp.controllers', [])
 
                                                               
                                                                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-                                                                    fs.root.getDirectory(
-                                                                        Data,
-                                                                        {
-                                                                            create: true
-                                                                        },
-                                                                        function(dirLang){
-                                                                            dirLang.getDirectory(
-                                                                                lang,
-                                                                                {
-                                                                                    create: true
-                                                                                },
-                                                                                function(dirGrade){
-                                                                                    dirGrade.getDirectory(
-                                                                                        gd,
-                                                                                        {
-                                                                                            create: true
-                                                                                        },
-                                                                                        function(dirSubj){
-                                                                                            subj_app_name,
-                                                                                            {
-                                                                                                create: true
-                                                                                            },
-                                                                                                 function(dirEntry) {
-                                                                                                    
-                                                                                                }
-
-                                                                                            }
-                                                                                        );
-
-                                                                                    },
-                                                                                );
-                                                                            },
-                                                                            function(){
-                                                                                console.error(error);
-                                                                            }
-                                                                        );
-                                                                    },
-                                                                    function(){
-                                                                        console.error(error);
-                                                                    }
-                                                                );
+                                                                    fs.root.getDirectory(Data, {create: true}, function(dirLang){
+                                                                        lang, {create: true}, function(dirGrade){
+                                                                            dirGrade.getDirectory(gd, {create: true}, function(dirSubj){
+                                                                                subj_app_name, {create: true}, function(dirEntry){}
+                                                                            });
+                                                                        }
+                                                                    });
+                                                                });
 
                                                                 console.log(downloadLink);
                                                                 console.log(link_to_content);
@@ -959,7 +901,7 @@ angular.module('brainApp.controllers', [])
             },
             "Brainapp Support",
             "",
-            "support@brainline.com",
+            ["support@brainline.com"],
             null,
             null,
             false,
@@ -1003,29 +945,15 @@ angular.module('brainApp.controllers', [])
 .controller('LegalCtrl', function($scope){ 
 })
 .controller('supportCtrl', function($scope, $state, $ionicHistory) {
-    $scope.sendEmail = function(){
-        if(window.plugins && window.plugins.emailComposer){
-            window.plugins.emailComposer.showEmailComposerWithCallback(function(result){
-                console.log("Email Success");
-            },
-            "BrainApp Support",
-            "",
-            "support@brainline.com",
-            null,
-            null,
-            false,
-            null,
-            null
-            );
-        }
-    }
-  
+     
     $scope.toIntro = function(){
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
         window.localStorage['didTutorial'] = "false";
         $state.go('intro');
-    }  
-    
+    } 
+
+    $scope.version = version; 
+    $scope.emailAddress = "support@brainline.com"
     $scope.phoneno = "+27125435000";
 })
