@@ -26,9 +26,12 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
       StatusBar.styleDefault();
     }
 
-    cordova.getAppVersion(function(version){
-      appVersion = version;
-    });
+    if (window.cordova) {
+        cordova.getAppVersion(function(version) {
+            appVersion = version
+            console.log(version);
+        });
+    }
 
     
   })
@@ -48,7 +51,7 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
   }, 100);
 })
 
-.config(function($stateProvider, $urlRouterProvider, $provide) {
+.config(function($stateProvider, $urlRouterProvider, $provide, $ionicConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -127,7 +130,6 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     }
   })
 
-
   .state('tab.support', {
       url: '/support',
       views: {
@@ -188,6 +190,8 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
         }
       }
     })
+
+    $ionicConfigProvider.navBar.alignTitle('center')
 
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {

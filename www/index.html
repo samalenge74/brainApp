@@ -51,19 +51,19 @@
     <ion-nav-view></ion-nav-view>
     
     <script id="intro.html" type="text/ng-template"> 
-      <ion-view view-title="Intro">
+      <ion-view view-title="{{navTitle}}">
           <ion-nav-buttons side="left">
           <button class="button button-outline button-balanced"
                   ng-click="startApp()" ng-show="!slideIndex">
             Skip Tutorial
           </button>
-          <button class="button icon-left ion-chevron-left button-clear button-balanced"
+          <button class="button icon-left button-clear button-balanced"
                   ng-click="previous()" ng-show="slideIndex > 0">
            
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right"> 
-          <button class="button icon-right ion-chevron-right button-clear button-balanced"
+          <button class="button icon-right button-clear button-balanced"
                   ng-click="next()" ng-show="slideIndex != 3">
             
           </button>
@@ -74,28 +74,22 @@
         </ion-nav-buttons>
         <ion-slide-box on-slide-changed="slideChanged(index)">
           <ion-slide>
-           <p class="">
-             
+           
              <img src="img/slides/slide1.png">
-             
-           </p>
+  
           </ion-slide>
           <ion-slide>
-            <p class="">
-             
-             <img src="img/Artboard_2.png">
-             
-           </p>
+           
+             <img src="img/slides/slide1.png">
+  
           </ion-slide>
           <ion-slide>
-            <p class="">
-             
-             <img src="img/Artboard_3.png">
-             
-           </p>
+
+             <img src="img/slides/slide1.png">
+
           </ion-slide>
           <ion-slide>
-         
+            <img src="img/slides/slide1.png">
           </ion-slide>
         </ion-slide-box>
         
@@ -193,7 +187,7 @@
       </ion-view>
     </script>
     
-     <script id="templates/radio.html" type="text/ng-template">
+    <script id="templates/radio.html" type="text/ng-template">
       <ion-view view-title="BrainOnAIR">
         <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left">

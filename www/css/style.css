@@ -114,6 +114,16 @@
     content: "\f059";
 }
 
+.icon-left::before {
+    font-family: "fontawesome";
+    content: "\f0a5";
+}
+
+.icon-right::before {
+    font-family: "fontawesome";
+    content: "\f0a4";
+}
+
 .icon-updates::before {
     font-family: "fontawesome";
     content: "\f0ed";
@@ -138,6 +148,10 @@ i {
 
 .capitalize {
   text-transform: uppercase;
+}
+
+.title-image {
+    height: 42px;
 }
 
 
@@ -179,9 +193,8 @@ z-index: 1000;
 }
 
 .account {
-    min-height: 80px;
     margin-bottom: 10px;
-    margin-top: 30px;
+    margin-top: 200px;
 }
 
 div.acc-buttons{
@@ -190,39 +203,6 @@ div.acc-buttons{
 
 h2.name, p.grade{
     color: #387EF5;
-}
-
-.float-button-remove {
- 
-    background-color: red;
-    opacity: 0.9;
-    color: white;
-    border-radius: 50%;
-    /*border-radius:15% 0 0 0;*/
-    width: 30px;
-    padding: 25px;
-    font-size: 40px;
-    position: fixed;
-    /*bottom: 5%; /* Adjust height */
-    /*right: 5%; /* Adjust position */
-    z-index: 1000;
-    margin-bottom: 20px;
-}
- 
-.float-button-remove .height_fix {
-  margin-top: 100%;
-  border: 1px solid red;
-}
- 
-.float-button-remove .content {
-  position: absolute;
-  left: 0;
-  top: 40%;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  margin-top: -20px;
-  color: white;
 }
 
 .border {
@@ -271,11 +251,10 @@ h5.info{
 
 .slider {
   height: 100%;
-  text-align: center;
 }
 
 .slider-slide {
-  padding: 100px 30px 0;
+  padding-top: 80px;
   color: chartreuse;
   background-color: #387EF5;
   text-align: center;
@@ -285,7 +264,7 @@ h5.info{
 
 .slider-slide img {
     width: 100%;
-    margin: 10px 0;
+    margin: 0;
 }
 
 .slider-slide h5{
@@ -299,7 +278,7 @@ h5.info{
 }
 
 .main-content{
-    margin: 0 auto 20px;
+    margin: 100px auto 0px;
     max-width: 60%;
 }
 
@@ -309,7 +288,7 @@ div.left {
 
 
 .move-down-a{
-    margin-top: 5px;
+    margin-top: 50px;
 }
 
 img.logo {
@@ -376,6 +355,11 @@ img.logo {
 }
 
 .popup-head {
+    background-image: url("../img/icon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 40px 40px;
     background-color: #387EF5;
 }
 

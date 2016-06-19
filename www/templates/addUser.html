@@ -1,12 +1,10 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="{{navTitle}}">
     <ion-nav-buttons side="primary">
-        <button class="button back-button buttons custom-back-btn button-icon button-clear header-item" ng-if="forceBackButton" ng-click="backToParentView()" style=""><i class="icn-back"></i></button>
+        <button class="button back-button buttons custom-back-btn button-icon button-clear header-item" ng-if="forceBackButton" ng-click="backToParentView()" style=""><i class="icon-back"></i></button>
     </ion-nav-buttons>
   <ion-content class="padding bg" has-header="true">
       <div class="main-content">
-        <p class="text-center">
-             <img class="logo" src="img/icon.png" />
-        </p>
+        
         <form name="addUserForm" class="move-down-a">
             <div class="list list-inset">
                 <label class="item item-input">

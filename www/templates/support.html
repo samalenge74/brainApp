@@ -1,9 +1,7 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="{{navTitle}}">
   <ion-content class="padding bg" has-header="true"  overflow-scroll="true">
       <div class="main-content">
-      <p class="text-center">
-             <img class="logo" src="img/icon.png" />
-        </p>
+      
          <div class="list move-down-a left">
              <div class="item item-button-right item-positive">
                 Email Us
@@ -30,7 +28,7 @@
                 </button>
             </div>
             <div class="item item-positive">
-                Version: {{version}}   
+                <div ng-bind="appVersion"></div>
             </div>
            </div>
           </div>

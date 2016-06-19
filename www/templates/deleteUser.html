@@ -1,23 +1,19 @@
-<ion-view hide-back-button="true" view-title="Dashboard">
+<ion-view hide-back-button="false" view-title="{{navTitle}}">
   <ion-content class="padding bg">
       <div class="main-content">
-        <p class="text-center">
-             <img class="logo" src="img/icon.png" />
-        </p>
-       
-         <form class="move-down-a">
-            <div class="list">
-                <div class="item item-input-inset">
-                    <label class="item-input-wrapper">
-                        <input type="text" placeholder="s-number" ng-model="snumber" required>
-                    </label>
-                    <button class="button button-balanced" ng-click="deleteUser(snumber)">
-                        <i class="icon icon-remove-user"></i>
-                    </button>
-                </div>
+      
+         <form name="deleteUserForm" class="move-down-a">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="s-number" ng-model="snumber" required>
+                </label>
             </div>
+            <p class="text-center">
+                <button type="submit" class="button button-small button-block button-balanced" ng-click="deleteUser(snumber)" ng-disabled="deleteUserForm.$invalid">Delete User</button>
+            </p>
           </form>
           
-        </div>
-    </ion-content>
+          
+         </div>
+        </ion-content>
 </ion-view>
