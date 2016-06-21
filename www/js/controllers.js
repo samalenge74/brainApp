@@ -59,8 +59,8 @@ angular.module('brainApp.controllers', [])
             console.log("Directory Name: " + dirEntry.name);
         }
 
-        function fail(error) {
-            console.log("Unable to create new directory: " + error.code);
+        function fail(dirEntry) {
+            console.log("Unable to create new directory: " + dirEntry.name);
         }
         document.addEventListener("deviceready", function() { 
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
@@ -186,90 +186,90 @@ angular.module('brainApp.controllers', [])
                 fs.root.getDirectory("data/eng/Grade12/Grade 12 Physical Sciences", {create: true, exclusive: false}, success, fail);
                 fs.root.getDirectory("data/eng/Grade12/Grade 12 Mathematics", {create: true, exclusive: false}, success, fail);
                 fs.root.getDirectory("data/eng/Grade12/Grade 12 Tourism", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad4/Graad 4 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad5/Graad 5 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad6/Graad 6 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Lewensorientering", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Tegnologie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad7/Graad 7 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Lewensorientering", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Tegnologie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad8/Graad 8 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Afrikaans", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Engels", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Lewensorientering", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Tegnologie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad9/Graad 9 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Besigheidstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Ekonomie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 English", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Geografie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Geskiedenis", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Rekeningkunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Toerisme", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 10 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad10/Graad 11 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Besigheidstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Ekonomie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 English", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Geografie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Geskiedenis", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Rekeningkunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Toerisme", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad11/Graad 11 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Besigheidstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Ekonomie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 English", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Geografie", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Geskiedenis", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Rekeningkunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Toerisme", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Wiskunde", {create: true, exclusive: false}, success, fail);
-                fs.root.getDirectory("data/eng/Graad12/Graad 12 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 11 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
                 
             });
         }, false);
@@ -331,14 +331,15 @@ angular.module('brainApp.controllers', [])
 
     $scope.login = function(snumber, password) {
         $scope.data = [];
-        var snum = '';
+        var uppercaseFilter = $filter('uppercase');
+        var snum = uppercaseFilter(snumber);
         var stName = '';
         var gd = '';
         var pass = '';
         var result = '';
         var date_status_last_checked ='';
                 
-        $cordovaSQLite.execute(db, "SELECT student_no, name, password, grade, date_status_last_checked FROM users where student_no = ? and password = ?", [snumber, password]).then(function(res){
+        $cordovaSQLite.execute(db, "SELECT student_no, name, password, grade, date_status_last_checked FROM users where student_no = ? and password = ?", [snum, password]).then(function(res){
             
             if(res.rows.length > 0){
                
@@ -418,7 +419,7 @@ angular.module('brainApp.controllers', [])
                 // A confirm dialog
                
                 var confirmPopup = $ionicPopup.confirm({
-                    title: ''+internet_conn,
+                    title: '',
                     template: 'Are you sure you want to use your mobile data?'
                 });
 
@@ -501,7 +502,8 @@ angular.module('brainApp.controllers', [])
                                                         for (var i = 0; i < $scope.subjecstDetails.length; i++){
                                                             
                                                             var subj_id = $scope.subjecstDetails[i].subject_id; 
-                                                            var subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            var subj_name = $scope.subjecstDetails[i].subject_name;
+                                                            subj_name = subj_name.trim(); 
                                                             var subj_desc = $scope.subjecstDetails[i].subject_description; 
                                                             var subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
                                                             var subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
@@ -510,7 +512,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
+                                                            var link_to_content = "data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -629,14 +631,15 @@ angular.module('brainApp.controllers', [])
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
 
-                                                                console.log(downloadLink);
-                                                                console.log(link_to_content);
+                                                                
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
                                                             });
                                                             
                                                             s++;
+                                                            console.log(downloadLink);
+                                                            console.log(link_to_content);
                                                             
                                                         }
 
@@ -645,7 +648,7 @@ angular.module('brainApp.controllers', [])
                                                                 $scope.snumber = null;
                                                                 $scope.password = null;
                                                                 var alertPopup = $ionicPopup.alert({
-                                                                                title: 'Congratulations',
+                                                                                title: '',
                                                                                 template: 'Account successfully activated.'
                                                                             });
                                                                             
@@ -658,7 +661,7 @@ angular.module('brainApp.controllers', [])
                                                         }else{
                                                             $ionicLoading.hide();
                                                             var alertPopup = $ionicPopup.alert({
-                                                                                title: 'Alert!!!!',
+                                                                                title: '',
                                                                                 template: 'There was a problem loading your subjects.'
                                                                             });
                                                                             
@@ -751,7 +754,7 @@ angular.module('brainApp.controllers', [])
                 // A confirm dialog
                
                 var confirmPopup = $ionicPopup.confirm({
-                    title: ''+internet_conn,
+                    title: '',
                     template: 'Are you sure you want to use this wifi connection?'
                 });
 
@@ -803,9 +806,9 @@ angular.module('brainApp.controllers', [])
                                             var n = gd.substr(5, 1);
                                             gd1 = lang+" "+n;
                                             if (lang == 'Grade'){
-                                                lang = 'Eng';
+                                                lang = 'eng';
                                             }else{
-                                                lang = 'Afr';
+                                                lang = 'afr';
                                             }
 
                                             ac_year = $scope.userDetails[0].student_academicyear;
@@ -834,6 +837,7 @@ angular.module('brainApp.controllers', [])
                                                             
                                                             var subj_id = $scope.subjecstDetails[i].subject_id; 
                                                             var subj_name = $scope.subjecstDetails[i].subject_name; 
+                                                            subj_name = subj_name.trim(); 
                                                             var subj_desc = $scope.subjecstDetails[i].subject_description; 
                                                             var subj_lastupdate_date = $scope.subjecstDetails[i].subject_lastupdate_date; 
                                                             var subj_added_date = $scope.subjecstDetails[i].subject_added_date; 
@@ -842,7 +846,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = "Data/"+lang+"/"+gd+"/"+subj_name;
+                                                            var link_to_content = "data/"+lang+"/"+gd+"/"+subj_name;
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -961,13 +965,13 @@ angular.module('brainApp.controllers', [])
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
 
-                                                                console.log(downloadLink);
-                                                                console.log(link_to_content);
+                                                                
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
                                                             });
-                                                            
+                                                            console.log(downloadLink);
+                                                            console.log(link_to_content);
                                                             s++;
                                                             
                                                         }
@@ -977,7 +981,7 @@ angular.module('brainApp.controllers', [])
                                                                 $scope.snumber = null;
                                                                 $scope.password = null;
                                                                 var alertPopup = $ionicPopup.alert({
-                                                                                title: 'Congratulations',
+                                                                                title: '',
                                                                                 template: 'Account successfully activated.'
                                                                             });
                                                                             
@@ -990,7 +994,7 @@ angular.module('brainApp.controllers', [])
                                                         }else{
                                                             $ionicLoading.hide();
                                                             var alertPopup = $ionicPopup.alert({
-                                                                                title: 'Alert!!!!',
+                                                                                title: '',
                                                                                 template: 'There was a problem loading your subjects.'
                                                                             });
                                                                             
@@ -1089,7 +1093,7 @@ angular.module('brainApp.controllers', [])
 .controller('DeleteUserCtrl', function($scope, $cordovaSQLite, $ionicPopup){
     $scope.deleteUser = function(snumber) {
      var confirmPopup = $ionicPopup.confirm({
-       title: 'Deleting User',
+       title: '',
        template: 'Are you sure you want to delete the user?'
      });
      confirmPopup.then(function(res) {
@@ -1136,25 +1140,6 @@ angular.module('brainApp.controllers', [])
     }
 })
 .controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar){
-
-    $scope.subjects = window.Values.sort(function(a){
-        return a.name;
-    });
-
-    $scope.doRefresh = function(){
-        $scope.subjects = window.Values;
-        $scope.$broadcast('scroll.refreshComplete');
-    }
-
-    $scope.showFilterBar = function (){
-        filterBar = $ionicFilterBar.show({
-            items: $scope.subjects,
-            update: function (filterItems) {
-                $scope.subjects = filterItems
-            }
-            // filterProperties : 'name'
-        });
-    }
 
     var usermane = $stateParams.user;
     $scope.studentNumber = $stateParams.user;

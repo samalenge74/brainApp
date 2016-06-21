@@ -13,21 +13,13 @@
 </div>
     <ion-content class="padding bg has-subheader">
         <ion-refresher pulling-text="Update Date" on-refresh="doRefresh()"></ion-refresher>
-            <div ng-repeat="subject in subjects track by $index" class="list card">
-                <div class="item item-avatar">
+            <div ng-repeat="subject in subjects track by $index" class="list">
+                <a class="item item-avatar" href="">
                         <img ng-src="{{subject.icon}}">
                         <h2 class="name">{{subject.name}}</h2>
                         <p class="grade">{{grade}}</p>
-                </div> 
-                <div class="item item-body">
-                   
-                    <p>
-                    <button class="button button-outline button-balanced" ng-click="content(subject.id)">
-                        View Content
-                    </button>
-                    <button class="item item-icon-left button-full text-left" ng-click="updates()"><i class="icon balanced icon-updates"></i></button>
-                    </p>
-                </div>
+                </a> 
+                
             </div>
 
     </ion-content>
