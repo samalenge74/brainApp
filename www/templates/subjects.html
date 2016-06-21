@@ -1,15 +1,18 @@
 
-<ion-view hide-back-button="true" view-title="{{studentName}}" class="padding">
+<ion-view hide-back-button="true" view-title="{{navTitle}}" class="padding">
     
       <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
               </button>
             </ion-nav-buttons>
+             <ion-nav-buttons side="secondary">
+  <button class="buttons button-icon ion-android-search" ng-click="showFilterBar()"></button>
+ </ion-nav-buttons>
 <div class="bar bar-subheader bar-positive">
     <h3 class="light">Subjects</h3>
 </div>
     <ion-content class="padding bg has-subheader">
-        
+        <ion-refresher pulling-text="Update Date" on-refresh="doRefresh()"></ion-refresher>
             <div ng-repeat="subject in subjects track by $index" class="list card">
                 <div class="item item-avatar">
                         <img ng-src="{{subject.icon}}">

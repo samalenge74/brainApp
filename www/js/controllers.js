@@ -1135,7 +1135,26 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs){
+.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar){
+
+    $scope.subjects = window.Values.sort(function(a){
+        return a.name;
+    });
+
+    $scope.doRefresh = function(){
+        $scope.subjects = window.Values;
+        $scope.$broadcast('scroll.refreshComplete');
+    }
+
+    $scope.showFilterBar = function (){
+        filterBar = $ionicFilterBar.show({
+            items: $scope.subjects,
+            update: function (filterItems) {
+                $scope.subjects = filterItems
+            }
+            // filterProperties : 'name'
+        });
+    }
 
     var usermane = $stateParams.user;
     $scope.studentNumber = $stateParams.user;
