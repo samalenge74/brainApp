@@ -2,7 +2,7 @@
     <ion-nav-buttons side="primary">
         <button class="button back-button buttons custom-back-btn button-icon button-clear header-item" ng-if="forceBackButton" ng-click="backToParentView()" style=""><i class="icon-back"></i></button>
     </ion-nav-buttons>
-  <ion-content class="padding bg" has-header="true">
+  <ion-content class="padding bg" has-header="true" scroll="false">
       <div class="main-content">
         
         <form name="addUserForm" class="move-down-a">
@@ -11,10 +11,15 @@
                     <input type="text" placeholder="S-Number" ng-model="snumber" required>
                 </label>
                 <label class="item item-input">
-                    <input type="password" placeholder="Password" ng-model="password" toggle-password-input required>
+                    <input type="{{inputType}}" placeholder="Password" ng-model="password" required>
                 </label>
-                <toggle-password-checkbox label="Show password" checkbox-class="checkbox-balanced"></toggle-password-checkbox>
+                
             </div>
+            <p>
+                    <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword1()" />
+                    <label for="checkbox"  ng-if="passwordCheckbox">Hide password</label>
+                    <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+                </p>
             <p class="text-center">
                 <button type="submit" class="button button-small button-block button-balanced" ng-click="addUser(snumber, password)"  ng-disabled="addUserForm.$invalid">Add User</button>
             </p>

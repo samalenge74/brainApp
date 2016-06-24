@@ -121,7 +121,7 @@
 
 .icon-right-side::before {
     font-family: "fontawesome";
-    content: "\f054";
+    content: "\f0a4";
 }
 
 .icon-updates::before {
@@ -141,9 +141,9 @@
 
 
 i {
-        font-size: 40px;
+        
         color: #fff;
-        vertical-align: middle;
+        
 }
 
 .capitalize {
@@ -192,11 +192,6 @@ z-index: 1000;
     margin: 0 auto;
 }
 
-.account {
-    margin-bottom: 10px;
-    margin-top: 200px;
-}
-
 div.acc-buttons{
     max-width: 100px;
 }
@@ -223,6 +218,7 @@ h2.name, p.grade{
   /*background-color: #00629f;*/
   background: url('../img/brainline_bg.png') no-repeat center center fixed;
   background-size: cover;
+  background-color: #387EF5;
   
 }
 
@@ -278,18 +274,14 @@ h5.info{
 }
 
 .main-content{
-    margin: 100px auto 0px;
-    max-width: 60%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    max-width: 80%;
 }
 
-div.left {
-    text-align: left;
-}
-
-
-.move-down-a{
-    margin-top: 50px;
-}
 
 img.logo {
   
@@ -376,9 +368,9 @@ img.logo {
 
 .round-button-add {
     display:block;
-    width:50px;
-    height:50px;
-    line-height:30px;
+    width:60px;
+    height:60px;
+    line-height:50px;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
     color:#f5f5f5;
@@ -386,17 +378,19 @@ img.logo {
     text-decoration:none;
     background: #387EF5;
     box-shadow: 0 0 3px gray;
-    font-size:50px;
+    font-size:20px;
 }
-.round-button-add:hover {
-    background: #8EC638;
+.theroot {
+  max-height: 80%;
+  background-color: #ffffff;
+  color: #387EF5
 }
 
 .round-button-delete {
     display:block;
-    width:50px;
-    height:50px;
-    line-height:30px;
+    width:60px;
+    height:60px;
+    line-height:50px;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
     color:#f5f5f5;
@@ -404,11 +398,9 @@ img.logo {
     text-decoration:none;
     background: #ef4e3a;
     box-shadow: 0 0 3px gray;
-    font-size:50px;
+    font-size:20px;
 }
-.round-button-delete:hover {
-    background: #8EC638;
-}
+
 
 /* Landscape height*/
 @media only screen 
@@ -430,9 +422,9 @@ img.logo {
 
 @media screen and (min-width: 768px) {
   
-  .pane.menu-content {
+  /* .pane.menu-content {
     /* !important for disabling dragging */
-    width: calc(100% - 275px) !important;
+  /*  width: calc(100% - 275px) !important;
     -webkit-transform: translate3d(275px,0,0) !important;
        -moz-transform: translate3d(275px,0,0) !important;
             transform: translate3d(275px,0,0) !important;
@@ -441,7 +433,7 @@ img.logo {
   .buttons.left-buttons .icon.ion-navicon {
     display: none;
   }
-
+*/
    .main-content{
         margin: 0 auto;
         max-width: 50%;

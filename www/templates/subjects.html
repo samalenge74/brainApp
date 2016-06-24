@@ -6,14 +6,14 @@
               </button>
             </ion-nav-buttons>
              <ion-nav-buttons side="secondary">
-  <button class="buttons button-icon ion-android-search" ng-click="showFilterBar()"></button>
+  <button class="buttons button-icon ion-android-search button-clear" ng-click="showFilterBar()"></button>
  </ion-nav-buttons>
 <div class="bar bar-subheader bar-positive">
-    <h3 class="light">Subjects</h3>
+    <h3 class="light">My Subjects</h3>
 </div>
     <ion-content class="padding bg has-subheader">
-        <ion-refresher pulling-text="Update Date" on-refresh="doRefresh()"></ion-refresher>
-            <div ng-repeat="subject in subjects track by $index" class="list">
+       
+            <div ng-repeat="subject in subjects track by $index" class="list" data-ng-click="viewContent(subject)">
                 <a class="item item-avatar" href="">
                         <img ng-src="{{subject.icon}}">
                         <h2 class="name">{{subject.name}}</h2>
@@ -21,7 +21,7 @@
                 </a> 
                 
             </div>
-
+            <br>
     </ion-content>
   
 </ion-view>

@@ -53,29 +53,31 @@
     <script id="intro.html" type="text/ng-template"> 
       <ion-view view-title="{{navTitle}}">
           <ion-nav-buttons side="left">
-          <button class="button button-outline button-balanced"
-                  ng-click="startApp()" ng-show="!slideIndex">
-            Skip Tutorial
-          </button>
-          <button class="button icon-left button-clear button-balanced"
+
+          <button class="button icon-left-side button-clear button-balanced"
                   ng-click="previous()" ng-show="slideIndex > 0">
-           
+              <i class="icon "></i>
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right"> 
-          <button class="button icon-right button-clear button-balanced"
-                  ng-click="next()" ng-show="slideIndex != 3">
+          <button class="button icon-right-side button-clear button-balanced"
+                  ng-click="next()" ng-show="slideIndex != 4">
             
           </button>
           <button class="button button-outline button-balanced"
-                  ng-click="startApp()" ng-show="slideIndex == 3">
-            Start
+                  ng-click="startApp()" ng-show="slideIndex == 4">
+            Accept
           </button>
         </ion-nav-buttons>
         <ion-slide-box on-slide-changed="slideChanged(index)">
           <ion-slide>
            
              <img src="img/slides/slide1.png">
+  
+          </ion-slide>
+          <ion-slide>
+           
+             <img src="img/slides/slide21.png">
   
           </ion-slide>
           <ion-slide>
@@ -89,7 +91,7 @@
 
           </ion-slide>
           <ion-slide>
-            <img src="img/slides/slide1.png">
+            <a class="" href="" onclick="window.open('https://www.brainline.com/legal/', '_system', 'location=yes'); return false;"><img src="img/slides/slide4.png"></a>
           </ion-slide>
         </ion-slide-box>
         
@@ -120,7 +122,7 @@
               <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
               <button class="item item-icon-left button-full text-left" menu-close ng-click="subjects()"><i class="icon balanced icon-subjects"></i>Subjects</button>
               <a href="#/menu/about" class="item item-icon-left" menu-close><i class="icon balanced icon-info"></i>About</a>
-              <a href="#/menu/legal" class="item item-icon-left" menu-close><i class="icon balanced icon-legal"></i>Legal</a>
+              <a href="#/menu/legal" class="item item-icon-left" onclick="window.open('https://www.brainline.com/legal/', '_system', 'location=yes'); return false;" menu-close><i class="icon balanced icon-legal"></i>Legal</a>
               <button class="item item-icon-left button-full text-left" ng-click="showAlert()"><i class="icon balanced icon-rate"></i>Rate brainApp</button>
               <a href="#/menu/faq" class="item item-icon-left" menu-close><i class="icon balanced icon-faq"></i>FAQ</a>
               <a href="#/menu/radio" class="item item-icon-left" menu-close><i class="icon balanced icon-radio"></i>brainOnAIR</a>
@@ -212,7 +214,7 @@
     
     <script id="subjects.html" type="text/ng-template">
         <ion-spinner icon="lines" class="spinner-android"></ion-spinner>
-        <p>Loading Subjects & contents...</p>
+        <p>Loading Subjects list...</p>
     </script>
     
     <script id="loading.html" type="text/ng-template">

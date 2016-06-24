@@ -29,10 +29,9 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     if (window.cordova) {
         cordova.getAppVersion(function(version) {
             appVersion = version
-            console.log(version);
+            console.log(appVersion);
         });
     }
-
     
   })
   
@@ -40,7 +39,7 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
   $ionicPlatform.registerBackButtonAction(function(event) {
     if (true) { // your check here
       $ionicPopup.confirm({
-        title: 'System warning',
+        title: '',
         template: 'are you sure you want to exit?'
       }).then(function(res) {
         if (res) {

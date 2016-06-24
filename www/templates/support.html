@@ -1,8 +1,8 @@
 <ion-view view-title="{{navTitle}}">
-  <ion-content class="padding bg" has-header="true"  overflow-scroll="true">
+  <ion-content class="padding bg" has-header="true" scroll="false">
       <div class="main-content">
-      
-         <div class="list move-down-a left">
+
+         <div class="list">
              <div class="item item-button-right item-positive">
                 Email Us
                 <a class="button button-balanced" ng-href="mailto:{{emailAddress}}">
@@ -16,21 +16,24 @@
                 </a>
             </div>
             <div class="item item-button-right item-positive">
-                Contacts 
+                Contact Details 
                 <a class="button button-balanced" href="" onclick="window.open('https://www.brainline.com/contact-us/', '_system', 'location=yes'); return false;">
                 <i class="icon icon-web"></i>
                 </a>
             </div>
             <div class="item item-button-right item-positive">
-                Tutorial
+                View Tutorial
                 <button class="button button-balanced" ng-click="toIntro()">
                 <i class="icon icon-info"></i>
                 </button>
             </div>
-            <div class="item item-positive">
-                <div ng-bind="appVersion"></div>
+            <div class="item  item-positive">
+                <span class="item-note">
+                    <div ng-bind="appVersion"></div>
+                </span>
+                
             </div>
            </div>
-          </div>
-        </ion-content>
+        </div>
+    </ion-content>
 </ion-view>

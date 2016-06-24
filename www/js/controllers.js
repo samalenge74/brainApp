@@ -1,5 +1,4 @@
-var subjects_content_download_link = '/home/mybrainline/googledrive/DVD/';
-var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
+
 
 angular.module('brainApp.controllers', [])
 
@@ -25,7 +24,6 @@ angular.module('brainApp.controllers', [])
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
   };
-  
     //No this is silly
   // Check if the user already did the tutorial and skip it if so
 
@@ -288,7 +286,7 @@ angular.module('brainApp.controllers', [])
      $scope.logout = function(){
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
-        $state.go('tab.login');
+        $state.go('tab.login', {}, {reload: true});
     };
     
     $scope.subjects = function(){
@@ -301,7 +299,7 @@ angular.module('brainApp.controllers', [])
     
     $scope.showAlert = function() {
       $ionicPopup.alert({
-        title: 'Alert',
+        title: '',
         content: 'Coming Soon!!!'
       }).then(function(res) {
         console.log('Test Alert Box');
@@ -312,7 +310,22 @@ angular.module('brainApp.controllers', [])
     
     
 })
-.controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter) {
+.controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter, $cordovaKeyboard) {
+    
+    if (window.cordova) {
+        $cordovaKeyboard.disableScroll(true);
+    }
+
+    // Set the default value of inputType
+    $scope.inputType = 'password';
+    
+    // Hide & show password function
+    $scope.hideShowPassword = function(){
+        if ($scope.inputType == 'password')
+        $scope.inputType = 'text';
+        else
+        $scope.inputType = 'password';
+    };
 
     function dateDiffInDays(a, b){
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -330,6 +343,14 @@ angular.module('brainApp.controllers', [])
     }
 
     $scope.login = function(snumber, password) {
+
+        $ionicLoading.show({
+            animation: 'fade-in',
+            showDelay: 0,
+            noBackdrop: true,
+            templateUrl: 'logging.html'
+        });
+
         $scope.data = [];
         var uppercaseFilter = $filter('uppercase');
         var snum = uppercaseFilter(snumber);
@@ -353,16 +374,19 @@ angular.module('brainApp.controllers', [])
                 var daysDiff = diffDays(date_status_last_checked);
                 
                 $ionicLoading.hide();
-                $scope.snumber = null;
-                $scope.password = null;
                 
                 $state.go('eventmenu.subjects', result);
 
             } else {
-                    console.log(snumber+' '+password);
+                console.log(snumber+' '+password);
                 $ionicLoading.hide();
-                $ionicPopup.alert({
-                    template: 'Either the s-number/password is incorrect',
+                var alertPopup = $ionicPopup.alert({
+                    title: '',
+                    template: 'Either the s-number/password is incorrect or this account does not exist.'
+                });
+                
+                alertPopup.then(function(res) {
+                    console.log('Either the s-number/password is incorrect or this account does not exist.');
                 });
                 
             } 
@@ -371,14 +395,32 @@ angular.module('brainApp.controllers', [])
     }; 
 
 })
-.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, getSubjectsContents){
+.controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, $cordovaFileTransfer, getSubjectsContents, $cordovaKeyboard){
 
+      // Set the default value of inputType
+    $scope.inputType = 'password';
+    
+    // Hide & show password function
+    $scope.hideShowPassword1 = function(){
+        if ($scope.inputType == 'password')
+        $scope.inputType = 'text';
+        else
+        $scope.inputType = 'password';
+    };
+
+    if (window.cordova) {
+        $cordovaKeyboard.disableScroll(true);
+    }
     $scope.userDetails = [];
     $scope.subjecstDetails = [];
     $scope.status;
     $scope.user;
     $scope.snumber = "";
     $scope.password = "";
+    
+    var subjects_content_download_link = '/home/ubuntu/subjectcontents/';
+    var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
+
 
     var status_date = $filter('date')(new Date(), 'dd-MM-yyyy');
 
@@ -402,7 +444,8 @@ angular.module('brainApp.controllers', [])
     $scope.addUser = function(username, password){
         
         var internet_conn = checkConnection();
-        var u = username;
+        var uppercaseFilter = $filter('uppercase');
+        var u = uppercaseFilter(username);
         var p = password;
 
         switch(internet_conn){
@@ -437,16 +480,16 @@ angular.module('brainApp.controllers', [])
                                 console.log(JSON.stringify(res.data, null, 4));
                                 if(res.rows.length > 0){
                                     $ionicLoading.hide();
-                                    $scope.showAlert = function() {
+                                    
                                         var alertPopup = $ionicPopup.alert({
-                                            title: 'Try again later!',
+                                            title: '',
                                             template: 'User Already Exist.'
                                         });
                                         
                                         alertPopup.then(function(res) {
                                             console.log('User already exists.');
                                         });
-                                    };
+                                   
                                 } else {
                                     
                                     $ionicLoading.show({
@@ -512,7 +555,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = "data/"+lang+"/"+gd+"/"+subj_name;
+                                                           var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name+"/";
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -774,7 +817,7 @@ angular.module('brainApp.controllers', [])
                                     $ionicLoading.hide();
                                     $scope.showAlert = function() {
                                         var alertPopup = $ionicPopup.alert({
-                                            title: 'Try again later!',
+                                            title: '',
                                             template: 'User Already Exist.'
                                         });
                                         
@@ -846,8 +889,11 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = "data/"+lang+"/"+gd+"/"+subj_name;
-
+                                                            var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name+"/";
+                                                            var pointer = subjects_content_download_link+link_to_content;
+                                                            var url = '';
+                                                            var filename = 'data.zip';
+                                                            var targetPath = '';
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
                                                                 case 'English First Additional Language':
@@ -964,7 +1010,8 @@ angular.module('brainApp.controllers', [])
                                                         
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
-
+                                                                console.log(pointer);
+                                                              
                                                                 
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
@@ -1090,7 +1137,12 @@ angular.module('brainApp.controllers', [])
     }
          
 })
-.controller('DeleteUserCtrl', function($scope, $cordovaSQLite, $ionicPopup){
+.controller('DeleteUserCtrl', function($scope, $cordovaSQLite, $ionicPopup, $cordovaKeyboard){
+    
+    if (window.cordova) {
+        $cordovaKeyboard.disableScroll(true);
+    }
+    
     $scope.deleteUser = function(snumber) {
      var confirmPopup = $ionicPopup.confirm({
        title: '',
@@ -1102,15 +1154,15 @@ angular.module('brainApp.controllers', [])
             $cordovaSQLite.execute(db, q, [snumber]).then(function(res){
                 var q = "DELETE FROM subjects where student_no = ?";
                 $cordovaSQLite.execute(db, q, [snumber]).then(function(res){
-                    $scope.showAlert = function() {
+                    
                         var alertPopup = $ionicPopup.alert({
                         title: '',
                         template: 'User deleted successfully.'
                         });
                         alertPopup.then(function(res) {
-                        console.log('');
+                        	$state.go('tab.login');
                         });
-                    };
+                    
                 });
                 
             });
@@ -1121,7 +1173,12 @@ angular.module('brainApp.controllers', [])
    };
     
 })
-.controller('FPassowrdCtrl', function($scope){  
+.controller('FPassowrdCtrl', function($scope, $cordovaKeyboard){ 
+
+    if (window.cordova) {
+        $cordovaKeyboard.disableScroll(true);
+    }
+
     $scope.sendEmail = function(){
         if(window.plugins && window.plugins.emailComposer){
             window.plugins.emailComposer.showEmailComposerWithCallback(function(result){
@@ -1141,6 +1198,13 @@ angular.module('brainApp.controllers', [])
 })
 .controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar){
 
+      $ionicLoading.show({
+        animation: 'fade-in',
+        showDelay: 0,
+        noBackdrop: true,
+        templateUrl: 'subjects.html'
+    });
+
     var usermane = $stateParams.user;
     $scope.studentNumber = $stateParams.user;
     $scope.studentName = $stateParams.name;
@@ -1151,26 +1215,49 @@ angular.module('brainApp.controllers', [])
 
     function getSubjectsDetails(usermane){
         console.log(usermane);
-        var query = "SELECT name, description, icon FROM subjects where student_no = ?";
+        var query = "SELECT name, description, icon, content_link FROM subjects where student_no = ?";
         $cordovaSQLite.execute(db, query, [usermane]).then(function(res) {
             if(res.rows.length > 0){
                 for (var j = 0; j < res.rows.length; j++){
-                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description, icon: res.rows.item(j).icon})
+                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link})
                 }
-            console.log(JSON.stringify($scope.subjects, null, 4));
+                $ionicLoading.hide();
+            
             }else{
+                $ionicLoading.hide();
+                var alertPopup = $ionicPopup.alert({
+                    title: '',
+                    template: 'Error loading subjects.'
+                });
+                
+                alertPopup.then(function(res) {
+                    //$state.go('tab.login');
+                    
+                }, function(error){
+                        console.log(error);
+                });
                 console.log('Could not load subjects.')
             }
         });
         
     };
+
+    $scope.viewContent = function(subj_name){
+        alert(subj_name.link);
+       /* $cordovaFile.checkDir(cordova.file.dataDirectory, link)
+        .then(function (success) {
+            // success
+        }, function (error) {
+            // error
+        });*/
+    }
   
 })
 .controller('AboutCtrl', function($scope){  
 })
 .controller('LegalCtrl', function($scope){ 
 })
-.controller('supportCtrl', function($scope, $ionicPlatform, $state, $ionicHistory, $cordovaAppVersion) {
+.controller('supportCtrl', function($scope, $ionicPlatform, $state, $ionicHistory, $cordovaAppVersion, $cordovaFileTransfer, $cordovaKeyboard) {
     $scope.appVersion = "V "+appVersion;
 
     $scope.toIntro = function(){

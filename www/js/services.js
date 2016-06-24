@@ -1,4 +1,5 @@
 var remoteLink = "http://192.168.0.63/brainApp/";
+//var remoteLink = "http://mybrainline.com/eve/brainApp/"
 var remoteLinkContent = "http://192.168.0.63/subjContent/df.php";
 angular.module('brainApp.services', [])
 
