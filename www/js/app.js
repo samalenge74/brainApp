@@ -32,6 +32,240 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
             console.log(appVersion);
         });
     }
+
+     if(window.cordova){
+            db = $cordovaSQLite.openDB({ name: "brainApp.db", location:'default'});
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS users(student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subjects (subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, content_link TEXT, student_no TEXT)");
+            
+        }else{
+            db = openDatabase("websql.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+            db.transaction(function (tx) {
+                tx.executeSql("DROP TABLE IF EXISTS users");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS users (student_no TEXT PRIMARY KEY, name TEXT, grade TEXT, password TEXT, student_email TEXT, academic_year TEXT,  year_from TEXT, year_to TEXT, gender TEXT, status INTEGER, OLD_student_status INTEGER, student_paid INTEGER, brainonline_sync_status INTEGER, date_status_last_checked TEXT)");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS subjects ((subject_id INTEGER PRIMARY KEY, name TEXT, description TEXT, lastupdate_date TEXT, added_date TEXT, subject_app_name TEXT, version TEXT, filesize TEXT, icon TEXT, content_link TEXT, student_no TEXT");
+            });
+            
+        }
+
+        function success(dirEntry) {
+            console.log("Directory Name: " + dirEntry.name);
+        }
+
+        function fail(dirEntry) {
+            console.log("Unable to create new directory: " + dirEntry.name);
+        }
+        document.addEventListener("deviceready", function() { 
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+                fs.root.getDirectory("data", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad0", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad1", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad2", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad3", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade0", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade1", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade2", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade3", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 Life Skills", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade4/Grade 4 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 Life Skills", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade5/Grade 5 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 Life Skills", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade6/Grade 6 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Creative Arts", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Economic and Management Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade7/Grade 7 Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Creative Arts", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Economic and Management Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade8/Grade 8 Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Creative Arts", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Economic and Management Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Natural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Social Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade9/Grade 9 Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Accounting", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Afrikaans Eerste Addisionele Taal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Agricultural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Business Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Computer Applications Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Consumer Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Economics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 English Home Language", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Geography", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 History", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Life Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Mathematical Literacy", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Physical Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Tourism", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade10/Grade 10 Accounting", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Afrikaans Eerste Addisionele Taal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Agricultural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Business Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Computer Applications Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Consumer Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Economics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 English Home Language", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Geography", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 History", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Life Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Mathematical Literacy", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Physical Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade11/Grade 11 Tourism", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Accounting", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Afrikaans Eerste Addisionele Taal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Agricultural Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Business Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Computer Applications Technology", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Consumer Studies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Economics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 English Home Language", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Geography", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 History", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Life orientation", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Life Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Mathematical Literacy", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Physical Sciences", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Mathematics", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/eng/Grade12/Grade 12 Tourism", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad4/Graad 4 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad5/Graad 5 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Lewensvaardighede", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad6/Graad 6 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad7/Graad 7 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad8/Graad 8 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Afrikaans", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Engels", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Lewensorientering", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Natuurwetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Skeppende Kunste", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Sosiale Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Tegnologie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad9/Graad 9 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad10/Graad 11 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Afrikaans Huistaal", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Besigheidstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Ekonomie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 English", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Fisiese Wetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geografie", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geskiedenis", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Lewenswetenskappe", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Rekeningkunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Toerisme", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Verbruikerstudies", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde", {create: true, exclusive: false}, success, fail);
+                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde geletterheid", {create: true, exclusive: false}, success, fail);
+                
+            });
+        }, false);
     
   })
   
@@ -64,12 +298,6 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     templateUrl: 'intro.html',
     controller: 'IntroCtrl'
   }) 
-  
-  .state("config", {
-    url: "/config",
-    templateUrl: "templates/config.html",
-    controller: "ConfCtrl"
-  })
 
   // setup an abstract state for the tabs directive
     .state('tab', {
@@ -204,7 +432,7 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     });
   
   if(window.localStorage['didTutorial'] === "true") {
-    $urlRouterProvider.otherwise('/config');
+    $urlRouterProvider.otherwise('/tab/login');
   }
   else{
     
