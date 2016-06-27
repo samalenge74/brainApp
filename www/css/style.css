@@ -154,44 +154,6 @@ i {
     height: 42px;
 }
 
-
-/* Empty. Add your own CSS if you like */
-.float-button-add {
- 
-background-color:#8EC638;
-opacity: 0.9;
-color: white;
-border-radius: 50%;
-/*border-radius:15% 0 0 0;*/
-width: 30px;
-padding: 25px;
-font-size: 20px;
-position: fixed;
-/*bottom: 5%; /* Adjust height */
-/*right: 5%; /* Adjust position */
-z-index: 1000;
-}
- 
-.float-button-add .height_fix {
-  margin-top: 100%;
-  border: 1px solid red;
-}
- 
-.float-button-add .content {
-  position: absolute;
-  left: 0;
-  top: 40%;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  margin-top: -20px;
-  color: white;
-}
-
-.col .float-button-add, .col .float-button-remove {
-    margin: 0 auto;
-}
-
 div.acc-buttons{
     max-width: 100px;
 }

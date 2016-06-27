@@ -6,7 +6,7 @@ angular.module('brainApp.controllers', [])
  
   // Called to navigate to the Dashboard
   $scope.startApp = function() {
-    $state.go('config');
+    $state.go('tab.login');
 
     // Set a flag that we finished the tutorial
     window.localStorage['didTutorial'] = true;
@@ -173,10 +173,6 @@ angular.module('brainApp.controllers', [])
     $scope.user;
     $scope.snumber = "";
     $scope.password = "";
-    
-    var subjects_content_download_link = '/home/ubuntu/subjectcontents/';
-    var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
-
 
     var status_date = $filter('date')(new Date(), 'dd-MM-yyyy');
 
@@ -967,6 +963,9 @@ angular.module('brainApp.controllers', [])
     $scope.grade = $stateParams.grade;
     $scope.subjects = [];
 
+    var subjects_content_download_link = '/home/ubuntu/subjectcontents/';
+    var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
+
     getSubjectsDetails(usermane);
 
     function getSubjectsDetails(usermane){
@@ -999,8 +998,6 @@ angular.module('brainApp.controllers', [])
     };
 
     $scope.viewContent = checkIfFileExists(subj_name.link);
-        
-
 
     function checkIfFileExists(path){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
