@@ -9,19 +9,10 @@
   <button class="buttons button-icon ion-android-search button-clear" ng-click="showFilterBar()"></button>
  </ion-nav-buttons>
 <div class="bar bar-subheader bar-positive">
-    <h3 class="light">My Subjects</h3>
+    <h5 class="light">{{subj_name}}</h5>
 </div>
     <ion-content class="padding bg has-subheader">
-       
-            <div ng-repeat="subject in subjects track by $index | orderBy: 'name'" class="list" data-ng-click="viewContent(subject)">
-                <a class="item item-avatar" href="">
-                        <img ng-src="{{subject.icon}}">
-                        <h2 class="name">{{subject.name}}</h2>
-                        <p class="grade">{{grade}}</p>
-                </a> 
-                
-            </div>
-            <br>
+    
     </ion-content>
   
 </ion-view>

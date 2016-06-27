@@ -324,6 +324,7 @@ img.logo {
 .item-avatar img{
     width: 100% !important;
     height: 100% !important;
+    font-size: 6em;
     max-width: 50px;
     max-height: 50px;
 }
