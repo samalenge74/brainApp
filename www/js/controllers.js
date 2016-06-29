@@ -1000,44 +1000,40 @@ angular.module('brainApp.controllers', [])
         
     }
 
-    function fileDoesNotExist(fileEntry){
-       
-            var file = zipFile;
-            console.log(FileEntry);
-            var confirmPopup = $ionicPopup.confirm({
-                title: '',
-                template: 'Subject content not available yet, do you want to download the content now?'
-            });
+    function saveFile(dirEntry, fileData, fileName) {
 
-            confirmPopup.then(function(res){
-                if (res){
-                    getSubjectsContents.getZipFile(m, p).then(function(zipFile){
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('POST', 'http://192.168.0.63/subjContent/df.php', true);
-                        var params = " moms = KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer="+location
-                        xhr.responseType = 'blob';
+        dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
 
-                        xhr.onload = function() {
-                            if (this.status == 200) {
+            writeFile(fileEntry, fileData);
 
-                                var blob = new Blob([this.response], { type: 'application/octet-stream' });
-                                saveFile(link, blob, "data.zip");
-                            }
-                        };
-                        xhr.send();
-                    }, function(error){                                                        
-                        console.log(error);
-                    });
-                   
-                }else{
-                        console.log("not now!");
-                }
-            }, function(error){
-                console.error(error);
-            });
-        
-        
+        }, onErrorCreateFile);
     }
+
+    function writeFile(fileEntry, dataObj, isAppend) {
+
+        // Create a FileWriter object for our FileEntry (log.txt).
+        fileEntry.createWriter(function (fileWriter) {
+
+            fileWriter.onwriteend = function() {
+                console.log("Successful file write...");
+                
+                /*if (dataObj.type == "image/png") {
+                    readBinaryFile(fileEntry);
+                }
+                else {
+                    readFile(fileEntry);
+                }*/
+            };
+
+            fileWriter.onerror = function(e) {
+                console.log("Failed file write: " + e.toString());
+            };
+
+            fileWriter.write(dataObj);
+        });
+    }
+
+
 
     function getFSFail(evt) {
         console.log(evt.target.error.code);
@@ -1045,8 +1041,39 @@ angular.module('brainApp.controllers', [])
    
     $scope.viewContent = function(subject){
         var path = subject.link+"/data.zip";
+        var downloadLink = subject.download_link;
+
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(path, { create: false }, fileExists, fileDoesNotExist);
+            fileSystem.root.getFile(path, { create: false }, fileExists, function fileDoesNotExist(path, downloadLink){
+                var confirmPopup = $ionicPopup.confirm({
+                title: '',
+                template: 'Subject content not available yet, do you want to download the content now?'
+            });
+
+            confirmPopup.then(function(res){
+                if (res){
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'http://192.168.0.63/subjContent/df.php', true);
+                        var params = " moms = KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer="+downloadLink;
+                        xhr.responseType = 'blob';
+
+                        xhr.onload = function() {
+                            if (this.status == 200) {
+
+                                var blob = new Blob([this.response], { type: 'application/octet-stream' });
+                                saveFile(path, blob, "data.zip");
+                            }
+                        };
+                        xhr.send();
+                   
+                }else{
+                        console.log("not now!");
+                }
+            }, function(error){
+                console.error(error);
+            });
+            });
         }, getFSFail); //of requestFileSystem
     }   
 
