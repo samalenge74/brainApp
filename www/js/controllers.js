@@ -29,7 +29,7 @@ angular.module('brainApp.controllers', [])
 
   
 })
-.controller('MainCtrl', function($scope, $state,  $ionicHistory, $ionicSideMenuDelegate, $ionicPopup) {
+.controller('MainCtrl', function($scope, $state,  $ionicHistory, $ionicSideMenuDelegate, $ionicPopup, $ionicModal) {
     
     $scope.$on('$ionicView.loaded', function(){
         ionic.Platform.ready(function(){
@@ -38,7 +38,7 @@ angular.module('brainApp.controllers', [])
         });
     });
     
-     $scope.logout = function(){
+    $scope.logout = function(){
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
         $state.go('tab.login', {}, {reload: true});
@@ -65,7 +65,7 @@ angular.module('brainApp.controllers', [])
     
     
 })
-.controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter, $cordovaKeyboard) {
+.controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter, $cordovaKeyboard, $rootScope) {
     
     if (window.cordova) {
         $cordovaKeyboard.disableScroll(true);
@@ -124,13 +124,14 @@ angular.module('brainApp.controllers', [])
                 stName = res.rows.item(0).name;
                 gd = res.rows.item(0).grade;
                 date_status_last_checked = $filter('date')(new Date(res.rows.item(0).date_status_last_checked), 'dd-MM-yyyy');
-                result = { user: snum, name: stName, grade: gd};
                 var now = $filter('date')(new Date(), 'dd-MM-yyyy');
                 var daysDiff = diffDays(date_status_last_checked);
                 
                 $ionicLoading.hide();
+
+                $rootScope.snum = snum;
                 
-                $state.go('eventmenu.subjects', result);
+                $state.go('eventmenu.subjects');
 
             } else {
                 console.log(snumber+' '+password);
@@ -307,7 +308,7 @@ angular.module('brainApp.controllers', [])
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
                                                             var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                           var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name;
+                                                            var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name;
 
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
@@ -424,9 +425,9 @@ angular.module('brainApp.controllers', [])
                                                             }
                                                         
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, donwload_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, donwload_link, snum]).then(function(r){
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
+                                                                console.log(pointer);
 
-                                                                
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -760,8 +761,8 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, snum]).then(function(r){
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, donwload_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                            $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
                                                                 console.log(pointer);
                                                               
                                                                 
@@ -948,30 +949,30 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, getSubjectsContents, $cordovaFileTransfer){
+.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, getSubjectsContents, $cordovaFileTransfer){
 
-    var usermane = $stateParams.user;
-    $scope.studentNumber = $stateParams.user;
-    $scope.studentName = $stateParams.name;
-    $scope.grade = $stateParams.grade;
+    var username = $rootScope.snum;
+    var grade = '';
+
     $scope.subjects = [];
 
-    var moms = 'KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ';
+    getSubjectsDetails(username);
 
-    getSubjectsDetails(usermane);
-
-    function getSubjectsDetails(usermane){
+    function getSubjectsDetails(username){
         $ionicLoading.show({
             animation: 'fade-in',
             showDelay: 0,
             noBackdrop: true,
             templateUrl: 'subjects.html'
         });
-        var query = "SELECT name, description, icon, subject_id, content_link, donwload_link FROM subjects where student_no = ?";
-        $cordovaSQLite.execute(db, query, [usermane]).then(function(res) {
+        var query = "SELECT name, subject_app_name, icon, content_link, donwload_link FROM subjects where student_no = ? ORDER BY name";
+        $cordovaSQLite.execute(db, query, [username]).then(function(res) {
             if(res.rows.length > 0){
                 for (var j = 0; j < res.rows.length; j++){
-                    $scope.subjects.push({name: res.rows.item(j).name, desc: res.rows.item(j).description, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  donwload_link: res.rows.item(j). donwload_link})
+                    grade = res.rows.item(j).subject_app_name;
+                    grade = grade.substr(0, 7);
+                    $scope.subjects.push({name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  donwload_link: res.rows.item(j). donwload_link});
+                    console.log(JSON.stringify($scope.subjects, null, 4));
                 }
                 $ionicLoading.hide();
             
@@ -988,49 +989,21 @@ angular.module('brainApp.controllers', [])
                 }, function(error){
                         console.log(error);
                 });
-                console.log('Could not load subjects.')
+                
             }
         });
         
     };
 
-    $scope.viewContent = function(subject){
-        var id = subject.subject_id; 
-        var name = subject.name;  
-        var location  = subject.donwload_link;
-        var link = subject.content_link;
-        var params =  {id: id, name: name, location: location, link: link};
-
-        $state.go('eventmenu.subjContent', params);
-    }   
-
-  
-})
-.controller('SubjContent', function($scope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, getSubjectsContents, $cordovaFileTransfer){
-    
-    var link = $stateParams.link;
-    var location = $stateParams.location;
-    $scope.subj_name = $stateParams.name;
-    var id = $stateParams.id;
-
-    function checkIfFileExists(path){
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(path, { create: false }, fileExists, fileDoesNotExist);
-        }, getFSFail); //of requestFileSystem
-    }
-
     function fileExists(fileEntry){
-        alert("File " + fileEntry.fullPath + " exists!");
-    }
-
-    function getSampleFile(dirEntry) {
-
+        console.log(fileEntry);
         
     }
 
-    function fileDoesNotExist(fileEntry, location){
-        getSubjectsContents.getZipFile(m, p).then(function(zipFile){
+    function fileDoesNotExist(fileEntry){
+       
             var file = zipFile;
+            console.log(FileEntry);
             var confirmPopup = $ionicPopup.confirm({
                 title: '',
                 template: 'Subject content not available yet, do you want to download the content now?'
@@ -1038,55 +1011,46 @@ angular.module('brainApp.controllers', [])
 
             confirmPopup.then(function(res){
                 if (res){
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'http://192.168.0.63/subjContent/df.php', true);
-                    var params = " moms = KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer="+location
-                    xhr.responseType = 'blob';
+                    getSubjectsContents.getZipFile(m, p).then(function(zipFile){
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'http://192.168.0.63/subjContent/df.php', true);
+                        var params = " moms = KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer="+location
+                        xhr.responseType = 'blob';
 
-                    xhr.onload = function() {
-                        if (this.status == 200) {
+                        xhr.onload = function() {
+                            if (this.status == 200) {
 
-                            var blob = new Blob([this.response], { type: 'image/png' });
-                            saveFile(dirEntry, blob, "downloadedImage.png");
-                        }
-                    };
-                    xhr.send();
+                                var blob = new Blob([this.response], { type: 'application/octet-stream' });
+                                saveFile(link, blob, "data.zip");
+                            }
+                        };
+                        xhr.send();
+                    }, function(error){                                                        
+                        console.log(error);
+                    });
+                   
                 }else{
-
+                        console.log("not now!");
                 }
             }, function(error){
                 console.error(error);
             });
-        }, function(error){
-                                                                    
-            console.log(error);
-        });
-
-
+        
         
     }
 
     function getFSFail(evt) {
         console.log(evt.target.error.code);
     }
-
-    function checkIfDirectoryExists(path){
+   
+    $scope.viewContent = function(subject){
+        var path = subject.link+"/data.zip";
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getDirectory(path, { create: false }, DirExists, DirDoesNotExist);
+            fileSystem.root.getFile(path, { create: false }, fileExists, fileDoesNotExist);
         }, getFSFail); //of requestFileSystem
-    }
+    }   
 
-    function DirExists(DirEntry){
-        alert("Dir " + DirEntry.fullPath + " exists!");
-    }
-
-    function DirDoesNotExist(){
-        alert("Dir does not exist");
-    }
-
-    function getFSFail(evt) {
-        console.log(evt.target.error.code);
-    }
+  
 })
 .controller('AboutCtrl', function($scope){  
 })

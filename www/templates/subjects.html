@@ -2,22 +2,20 @@
 <ion-view hide-back-button="true" view-title="{{navTitle}}" class="padding">
     
       <ion-nav-buttons side="left">
-              <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
-              </button>
-            </ion-nav-buttons>
-             <ion-nav-buttons side="secondary">
-  <button class="buttons button-icon ion-android-search button-clear" ng-click="showFilterBar()"></button>
- </ion-nav-buttons>
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
+        </button>
+    </ion-nav-buttons>
+             
 <div class="bar bar-subheader bar-positive">
     <h3 class="light">My Subjects</h3>
 </div>
     <ion-content class="padding bg has-subheader">
        
-            <div ng-repeat="subject in subjects track by $index | orderBy: 'name'" class="list" data-ng-click="viewContent(subject)">
+            <div ng-repeat="subject in subjects track by $index" class="list" data-ng-click="viewContent(subject)">
                 <a class="item item-avatar" href="">
                         <img ng-src="{{subject.icon}}">
                         <h2 class="name">{{subject.name}}</h2>
-                        <p class="grade">{{grade}}</p>
+                        <p class="grade">{{subject.grade}}</p>
                 </a> 
                 
             </div>

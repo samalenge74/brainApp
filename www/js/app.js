@@ -387,22 +387,6 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
           }
         }  
       })
-
-      .state('eventmenu.subjContent', {
-        url: '/subjContent',
-        params: {
-          'id'        : null, 
-          'name'      : null,
-          'location'  : null,
-          'link'      : null 
-        },
-        views: {
-          'menuContent' :{
-            templateUrl: "templates/subjContent.html",
-            controller: "SubjContent"
-          }
-        }  
-      })
     
     .state('eventmenu.about', {
       url: "/about",

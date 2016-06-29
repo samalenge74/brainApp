@@ -10,7 +10,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="lib/angular-motion/dist/angular-motion.min.css" rel="stylesheet">
     <link href="lib/angular-motion/dist/modules/collapse.min.css" rel="stylesheet">
-    <link href="lib/ionic-filter-bar/dist/ionic.filter.bar.min.css" rel="stylesheet">  
+    <link href="lib/ionic-filter-bar/dist/ionic.filter.bar.min.css" rel="stylesheet">
+    <link href="lib/ionic-nifty-modal/nifty.modal.css" rel="stylesheet">  
     
     <link href="css/ionic.iosButtons.css">
     <link href="css/ionicons.min.css">
@@ -98,6 +99,16 @@
       </ion-view>
     </script>
 
+    <script id="contents.html" type="text/ng-template"> 
+      <ion-modal-view class="ion-nifty-modal">
+        <div class="ion-modal-content-custom">
+          <ion-content class="padding">
+            <button class="button button-full button-positive" ng-click="closeModal()">Close Modal</button>
+          </ion-content>
+        </div>
+      </ion-modal-view>
+    </script>
+
     <script id="templates/event-menu.html" type="text/ng-template">
       
      <ion-side-menus>
@@ -138,11 +149,14 @@
     </script>
     
     <script id="templates/about.html" type="text/ng-template">
-      <ion-view view-title="About">
+      <ion-view view-title="{{navTitle}}">
         <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
               </button>
             </ion-nav-buttons>
+            <div class="bar bar-subheader bar-positive">
+              <h3 class="light">About BrainApp</h3>
+          </div>
         <ion-content>
           <div class="card">
             <div class="item item-text-wrap">
@@ -166,11 +180,14 @@
     </script>
     
     <script id="templates/legal.html" type="text/ng-template">
-      <ion-view view-title="Legal">
+      <ion-view view-title="{{navTitle}}">
         <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
               </button>
             </ion-nav-buttons>
+            <div class="bar bar-subheader bar-positive">
+                <h3 class="light">Legal </h3>
+            </div>
         <ion-content>
           
         </ion-content>
@@ -178,11 +195,14 @@
     </script>
     
     <script id="templates/faq.html" type="text/ng-template">
-      <ion-view view-title="FAQ">
+      <ion-view view-title="{{navTitle}}">
         <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
               </button>
             </ion-nav-buttons>
+            <div class="bar bar-subheader bar-positive">
+              <h3 class="light">FAQ</h3>
+          </div>
         <ion-content>
           
         </ion-content>
@@ -190,11 +210,14 @@
     </script>
     
     <script id="templates/radio.html" type="text/ng-template">
-      <ion-view view-title="BrainOnAIR">
+      <ion-view view-title="{{navTitle}}">
         <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active">
               </button>
         </ion-nav-buttons>
+        <div class="bar bar-subheader bar-positive">
+            <h3 class="light">BrainONAIR</h3>
+        </div>
         <ion-content>
           <h3 style="text-align: center;"><span style="color: #ff0000;">Listen live below:</span></h3>
           
