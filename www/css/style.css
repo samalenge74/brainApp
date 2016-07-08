@@ -262,7 +262,8 @@ img.logo {
 }
 
 .account {
-    margin-bottom: 30%;
+ margin-top: 60%;    
+    
 }
 
 .button.ng-hide{
@@ -350,6 +351,7 @@ img.logo {
 }
 
 .round-button-add {
+    margin: 0 auto;
     display:block;
     width:60px;
     height:60px;
@@ -370,6 +372,7 @@ img.logo {
 }
 
 .round-button-delete {
+     margin: 0 auto;
     display:block;
     width:60px;
     height:60px;

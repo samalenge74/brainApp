@@ -481,7 +481,7 @@ angular.module('brainApp.controllers', [])
                                                 }, function(error){
                                                     $ionicLoading.hide();
                                                     var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Alert!!!!',
+                                                                    title: '',
                                                                     template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
                                                                 });
                                                                 
@@ -496,7 +496,7 @@ angular.module('brainApp.controllers', [])
                                             }else{
                                                 $ionicLoading.hide();
                                                 var alertPopup = $ionicPopup.alert({
-                                                                title: 'Alert!!!!',
+                                                                title: '',
                                                                 template: 'Either username/password is wrong.'
                                                             });
                                                             
@@ -515,7 +515,7 @@ angular.module('brainApp.controllers', [])
                                         }else{
                                             $ionicLoading.hide();
                                             var alertPopup = $ionicPopup.alert({
-                                                            title: 'Alert!!!!',
+                                                            title: '',
                                                             template: 'Adding account failed, Check that you entered the correct s-number/password.'
                                                         });
                                                         
@@ -568,16 +568,16 @@ angular.module('brainApp.controllers', [])
                                
                                 if(res.rows.length > 0){
                                     $ionicLoading.hide();
-                                    $scope.showAlert = function() {
-                                        var alertPopup = $ionicPopup.alert({
-                                            title: '',
-                                            template: 'User Already Exist.'
-                                        });
-                                        
-                                        alertPopup.then(function(res) {
-                                            console.log('User already exists.');
-                                        });
-                                    };
+                                    
+                                    var alertPopup = $ionicPopup.alert({
+                                        title: '',
+                                        template: 'User Already Exist.'
+                                    });
+                                    
+                                    alertPopup.then(function(res) {
+                                        console.log('User already exists.');
+                                    });
+                                  
                                 } else {
                                     
                                     $ionicLoading.show({
@@ -818,7 +818,7 @@ angular.module('brainApp.controllers', [])
                                                 }, function(error){
                                                     $ionicLoading.hide();
                                                     var alertPopup = $ionicPopup.alert({
-                                                                    title: 'Alert!!!!',
+                                                                    title: '',
                                                                     template: 'Account activation failed, please contact Brainline @ 012 543 5000.'
                                                                 });
                                                                 
@@ -833,7 +833,7 @@ angular.module('brainApp.controllers', [])
                                             }else{
                                                 $ionicLoading.hide();
                                                 var alertPopup = $ionicPopup.alert({
-                                                                title: 'Alert!!!!',
+                                                                title: '',
                                                                 template: 'Either username/password is wrong.'
                                                             });
                                                             
@@ -852,7 +852,7 @@ angular.module('brainApp.controllers', [])
                                         }else{
                                             $ionicLoading.hide();
                                             var alertPopup = $ionicPopup.alert({
-                                                            title: 'Alert!!!!',
+                                                            title: '',
                                                             template: 'Adding account failed, Check that you entered the correct s-number/password.'
                                                         });
                                                         
@@ -1000,6 +1000,10 @@ angular.module('brainApp.controllers', [])
         
     }
 
+    function onErrorCreateFile(){
+        console.error(error);
+    }
+
     function saveFile(dirEntry, fileData, fileName) {
 
         dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
@@ -1032,8 +1036,6 @@ angular.module('brainApp.controllers', [])
             fileWriter.write(dataObj);
         });
     }
-
-
 
     function getFSFail(evt) {
         console.log(evt.target.error.code);
