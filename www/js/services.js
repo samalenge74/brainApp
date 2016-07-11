@@ -1,5 +1,5 @@
 var remoteLink = "http://mybrainline.com/eve/brainApp/"
-var remoteLinkContent = "http://192.168.0.63/subjContent/df.php";
+
 angular.module('brainApp.services', [])
 
 .factory("activateAccount", ['$http', function($http) {
@@ -28,17 +28,4 @@ angular.module('brainApp.services', [])
             }
         }
          
-}])
-
-.factory("getSubjectsContents", ['$http', function($http){
-    var zip_file = '';
-
-    return{
-        getZipFile: function (moms, pointer) {
-            return $http.post(remoteLinkContent, {moms: moms, pointer: pointer}).then(function(response) {
-                zip_file = response;
-                return zip_file;
-            })
-        }
-    }
-}])
+}]);
