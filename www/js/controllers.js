@@ -998,11 +998,6 @@ angular.module('brainApp.controllers', [])
         
     };
 
-    function fileExists(fileEntry){
-        console.log(fileEntry);
-        
-    }
-
     function writeFile(fileEntry, dataObj, isAppend) {
 
         // Create a FileWriter object for our FileEntry (log.txt).
@@ -1040,16 +1035,6 @@ angular.module('brainApp.controllers', [])
 
     function onError(e) {
         console.log('Error', e);
-    }
-
-    // progress on transfers from the server to the client (downloads)
-    function updateProgress (oEvent) {
-        if (oEvent.lengthComputable) {
-            var percentComplete = oEvent.loaded / oEvent.total;
-            // ...
-        } else {
-            // Unable to compute progress information since the total size is unknown
-        }
     }
 
     function transferComplete(evt) {
@@ -1093,7 +1078,7 @@ angular.module('brainApp.controllers', [])
 
         
         var xhr = new XMLHttpRequest();
-        xhr.addEventListener("progress", updateProgress);
+        
         xhr.addEventListener("load", transferComplete);
         xhr.addEventListener("error", transferFailed);
         xhr.addEventListener("abort", transferCanceled);
@@ -1173,9 +1158,17 @@ angular.module('brainApp.controllers', [])
     $scope.viewContent = function(subject){
         var targetPath = subject.link+"/data.zip"; // save location
         var downloadLink = subject.download_link+"/data.zip"; // file to download
+        var subj_name = subject.name;
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(targetPath, { create: false }, fileExists, function fileDoesNotExist(){
+            fileSystem.root.getFile(targetPath, { create: false }, 
+
+            function fileExists(){
+                var params = { subjName: subj_name, dir: targetPath}
+                $state.go('eventmenu.contents', params);
+            }, 
+            
+            function fileDoesNotExist(){
                 var confirmPopup = $ionicPopup.confirm({
                     title: '',
                     template: 'Subject content not available yet, do you want to download the content now?'
@@ -1183,10 +1176,7 @@ angular.module('brainApp.controllers', [])
 
                 confirmPopup.then(function(res){
                     if (res){
-                        
                         getZipFile(fileSystem.root, targetPath, downloadLink);
-                            
-                    
                     }else{
                             console.log("not now!");
                     }
@@ -1214,4 +1204,8 @@ angular.module('brainApp.controllers', [])
 
     $scope.emailAddress = "support@brainline.com"
     $scope.phoneno = "+27125435000";
+})
+.controller('ContentsCtrl', function($scope, $stateParams){
+    $scope.subjName = $stateParams.subjName;
+    var dir = $stateParams.dir;
 })
