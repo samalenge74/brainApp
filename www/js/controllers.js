@@ -1205,7 +1205,18 @@ angular.module('brainApp.controllers', [])
     $scope.emailAddress = "support@brainline.com"
     $scope.phoneno = "+27125435000";
 })
-.controller('ContentsCtrl', function($scope, $stateParams){
+.controller('ContentsCtrl', function($scope, $state, $stateParams){
+
     $scope.subjName = $stateParams.subjName;
+    console.log($scope.subjName);
+    
     var dir = $stateParams.dir;
+    console.log(dir);
+
+    
+
+    $scope.goBack = function() {
+        $state.go('eventmenu.subjects');
+    };
+
 })
