@@ -195,7 +195,7 @@ angular.module('brainApp.controllers', [])
 
     $scope.addUser = function(username, password){
 
-        var subjects_content_download_link = '/home/mybrainline/googledrive/DVD/';
+        var subjects_content_download_link = 'http://192.168.0.63/subjectcontents';
         var internet_conn = checkConnection();
         var uppercaseFilter = $filter('uppercase');
         var u = uppercaseFilter(username);
@@ -424,9 +424,9 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, download_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, donwload_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
-                                                                
+                                                                console.log(pointer);
 
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
@@ -761,9 +761,11 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, download_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, donwload_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
-
+                                                                console.log(pointer);
+                                                              
+                                                                
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
                                                                 console.log(error);
@@ -888,7 +890,7 @@ angular.module('brainApp.controllers', [])
     }
          
 })
-.controller('DeleteUserCtrl', function($scope, $state, $cordovaSQLite, $ionicPopup, $cordovaKeyboard){
+.controller('DeleteUserCtrl', function($scope, $cordovaSQLite, $ionicPopup, $cordovaKeyboard){
     
     if (window.cordova) {
         $cordovaKeyboard.disableScroll(true);
@@ -947,7 +949,7 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, $cordovaFileTransfer){
+.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, getSubjectsContents, $cordovaFileTransfer){
 
     var username = $rootScope.snum;
     var grade = '';
@@ -965,16 +967,15 @@ angular.module('brainApp.controllers', [])
             templateUrl: 'subjects.html'
         });
 
-        var query = "SELECT name, subject_app_name, icon, content_link, download_link FROM subjects where student_no = ? ORDER BY name";
+        var query = "SELECT name, subject_app_name, icon, content_link, donwload_link FROM subjects where student_no = ? ORDER BY name";
         $cordovaSQLite.execute(db, query, [username]).then(function(res) {
             if(res.rows.length > 0){
                 for (var j = 0; j < res.rows.length; j++){
                     grade = res.rows.item(j).subject_app_name;
                     grade = grade.substr(0, 7);
-                    $scope.subjects.push({name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  download_link: res.rows.item(j).download_link});
-
+                    $scope.subjects.push({name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  donwload_link: res.rows.item(j). donwload_link});
                 }
-                console.log(JSON.stringify($scope.subjects, null, 4));
+
                 $ionicLoading.hide();
             
             }else{
@@ -1001,104 +1002,20 @@ angular.module('brainApp.controllers', [])
         
     }
 
-    function onErrorCreateFile(error){
-        console.log(error);
-    }
-
+   
     function getFSFail(evt) {
         console.log(evt.target.error.code);
     }
 
-    function onError(e) {
-        console.log('Error', e);
-    }
-
-    // progress on transfers from the server to the client (downloads)
-    function updateProgress (oEvent) {
-        if (oEvent.lengthComputable) {
-            var percentComplete = oEvent.loaded / oEvent.total;
-            // ...
-        } else {
-            // Unable to compute progress information since the total size is unknown
-        }
-    }
-
-    function transferComplete(evt) {
-        console.log("The transfer is complete.");
-    }
-
-    function transferFailed(evt) {
-        console.log("An error occurred while transferring the file.");
-    }
-
-    function transferCanceled(evt) {
-        console.log("The transfer has been canceled by the user.");
-    }
-  
     function getZipFile(dirEntry, downloadLink){
-
-        
         var xhr = new XMLHttpRequest();
-        xhr.addEventListener("progress", updateProgress);
-        xhr.addEventListener("load", transferComplete);
-        xhr.addEventListener("error", transferFailed);
-        xhr.addEventListener("abort", transferCanceled);
-
         xhr.open('POST', 'http://www.mybrainline.com/eve/dvd/generate/df.php', true);
-        xhr.setRequestHeader('Content-type','application/zip');
-        xhr.responseType = 'arraybuffer'; 
-
-        console.log(dirEntry);
+        xhr.responseType = 'blob';
 
         xhr.onload = function(){
-                
-            if (this.status == 200) {
-                var filename = "";
-                var targetPath = dirEntry;
-                var trueHosts = true;
-                var options = {};
-                var disposition = xhr.getResponseHeader('Content-Disposition');
-
-                if (disposition && disposition.indexOf('attachment') !== -1) {
-                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                    var matches = filenameRegex.exec(disposition);
-                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-                }
-
-                var type = xhr.getResponseHeader('Content-Type');
-
-                var blob = new Blob([this.response], { type: type });
-
-                if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-                    window.navigator.msSaveBlob(blob, filename);
-                } else {
-
-                    var URL = window.URL || window.webkitURL;
-                    var downloadUrl = URL.createObjectURL(blob);
-                    
-                    if (filename) {
-                        // use HTML5 a[download] attribute to specify filename
-                        var a = document.createElement("a");
-                        // safari doesn't support this yet
-                        if (typeof a.download === 'undefined') {
-                            window.location = downloadUrl;
-                        } else {
-                            a.href = downloadUrl;
-                            a.download = filename;
-                            document.body.appendChild(a);
-                            a.click();
-                        }
-                    } else {
-                        window.location = downloadUrl;
-                    }
-
-                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-                }
-            }           
-
+            console.log(this.response)
         };
-        xhr.send('moms=KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer='+downloadLink);
+        xhr.send('moms=&pointer='+downloadLink);
     }
    
     $scope.viewContent = function(subject){
@@ -1106,7 +1023,7 @@ angular.module('brainApp.controllers', [])
         var downloadLink = subject.download_link+"/data.zip"; // file to download
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(targetPath, { create: false }, fileExists, function fileDoesNotExist(){
+            fileSystem.root.getFile(targetPath, { create: false }, fileExists, function fileDoesNotExist(path, downloadLink){
                 var confirmPopup = $ionicPopup.confirm({
                     title: '',
                     template: 'Subject content not available yet, do you want to download the content now?'
@@ -1114,8 +1031,8 @@ angular.module('brainApp.controllers', [])
 
                 confirmPopup.then(function(res){
                     if (res){
+
                         
-                        getZipFile(targetPath, downloadLink);
                             
                     
                     }else{
@@ -1128,7 +1045,7 @@ angular.module('brainApp.controllers', [])
         }, getFSFail); //of requestFileSystem
     }   
   
-    })
+})
 .controller('AboutCtrl', function($scope){  
 })
 .controller('LegalCtrl', function($scope){ 
