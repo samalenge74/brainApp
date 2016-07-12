@@ -949,7 +949,7 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, getSubjectsContents, $cordovaFileTransfer){
+.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, $cordovaFileTransfer){
 
     var username = $rootScope.snum;
     var grade = '';
@@ -967,15 +967,16 @@ angular.module('brainApp.controllers', [])
             templateUrl: 'subjects.html'
         });
 
-        var query = "SELECT name, subject_app_name, icon, content_link, donwload_link FROM subjects where student_no = ? ORDER BY name";
+        var query = "SELECT name, subject_app_name, icon, content_link, download_link FROM subjects where student_no = ? ORDER BY name";
         $cordovaSQLite.execute(db, query, [username]).then(function(res) {
             if(res.rows.length > 0){
                 for (var j = 0; j < res.rows.length; j++){
                     grade = res.rows.item(j).subject_app_name;
                     grade = grade.substr(0, 7);
-                    $scope.subjects.push({name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  donwload_link: res.rows.item(j). donwload_link});
-                }
+                    $scope.subjects.push({name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link,  download_link: res.rows.item(j).download_link});
 
+                }
+                console.log(JSON.stringify($scope.subjects, null, 4));
                 $ionicLoading.hide();
             
             }else{
@@ -1002,20 +1003,171 @@ angular.module('brainApp.controllers', [])
         
     }
 
-   
+    function writeFile(fileEntry, dataObj, isAppend) {
+
+        // Create a FileWriter object for our FileEntry (log.txt).
+        fileEntry.createWriter(function (fileWriter) {
+
+            fileWriter.onwriteend = function() {
+                console.log("Successful file write...");
+                
+            };
+
+            fileWriter.onerror = function(e) {
+                console.log("Failed file write: " + e.toString());
+            };
+
+            fileWriter.write(dataObj);
+        });
+    }
+
+    function saveFile(dirEntry, fileData, fileName) {
+
+        dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
+
+            writeFile(fileEntry, fileData);
+
+        }, onErrorCreateFile);
+    }
+
+    function onErrorCreateFile(error){
+        console.log(error);
+    }
+
     function getFSFail(evt) {
         console.log(evt.target.error.code);
     }
 
-    function getZipFile(dirEntry, downloadLink){
+    function onError(e) {
+        console.log('Error', e);
+    }
+
+    // progress on transfers from the server to the client (downloads)
+    function updateProgress (oEvent) {
+        if (oEvent.lengthComputable) {
+            var percentComplete = oEvent.loaded / oEvent.total;
+            // ...
+        } else {
+            // Unable to compute progress information since the total size is unknown
+        }
+    }
+
+    function transferComplete(evt) {
+        
+        var alertPopup = $ionicPopup.alert({
+            title: '',
+            template: 'The transfer is complete.'
+        });
+        
+        alertPopup.then(function(res) {
+            console.log('The transfer is complete.');
+        });
+    }
+
+    function transferFailed(evt) {
+        
+        var alertPopup = $ionicPopup.alert({
+            title: '',
+            template: 'An error occurred while transferring the file.'
+        });
+        
+        alertPopup.then(function(res) {
+            console.log('An error occurred while transferring the file.');
+        });
+    }
+
+    function transferCanceled(evt) {
+        
+        var alertPopup = $ionicPopup.alert({
+            title: '',
+            template: 'The transfer has been canceled by the user.'
+        });
+        
+        alertPopup.then(function(res) {
+            console.log('The transfer has been canceled by the user.');
+        });
+        
+    }
+  
+    function getZipFile(dirEntry, targetPath, downloadLink){
+
+        
         var xhr = new XMLHttpRequest();
+        xhr.addEventListener("progress", updateProgress);
+        xhr.addEventListener("load", transferComplete);
+        xhr.addEventListener("error", transferFailed);
+        xhr.addEventListener("abort", transferCanceled);
+
         xhr.open('POST', 'http://www.mybrainline.com/eve/dvd/generate/df.php', true);
-        xhr.responseType = 'blob';
+        xhr.setRequestHeader('Content-type','application/zip');
+        xhr.responseType = 'arraybuffer'; 
+
+        xhr.onprogress = function(e) {
+            if (e.lengthComputable) {
+                progressBar.max = e.total;
+                progressBar.value = e.loaded;
+            }
+        };
+
+        xhr.onloadstart = function(e) {
+            progressBar.value = 0;
+        };
+        
+        xhr.onloadend = function(e) {
+            progressBar.value = e.loaded;
+        };
+
+        
 
         xhr.onload = function(){
-            console.log(this.response)
+                
+            if (this.status == 200) {
+                var filename = "";
+                
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+
+                var type = xhr.getResponseHeader('Content-Type');
+
+                var blob = new Blob([this.response], { type: type });
+
+                saveFile(dirEntry, blob, targetPath);
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+                    
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+            }           
+
         };
-        xhr.send('moms=&pointer='+downloadLink);
+        xhr.send('moms=KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer='+downloadLink);
     }
    
     $scope.viewContent = function(subject){
@@ -1023,7 +1175,7 @@ angular.module('brainApp.controllers', [])
         var downloadLink = subject.download_link+"/data.zip"; // file to download
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(targetPath, { create: false }, fileExists, function fileDoesNotExist(path, downloadLink){
+            fileSystem.root.getFile(targetPath, { create: false }, fileExists, function fileDoesNotExist(){
                 var confirmPopup = $ionicPopup.confirm({
                     title: '',
                     template: 'Subject content not available yet, do you want to download the content now?'
@@ -1031,8 +1183,8 @@ angular.module('brainApp.controllers', [])
 
                 confirmPopup.then(function(res){
                     if (res){
-
                         
+                        getZipFile(fileSystem.root, targetPath, downloadLink);
                             
                     
                     }else{
