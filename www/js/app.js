@@ -391,8 +391,9 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
     .state('eventmenu.contents', {
         url: '/contents',
         params: {
-          'name' : null,
-          'dir': null   
+          'subject_name' : null,
+          'dir': null,
+          'unzip_dir' : null   
         },
         views: {
           'menuContent' :{

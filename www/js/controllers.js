@@ -25,9 +25,7 @@ angular.module('brainApp.controllers', [])
     $scope.slideIndex = index;
   };
     //No this is silly
-  // Check if the user already did the tutorial and skip it if so
-
-  
+  // Check if the user already did the tutorial and skip it if so  
 })
 .controller('MainCtrl', function($scope, $state,  $ionicHistory, $ionicSideMenuDelegate, $ionicPopup, $ionicModal) {
     
@@ -61,9 +59,7 @@ angular.module('brainApp.controllers', [])
       });
     };
 
-    $scope.navTitle='<img class="title-image" src="img/icon.png" />';
-    
-    
+    $scope.navTitle='<img class="title-image" src="img/icon.png" />';   
 })
 .controller('LoginCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicPlatform, $filter, $cordovaKeyboard, $rootScope) {
     
@@ -311,115 +307,116 @@ angular.module('brainApp.controllers', [])
                                                             var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name;
 
                                                             switch(subj_name){
+
                                                                 case 'English Home Language': 
                                                                 case 'English First Additional Language':
-                                                                    icon = 'img/icons/1.png';
+                                                                        icon = 'img/icons/1.png';
                                                                 break;
 
                                                                 case 'Afrikaans Huistaal': 
                                                                 case 'Afrikaans Eerste Addisionele Taal':
-                                                                    icon = 'img/icons/2.png';
+                                                                        icon = 'img/icons/2.png';
                                                                 break;
 
                                                                 case 'Wiskunde': 
                                                                 case 'Mathematics': 
                                                                 case 'Wiskundige Geletterdheid': 
                                                                 case 'Mathematical Literacy':
-                                                                    icon = 'img/icons/3.png';
+                                                                        icon = 'img/icons/3.png';
                                                                 break;
 
                                                                 case 'Lewensoriëntering': 
                                                                 case 'Life Orientation':
-                                                                    icon = 'img/icons/4.png';
+                                                                        icon = 'img/icons/4.png';
                                                                 break;
 
                                                                 case 'Natuurwetenskappe':
                                                                 case 'Natural Sciences':
-                                                                    icon = 'img/icons/18.png';
+                                                                        icon = 'img/icons/18.png';
                                                                 break;
 
                                                                 case 'Skeppende Kunste':
                                                                 case 'Creative Arts':
-                                                                    icon = 'img/icons/19.png';
+                                                                        icon = 'img/icons/19.png';
                                                                 break;
 
                                                                 case 'Sosiale Wetenskappe':
                                                                 case 'Social Sciences':
-                                                                    icon = 'img/icons/20.png';
+                                                                        icon = 'img/icons/20.png';
                                                                 break;
  
                                                                 case 'Rekeningkunde': 
                                                                 case 'Accounting':
-                                                                    icon = 'img/icons/5.png';
+                                                                        icon = 'img/icons/5.png';
                                                                 break;
 
                                                                 case 'Agricultural Sciences':
-                                                                    icon = 'img/icons/6.png';
+                                                                        icon = 'img/icons/6.png';
                                                                 break;
 
                                                                 case 'Tegnologie':
                                                                 case 'Technology':
-                                                                    icon = 'img/icons/21.png';
+                                                                        icon = 'img/icons/21.png';
                                                                 break;
 
 
                                                                 case 'Besigheidstudies':
                                                                 case 'Business Studies':
-                                                                    icon = 'img/icons/7.png';
+                                                                        icon = 'img/icons/7.png';
                                                                 break;
 
                                                                 case 'Computer Applications Technology':
-                                                                    icon = 'img/icons/8.png';
+                                                                        icon = 'img/icons/8.png';
                                                                 break;
 
                                                                 case 'Ekonomie':
                                                                 case 'Economics':
                                                                 case 'Economic and Management Sciences':
                                                                 case 'Ekonomiese en Bestuurswetenskappe':
-                                                                    icon = 'img/icons/9.png';
+                                                                        icon = 'img/icons/9.png';
                                                                 break;
 
                                                                 case 'Fisiese Wetenskappe':
                                                                 case 'Physical Sciences':
-                                                                    icon = 'img/icons/10.png';
+                                                                        icon = 'img/icons/10.png';
                                                                 break;
 
                                                                 case 'Geografie':
                                                                 case 'Geography':
-                                                                    icon = 'img/icons/11.png';
+                                                                        icon = 'img/icons/11.png';
                                                                 break;
 
                                                                 case 'Geskiedenis': 
                                                                 case 'History':
-                                                                    icon = 'img/icons/12.png';
+                                                                        icon = 'img/icons/12.png';
                                                                 break;
 
                                                                 case 'Ingenieursgrafika en Ontwerp':
                                                                 case 'Engineering Graphics and Design':
-                                                                    icon = 'img/icons/13.png';
+                                                                        icon = 'img/icons/13.png';
                                                                 break;
 
                                                                 case 'Lewenswetenskappe': 
                                                                 case 'Life Sciences':
-                                                                    icon = 'img/icons/14.png';
+                                                                        icon = 'img/icons/14.png';
                                                                 break;
 
                                                                 case 'Toerisme':
                                                                 case 'Tourism':
-                                                                    icon = 'img/icons/15.png';
+                                                                        icon = 'img/icons/15.png';
                                                                 break;
 
                                                                 case 'Verbruikerstudies':
                                                                 case 'Consumer Studies':
-                                                                    icon = 'img/icons/16.png';
+                                                                        icon = 'img/icons/16.png';
                                                                 break;
 
                                                                 case 'IsiZulu First Additional Language':
-                                                                    icon = 'img/icons/17.png';
+                                                                        icon = 'img/icons/17.png';
                                                                 break;
 
                                                                 case 'default':
-                                                                    icon = '';
+                                                                        icon = '';
                                                                 break;
 
                                                             }
@@ -1037,6 +1034,16 @@ angular.module('brainApp.controllers', [])
         console.log('Error', e);
     }
 
+    // progress on transfers from the server to the client (downloads)
+    function updateProgress (oEvent) {
+      if (oEvent.lengthComputable) {
+        var percentComplete = oEvent.loaded / oEvent.total;
+        // ...
+      } else {
+        // Unable to compute progress information since the total size is unknown
+      }
+    }
+
     function transferComplete(evt) {
         
         var alertPopup = $ionicPopup.alert({
@@ -1070,37 +1077,23 @@ angular.module('brainApp.controllers', [])
         
         alertPopup.then(function(res) {
             console.log('The transfer has been canceled by the user.');
-        });
-        
+        });     
     }
   
     function getZipFile(dirEntry, targetPath, downloadLink){
 
         
         var xhr = new XMLHttpRequest();
-        
+
+        xhr.addEventListener("progress", updateProgress);
         xhr.addEventListener("load", transferComplete);
         xhr.addEventListener("error", transferFailed);
         xhr.addEventListener("abort", transferCanceled);
 
         xhr.open('POST', 'http://www.mybrainline.com/eve/dvd/generate/df.php', true);
-        xhr.setRequestHeader('Content-type','application/zip');
+        xhr.setRequestHeader('Content-type','application/json');
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhr.responseType = 'arraybuffer'; 
-
-        xhr.onprogress = function(e) {
-            if (e.lengthComputable) {
-                progressBar.max = e.total;
-                progressBar.value = e.loaded;
-            }
-        };
-
-        xhr.onloadstart = function(e) {
-            progressBar.value = 0;
-        };
-        
-        xhr.onloadend = function(e) {
-            progressBar.value = e.loaded;
-        };
 
         
 
@@ -1152,11 +1145,14 @@ angular.module('brainApp.controllers', [])
             }           
 
         };
+
         xhr.send('moms=KLJKjlH988989h89Hp98hpjhgFG786GF6gKJBB7878GLGjbLJ&pointer='+downloadLink);
     }
    
     $scope.viewContent = function(subject){
-        var targetPath = subject.link+"/data.zip"; // save location
+
+        var targetPath = subject.link+"/data.zip"; // location where to save data.zip
+        var unZipTargetPath = subject.link+"/"; // location where to unzip data.zip
         var downloadLink = subject.download_link+"/data.zip"; // file to download
         var subj_name = subject.name;
 
@@ -1164,7 +1160,7 @@ angular.module('brainApp.controllers', [])
             fileSystem.root.getFile(targetPath, { create: false }, 
 
             function fileExists(){
-                var params = { subjName: subj_name, dir: targetPath}
+                var params = {subject_name: subj_name, dir: targetPath, unzip_dir: unZipTargetPath}
                 $state.go('eventmenu.contents', params);
             }, 
             
@@ -1205,15 +1201,67 @@ angular.module('brainApp.controllers', [])
     $scope.emailAddress = "support@brainline.com"
     $scope.phoneno = "+27125435000";
 })
-.controller('ContentsCtrl', function($scope, $state, $stateParams){
+.controller('ContentsCtrl', function($scope, $state, $stateParams, $cordovaZip){
 
-    $scope.subjName = $stateParams.subjName;
-    console.log($scope.subjName);
-    
+    $scope.subj_name = $stateParams.subject_name; 
     var dir = $stateParams.dir;
-    console.log(dir);
+    var unzipDir = $stateParams.unzip_dir;
+    dir = "cdvfile://localhost/persistent"+dir;
+    unzipDir = "cdvfile://localhost/persistent"+unzipDir;
 
+    console.log(dir);
+    console.log(unzipDir);
+
+    viewContents();
+
+    function listDir(path){
+      window.resolveLocalFileSystemURL(path,
+        function (fileSystem) {
+          var reader = fileSystem.createReader();
+          reader.readEntries(
+            function (entries) {
+              console.log(entries);
+            },
+            function (err) {
+              console.log(err);
+            }
+          );
+        }, function (err) {
+          console.log(err);
+        }
+      );
+    }
+
+    function viewContents(){
+        $cordovaZip.unzip(dir, unzipDir, function(){
+            console.log('success');
+        }, function(error){
+            console.log('error :' +error);
+        }, function(progressEvent){
+            console.log(JSON.stringify(progressEvent, null, 4));
+        });
+    }
     
+
+    /*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+       fileSystem.root.getDirectory("Downloads", {
+               create: true
+           }, function(directory) {
+
+            var directoryReader = directory.createReader();
+            directoryReader.readEntries(function(entries) {
+                var i;
+                for (i=0; i<entries.length; i++) {
+                    log(entries[i].name);
+                }
+            }, function (error) {
+                alert(error.code);
+            });
+
+           } );
+    }, function(error) {
+       alert("can't even get the file system: " + error.code);
+    });*/
 
     $scope.goBack = function() {
         $state.go('eventmenu.subjects');
