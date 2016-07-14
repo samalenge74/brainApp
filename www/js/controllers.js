@@ -145,7 +145,6 @@ angular.module('brainApp.controllers', [])
         });// end of execute
   
     }; 
-
 })
 .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, $cordovaFileTransfer, $cordovaKeyboard){
 
@@ -191,7 +190,7 @@ angular.module('brainApp.controllers', [])
 
     $scope.addUser = function(username, password){
 
-        var subjects_content_download_link = 'http://192.168.0.63/subjectcontents';
+        var subjects_content_download_link = '/home/mybrainline/googledrive/DVD/';
         var internet_conn = checkConnection();
         var uppercaseFilter = $filter('uppercase');
         var u = uppercaseFilter(username);
@@ -303,8 +302,58 @@ angular.module('brainApp.controllers', [])
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
-                                                            var downloadLink = subjects_content_download_link+"/"+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name;
+                                                            
+                                                            var link_to_content = "";
+
+                                                            switch(gd){
+                                                                case 'Grade0':
+                                                                    link_to_content = "eng/"+gd+"/GradeR";
+                                                                break;
+                                                                case 'Graad0':
+                                                                    link_to_content = "afr/"+gd+"/GraadR";
+                                                                break;
+                                                                case 'Graad1':
+                                                                    link_to_content = "afr/"+gd+"/Graad 1 inhoud";
+                                                                break;
+                                                                case 'Graad2':
+                                                                    link_to_content = "afr/"+gd+"/Graad 2 inhoud";
+                                                                break;
+                                                                case 'Graad3':
+                                                                    link_to_content = "afr/"+gd+"/Graad 3 inhoud";
+                                                                break;
+                                                                case 'Grade2':
+                                                                    link_to_content = "eng/"+gd+"/Grade 2 content";
+                                                                break;
+                                                                case 'Grade1':
+                                                                    link_to_content = "eng/"+gd+"/Grade 1 content";
+                                                                break;
+                                                                case 'Grade3':
+                                                                    link_to_content = "eng/"+gd+"/Grade 3 content";
+                                                                break;
+                                                                case 'Grade4':
+                                                                case 'Grade5':
+                                                                case 'Grade6':
+                                                                case 'Grade7':
+                                                                case 'Grade8':
+                                                                case 'Grade9':
+                                                                case 'Grade10':
+                                                                case 'Grade11':
+                                                                case 'Grade12':
+                                                                case 'Graad4':
+                                                                case 'Graad5':
+                                                                case 'Graad6':
+                                                                case 'Graad7':
+                                                                case 'Graad8':
+                                                                case 'Graad9':
+                                                                case 'Graad10':
+                                                                case 'Graad11':
+                                                                case 'Graad12':
+                                                                    link_to_content = lang+"/"+gd+"/"+subj_app_name;
+                                                                break;
+                                                               
+                                                            }
+
+                                                            var downloadLink = subjects_content_download_link+yr+"/"+link_to_content;
 
                                                             switch(subj_name){
 
@@ -421,7 +470,7 @@ angular.module('brainApp.controllers', [])
 
                                                             }
                                                         
-                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, donwload_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+                                                            var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, download_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
                                                                 console.log(pointer);
 
@@ -638,12 +687,59 @@ angular.module('brainApp.controllers', [])
                                                             var subj_version = $scope.subjecstDetails[i].version;
                                                             var subj_filesize = $scope.subjecstDetails[i].filesize; 
                                                             var yr = new Date().getFullYear();
-                                                            var downloadLink = subjects_content_download_link+yr+"/"+lang+"/"+gd+"/"+subj_name
-                                                            var link_to_content = '/data/'+lang+"/"+gd+"/"+subj_app_name;
-                                                            var pointer = subjects_content_download_link+link_to_content;
-                                                            var url = '';
-                                                            var filename = 'data.zip';
-                                                            var targetPath = '';
+                                                            
+                                                            var link_to_content = "";
+
+                                                            switch(gd){
+                                                                case 'Grade0':
+                                                                    link_to_content = "eng/"+gd+"/GradeR";
+                                                                break;
+                                                                case 'Graad0':
+                                                                    link_to_content = "afr/"+gd+"/GraadR";
+                                                                break;
+                                                                case 'Graad1':
+                                                                    link_to_content = "afr/"+gd+"/Graad 1 inhoud";
+                                                                break;
+                                                                case 'Graad2':
+                                                                    link_to_content = "afr/"+gd+"/Graad 2 inhoud";
+                                                                break;
+                                                                case 'Graad3':
+                                                                    link_to_content = "afr/"+gd+"/Graad 3 inhoud";
+                                                                break;
+                                                                case 'Grade2':
+                                                                    link_to_content = "eng/"+gd+"/Grade 2 content";
+                                                                break;
+                                                                case 'Grade1':
+                                                                    link_to_content = "eng/"+gd+"/Grade 1 content";
+                                                                break;
+                                                                case 'Grade3':
+                                                                    link_to_content = "eng/"+gd+"/Grade 3 content";
+                                                                break;
+                                                                case 'Grade4':
+                                                                case 'Grade5':
+                                                                case 'Grade6':
+                                                                case 'Grade7':
+                                                                case 'Grade8':
+                                                                case 'Grade9':
+                                                                case 'Grade10':
+                                                                case 'Grade11':
+                                                                case 'Grade12':
+                                                                case 'Graad4':
+                                                                case 'Graad5':
+                                                                case 'Graad6':
+                                                                case 'Graad7':
+                                                                case 'Graad8':
+                                                                case 'Graad9':
+                                                                case 'Graad10':
+                                                                case 'Graad11':
+                                                                case 'Graad12':
+                                                                    link_to_content = lang+"/"+gd+"/"+subj_app_name;
+                                                                break;
+                                                               
+                                                            }
+
+                                                            var downloadLink = subjects_content_download_link+yr+"/"+link_to_content;
+
                                                             switch(subj_name){
                                                                 case 'English Home Language': 
                                                                 case 'English First Additional Language':
@@ -946,7 +1042,7 @@ angular.module('brainApp.controllers', [])
         }
     }
 })
-.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, $cordovaFileTransfer){
+.controller('SubjCtrl', function($scope, $rootScope, $state, $stateParams, $cordovaSQLite, $ionicLoading, $ionicPopup, $cordovaDialogs, $ionicFilterBar, $timeout, $cordovaFile){
 
     var username = $rootScope.snum;
     var grade = '';
@@ -1156,10 +1252,7 @@ angular.module('brainApp.controllers', [])
         var downloadLink = subject.download_link+"/data.zip"; // file to download
         var subj_name = subject.name;
 
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile(targetPath, { create: false }, 
-
-            function fileExists(){
+        window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory + targetPath, function fileExists(){
                 var params = {subject_name: subj_name, dir: targetPath, unzip_dir: unZipTargetPath}
                 $state.go('eventmenu.contents', params);
             }, 
@@ -1180,7 +1273,7 @@ angular.module('brainApp.controllers', [])
                     console.error(error);
                 });
             });
-        }, getFSFail); //of requestFileSystem
+  
     }   
   
 })

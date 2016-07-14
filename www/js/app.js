@@ -253,6 +253,62 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
                 console.log("Directory Name: " + error);
               });
 
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade0/Grade R", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade1/Grade 1 Content", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade2/Grade 2 Content", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade3/Grade 3 Content", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Graad0/Graad R", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad1/Graad 1 inhoud", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad2/Graad 2 inhoud", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad3/Graad 3 inhoud", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
             $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Afrikaans", false)
               .then(function (success) {
                 console.log("Directory Name: " + success);
@@ -296,6 +352,13 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
               }); 
 
             $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 English", false)
               .then(function (success) {
                 console.log("Directory Name: " + success);
               }, function (error) {
