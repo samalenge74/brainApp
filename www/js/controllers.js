@@ -1091,7 +1091,7 @@ angular.module('brainApp.controllers', [])
         xhr.addEventListener("abort", transferCanceled);
 
         xhr.open('POST', 'http://www.mybrainline.com/eve/dvd/generate/df.php', true);
-        xhr.setRequestHeader('Content-type','application/json');
+        xhr.setRequestHeader('Content-type','application/zip');
         xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhr.responseType = 'arraybuffer'; 
 
@@ -1209,10 +1209,12 @@ angular.module('brainApp.controllers', [])
     dir = "cdvfile://localhost/persistent"+dir;
     unzipDir = "cdvfile://localhost/persistent"+unzipDir;
 
-    console.log(dir);
-    console.log(unzipDir);
+    
 
     viewContents();
+
+    console.log(dir);
+    console.log(unzipDir);
 
     function listDir(path){
       window.resolveLocalFileSystemURL(path,
@@ -1233,7 +1235,7 @@ angular.module('brainApp.controllers', [])
     }
 
     function viewContents(){
-        $cordovaZip.unzip(dir, unzipDir, function(){
+        $cordovaZip.unzip(dir, unzipDir).then(function(){
             console.log('success');
         }, function(error){
             console.log('error :' +error);

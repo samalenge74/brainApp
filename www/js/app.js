@@ -6,13 +6,13 @@
 // 'brainApp.services' is found in services.js
 // 'brainApp.controllers' is found in controllers.js
 var db = null;
-var remoteLink = 'http://192.168.0.63/brainApp/';
+var remoteLink = 'http://1102.168.0.63/brainApp/';
 var appVersion = '0.0.0';
 'use strict';
 
 angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services', 'jett.ionic.filter.bar', 'ionic.contrib.ui.cards', 'ngCordova', 'ng-mfb', 'angularMoment', 'ionTogglePassword'])
 
-.run(function($ionicPlatform, $ionicPopup, $cordovaSQLite) {
+.run(function($ionicPlatform, $ionicPopup, $cordovaSQLite, $cordovaFile) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -56,216 +56,1446 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
             console.log("Unable to create new directory: " + dirEntry.name);
         }
         document.addEventListener("deviceready", function() { 
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-                fs.root.getDirectory("data", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad0", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad1", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad2", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad3", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade0", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade1", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade2", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade3", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 Life Skills", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade4/Grade 4 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 Life Skills", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade5/Grade 5 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 Life Skills", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade6/Grade 6 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Creative Arts", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Economic and Management Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade7/Grade 7 Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Creative Arts", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Economic and Management Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade8/Grade 8 Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Creative Arts", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Economic and Management Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Natural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Social Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade9/Grade 9 Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Accounting", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Afrikaans Eerste Addisionele Taal", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Agricultural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Business Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Computer Applications Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Consumer Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Economics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 English Home Language", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Geography", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 History", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Life Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Mathematical Literacy", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Physical Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Tourism", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade10/Grade 10 Accounting", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Afrikaans Eerste Addisionele Taal", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Agricultural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Business Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Computer Applications Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Consumer Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Economics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 English Home Language", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Geography", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 History", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Life Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Mathematical Literacy", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Physical Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade11/Grade 11 Tourism", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Accounting", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Afrikaans Eerste Addisionele Taal", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Agricultural Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Business Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Computer Applications Technology", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Consumer Studies", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Economics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 English Home Language", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Geography", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 History", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Life orientation", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Life Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Mathematical Literacy", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Physical Sciences", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Mathematics", {create: true}, success, fail);
-                fs.root.getDirectory("data/eng/Grade12/Grade 12 Tourism", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Lewensvaardighede", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad4/Graad 4 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Lewensvaardighede", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad5/Graad 5 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Lewensvaardighede", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad6/Graad 6 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Lewensorientering", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Skeppende Kunste", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Tegnologie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad7/Graad 7 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Lewensorientering", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Skeppende Kunste", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Tegnologie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad8/Graad 8 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Afrikaans", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Engels", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Lewensorientering", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Natuurwetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Skeppende Kunste", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Sosiale Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Tegnologie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad9/Graad 9 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Afrikaans Huistaal", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Besigheidstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Ekonomie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Fisiese Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geografie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Geskiedenis", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Lewenswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Rekeningkunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Toerisme", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Verbruikerstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 10 Wiskunde geletterheid", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad10/Graad 11 Afrikaans Huistaal", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Besigheidstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Ekonomie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Fisiese Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geografie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Geskiedenis", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Lewenswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Rekeningkunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Toerisme", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Verbruikerstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad11/Graad 11 Wiskunde geletterheid", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Afrikaans Huistaal", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Besigheidstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Ekonomie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 English", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Fisiese Wetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geografie", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Geskiedenis", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Lewenswetenskappe", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Rekeningkunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Toerisme", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Verbruikerstudies", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde", {create: true}, success, fail);
-                fs.root.getDirectory("data/afr/Graad12/Graad 12 Wiskunde geletterheid", {create: true}, success, fail);
-                
-            });
-        }, false);
+            // CREATE
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad0", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad1", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad2", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad3", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade0", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade1", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade2", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade3", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Life Skills", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              }); 
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Life Skills", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Life Skills", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Creative Arts", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Economic and Management Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Life Orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Creative Arts", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Economic and Management Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Life Orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Creative Arts", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Economic and Management Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Life Orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Natural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Social Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Accounting", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Afrikaans Eerste Addisionele Taal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+             $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Agricultural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Business Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Computer Applications Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Consumer Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Economics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 English Home Language", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Geography", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 History", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Life orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Life Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Mathematical Literacy", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Physical Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Tourism", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Accounting", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Afrikaans Eerste Addisionele Taal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+             $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Agricultural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Business Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Computer Applications Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Consumer Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Economics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 English Home Language", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Geography", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 History", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Life orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Life Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Mathematical Literacy", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Physical Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Tourism", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Accounting", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Afrikaans Eerste Addisionele Taal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+             $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Agricultural Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Business Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Computer Applications Technology", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Consumer Studies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Economics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 English Home Language", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Geography", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 History", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Life orientation", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Life Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Mathematical Literacy", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Mathematics", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Physical Sciences", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Tourism", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Lewensvaardighede", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              }); 
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Lewensvaardighede", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Lewensvaardighede", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Lewensorientering", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Skeppende Kunste", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Tegnologie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Lewensorientering", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Skeppende Kunste", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Tegnologie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Afrikaans", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Engels", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Lewensorientering", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Natuurwetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Skeppende Kunste", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Sosiale Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Tegnologie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Afrikaans Huistaal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Besigheidstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Ekonomie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Fisiese Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Geografie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Geskiedenis", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Lewenswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Rekeningkunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Toerisme", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Verbruikerstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Wiskunde geletterheid", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Afrikaans Huistaal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Besigheidstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Ekonomie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Fisiese Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Geografie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Geskiedenis", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Lewenswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Rekeningkunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Toerisme", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Verbruikerstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Wiskunde geletterheid", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+            
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Afrikaans Huistaal", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Besigheidstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Ekonomie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 English", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Fisiese Wetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Geografie", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Geskiedenis", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Lewenswetenskappe", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Rekeningkunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Toerisme", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Verbruikerstudies", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Wiskunde", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Wiskunde geletterheid", false)
+              .then(function (success) {
+                console.log("Directory Name: " + success);
+              }, function (error) {
+                console.log("Directory Name: " + error);
+              });
+
+
+        
+        });
     
   })
   
