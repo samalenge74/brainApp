@@ -472,7 +472,7 @@ angular.module('brainApp.controllers', [])
                                                         
                                                             var q = 'INSERT INTO subjects (subject_id, name, description, lastupdate_date, added_date, subject_app_name, version, filesize, icon, content_link, download_link, student_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
                                                             $cordovaSQLite.execute(db, q, [subj_id, subj_name, subj_desc, subj_lastupdate_date, subj_added_date, subj_app_name, subj_version, subj_filesize, icon, link_to_content, downloadLink, snum]).then(function(r){
-                                                                console.log(pointer);
+                                                                
 
                                                             }, function(error){
                                                                 $ionicLoading.hide(); 
@@ -983,7 +983,7 @@ angular.module('brainApp.controllers', [])
     }
          
 })
-.controller('DeleteUserCtrl', function($scope, $cordovaSQLite, $ionicPopup, $cordovaKeyboard){
+.controller('DeleteUserCtrl', function($scope, $state, $cordovaSQLite, $ionicPopup, $cordovaKeyboard){
     
     if (window.cordova) {
         $cordovaKeyboard.disableScroll(true);
@@ -1091,13 +1091,15 @@ angular.module('brainApp.controllers', [])
         
     };
 
-    function writeFile(fileEntry, dataObj, isAppend) {
+    function writeFile(fileEntry, dataObj, fileName, subj_name, isAppend) {
 
         // Create a FileWriter object for our FileEntry (log.txt).
         fileEntry.createWriter(function (fileWriter) {
 
             fileWriter.onwriteend = function() {
-                console.log("Successful file write...");
+                var params = {subject_name: subj_name, dir: fileName, unzip_dir: ''};
+                $state.go('eventmenu.contents', params);
+                console.log('Write of file "' + fileName + '"" completed.');
                 
             };
 
@@ -1109,17 +1111,20 @@ angular.module('brainApp.controllers', [])
         });
     }
 
-    function saveFile(dirEntry, fileData, fileName) {
+    function saveFile(fileData, fileName, subj_name) {
 
-        dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
+        window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (directoryEntry) {
 
-            writeFile(fileEntry, fileData);
+            directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
 
-        }, onErrorCreateFile);
+                writeFile(fileEntry, fileData, fileName, subj_name);
+
+            }, onErrorCreateFile);
+        });
     }
 
     function onErrorCreateFile(error){
-        console.log(error);
+        console.log(JSON.stringify(error, null, 4));
     }
 
     function getFSFail(evt) {
@@ -1176,7 +1181,7 @@ angular.module('brainApp.controllers', [])
         });     
     }
   
-    function getZipFile(dirEntry, targetPath, downloadLink){
+    function getZipFile(targetPath, downloadLink, subj_name){
 
         
         var xhr = new XMLHttpRequest();
@@ -1210,7 +1215,7 @@ angular.module('brainApp.controllers', [])
 
                 var blob = new Blob([this.response], { type: type });
 
-                saveFile(dirEntry, blob, targetPath);
+                saveFile(blob, targetPath, subj_name);
 
                 if (typeof window.navigator.msSaveBlob !== 'undefined') {
                     // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
@@ -1265,7 +1270,7 @@ angular.module('brainApp.controllers', [])
 
                 confirmPopup.then(function(res){
                     if (res){
-                        getZipFile(fileSystem.root, targetPath, downloadLink);
+                        getZipFile(targetPath, downloadLink, subj_name);
                     }else{
                             console.log("not now!");
                     }
@@ -1299,10 +1304,6 @@ angular.module('brainApp.controllers', [])
     $scope.subj_name = $stateParams.subject_name; 
     var dir = $stateParams.dir;
     var unzipDir = $stateParams.unzip_dir;
-    dir = "cdvfile://localhost/persistent"+dir;
-    unzipDir = "cdvfile://localhost/persistent"+unzipDir;
-
-    
 
     viewContents();
 
@@ -1310,53 +1311,34 @@ angular.module('brainApp.controllers', [])
     console.log(unzipDir);
 
     function listDir(path){
-      window.resolveLocalFileSystemURL(path,
-        function (fileSystem) {
-          var reader = fileSystem.createReader();
-          reader.readEntries(
-            function (entries) {
-              console.log(entries);
-            },
-            function (err) {
-              console.log(err);
+        var pathToFile = cordova.file.externalDataDirectory + path;
+        window.resolveLocalFileSystemURL(pathToFile,
+            function (fileEntry) {
+                fileEntry.file(function)
+                var reader = fileSystem.createReader();
+                reader.readEntries(
+                    function (entries) {
+                        console.log(entries);
+                    },
+                    function (err) {
+                        console.log(err);
+                    }
+                );
+            }, function (err) {
+            console.log(err);
             }
-          );
-        }, function (err) {
-          console.log(err);
-        }
-      );
+        );
     }
 
     function viewContents(){
-        $cordovaZip.unzip(dir, unzipDir).then(function(){
+        /*$cordovaZip.unzip(dir, unzipDir).then(function(){
             console.log('success');
         }, function(error){
             console.log('error :' +error);
         }, function(progressEvent){
             console.log(JSON.stringify(progressEvent, null, 4));
-        });
+        });*/
     }
-    
-
-    /*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-       fileSystem.root.getDirectory("Downloads", {
-               create: true
-           }, function(directory) {
-
-            var directoryReader = directory.createReader();
-            directoryReader.readEntries(function(entries) {
-                var i;
-                for (i=0; i<entries.length; i++) {
-                    log(entries[i].name);
-                }
-            }, function (error) {
-                alert(error.code);
-            });
-
-           } );
-    }, function(error) {
-       alert("can't even get the file system: " + error.code);
-    });*/
 
     $scope.goBack = function() {
         $state.go('eventmenu.subjects');
