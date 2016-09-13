@@ -1,32 +1,32 @@
 angular.module('brainApp.controllers', [])
 
-    .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
 
-        // Called to navigate to the Dashboard
-        $scope.startApp = function() {
-            $state.go('tab.login');
+    // Called to navigate to the Dashboard
+    $scope.startApp = function() {
+        $state.go('tab.login');
 
-            // Set a flag that we finished the tutorial
-            window.localStorage['didTutorial'] = true;
-        };
+        // Set a flag that we finished the tutorial
+        window.localStorage['didTutorial'] = true;
+    };
 
-        $scope.next = function() {
-            $ionicSlideBoxDelegate.next();
-        };
+    $scope.next = function() {
+        $ionicSlideBoxDelegate.next();
+    };
 
-        $scope.previous = function() {
-            $ionicSlideBoxDelegate.previous();
-        };
+    $scope.previous = function() {
+        $ionicSlideBoxDelegate.previous();
+    };
 
-        // Called each time the slide changes
-        $scope.slideChanged = function(index) {
-            $scope.slideIndex = index;
-        };
-        //No this is silly
-        // Check if the user already did the tutorial and skip it if so  
-    })
+    // Called each time the slide changes
+    $scope.slideChanged = function(index) {
+        $scope.slideIndex = index;
+    };
+    //No this is silly
+    // Check if the user already did the tutorial and skip it if so  
+})
 
-    .controller('MainCtrl', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $ionicPopup, $ionicModal) {
+.controller('MainCtrl', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $ionicPopup, $ionicModal) {
 
         $scope.$on('$ionicView.loaded', function() {
             ionic.Platform.ready(function() {
@@ -1182,11 +1182,11 @@ angular.module('brainApp.controllers', [])
 
         function saveFile(fileData, fileName, subj_name) {
 
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(directoryEntry) {
+            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(directoryEntry) {
 
                 directoryEntry.getFile(fileName, { create: true }, function(fileEntry) {
 
-                    writeFile(fileEntry, fileData, fileName, subj_name);
+                    fileEntry.writeFile(fileEntry, fileData, fileName, subj_name);
 
                 }, onErrorCreateFile);
             });
@@ -1336,7 +1336,7 @@ angular.module('brainApp.controllers', [])
             var downloadLink = subject.download_link + "/data.zip"; // file to download
             var subj_name = subject.name;
 
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory + targetPath, function fileExists() {
+            window.resolveLocalFileSystemURL(cordova.file.dataDirectory + targetPath, function fileExists() {
                     var params = { subject_name: subj_name, dir: targetPath, unzip_dir: unZipTargetPath }
                     $state.go('eventmenu.contents', params);
                 },

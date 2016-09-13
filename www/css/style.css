@@ -1,12 +1,9 @@
 @font-face {
     font-family: 'fontawesome';
     src: url('../fonts/fontawesome-webfont.eot');
-    src: url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'),
-         url('../fonts/fontawesome-webfont.woff') format('woff'),
-         url('../fonts/fontawesome-webfont.ttf') format('truetype'),
-         url('../fonts/fontawesome-webfont.svg') format('svg');
+    src: url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff') format('woff'), url('../fonts/fontawesome-webfont.ttf') format('truetype'), url('../fonts/fontawesome-webfont.svg') format('svg');
     font-weight: normal;
-    font-style: normal; 
+    font-style: normal;
 }
 
 .icon-repeat::before {
@@ -139,35 +136,32 @@
     content: "\f001";
 }
 
-.progress { 
-  height: 3em;
-  i { line-height: 3.5em; }
+.progress {
+    height: 3em;
 }
 
-.progress-bar { 
-  transition: width 1s ease-in-out; 
+.progress-bar {
+    transition: width 1s ease-in-out;
 }
-
 
 i {
-        
-        color: #fff;
-        
+    color: #fff;
 }
 
 .capitalize {
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .title-image {
     height: 42px;
 }
 
-div.acc-buttons{
+div.acc-buttons {
     max-width: 100px;
 }
 
-h2.name, p.grade{
+h2.name,
+p.grade {
     color: #387EF5;
 }
 
@@ -175,58 +169,55 @@ h2.name, p.grade{
     /*border: saddlebrown 1px solid;*/
     padding-left: 0 !important;
     padding-right: 0 !important;
-    
 }
+
 .bar {
     background-size: 100% 0px;
 }
-    
+
 .blue {
     background-color: #303f9f;
 }
 
-.bg{
-  /*background-color: #00629f;*/
-  background: url('../img/brainline_bg.png') no-repeat center center fixed;
-  background-size: cover;
-  background-color: #387EF5;
-  
+.bg {
+    /*background-color: #00629f;*/
+    background: url('../img/brainline_bg.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #387EF5;
 }
 
 .container {
     width: 100%;
 }
 
-p.main{
+p.main {
     width: 100px;
     height: 100px;
-    
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;
 }
 
-h5.info{
+h5.info {
     font-family: "Comic Sans MS", cursive, sans-serif;
     text-align: center;
     color: #ffffff;
 }
 
 .slider {
-  height: 100%;
+    height: 100%;
 }
 
 .slider-slide {
-  padding-top: 80px;
-  color: chartreuse;
-  background-color: #387EF5;
-  text-align: center;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  font-weight: 300;
+    padding-top: 80px;
+    color: chartreuse;
+    background-color: #387EF5;
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
 }
 
 .slider-slide img {
@@ -234,104 +225,115 @@ h5.info{
     margin: 0;
 }
 
-.slider-slide h5{
+.slider-slide h5 {
     color: chartreuse;
 }
 
-.tablets{
+.tablets {
     margin: 20px auto;
     max-width: 100%;
     text-align: center;
 }
 
-.main-content{
+.main-content {
     margin: 15% auto;
     max-width: 80%;
 }
 
-
 img.logo {
-  
-  margin-top: 10px; 
-  max-width: 100px;
+    margin-top: 10px;
+    max-width: 100px;
 }
 
 #list {
-  width: 170px;
-  margin: 30px auto;
-  font-size: 20px;
+    width: 170px;
+    margin: 30px auto;
+    font-size: 20px;
 }
+
 #list ol {
-  margin-top: 30px;
+    margin-top: 30px;
 }
+
 #list ol li {
-  text-align: left;
-  list-style: decimal;
-  margin: 10px 0px;
+    text-align: left;
+    list-style: decimal;
+    margin: 10px 0px;
 }
 
 .account {
- margin-top: 60%;    
-    
+    margin-top: 60%;
 }
 
-.button.ng-hide{
-  display:none;
+.button.ng-hide {
+    display: none;
 }
 
 .ion-nifty-modal {
-  width: 90%;
-  min-height: 0 !important;
-  height: 300px !important;
-  top: 25%;
-  left: 5%;
-  right: 5%;
-  bottom: 5%;
-  background-color: transparent;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); }
+    width: 90%;
+    min-height: 0 !important;
+    height: 300px !important;
+    top: 25%;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    background-color: transparent;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
 
 .ion-nifty-modal .ion-modal-content-custom {
-  width: 100%;
-  height: 100%;
-  color: #FFF;
-  background-color: #333;
-  border-radius: 10px; }
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    background-color: #333;
+    border-radius: 10px;
+}
 
 .icon.new-item {
-  position: absolute;
-  right: 20px;
-  font-size: 20px;
-  bottom: 13px;
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    bottom: 13px;
 }
+
 .cancel-create {
-  position: absolute;
-  right: 20px;
-  font-size: 14px;
-  bottom: 13px;
-  color:#ef4e3a;
+    position: absolute;
+    right: 20px;
+    font-size: 14px;
+    bottom: 13px;
+    color: #ef4e3a;
 }
-[ng-click], [data-ng-click], [x-ng-click] {
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
     cursor: pointer;
 }
+
+
 /* Ionic Overwrite! */
-.item-icon-left .icon, .item-icon-right .icon {
-  font-size: 22px;
+
+.item-icon-left .icon,
+.item-icon-right .icon {
+    font-size: 22px;
 }
 
 .list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: 0.09s all linear;
+    line-height: 38px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
 }
+
 .list .item.item-accordion.ng-hide {
-  line-height: 0px;
+    line-height: 0px;
 }
+
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
-  display: block !important;
+    display: block !important;
 }
 
 .popup {
@@ -351,7 +353,7 @@ img.logo {
     color: #ffffff;
 }
 
-.item-avatar img{
+.item-avatar img {
     width: 100% !important;
     height: 100% !important;
     font-size: 4em;
@@ -361,75 +363,72 @@ img.logo {
 
 .round-button-add {
     margin: 0 auto;
-    display:block;
-    width:60px;
-    height:60px;
-    line-height:50px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 50px;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
-    color:#f5f5f5;
-    text-align:center;
-    text-decoration:none;
+    color: #f5f5f5;
+    text-align: center;
+    text-decoration: none;
     background: #387EF5;
     box-shadow: 0 0 3px gray;
-    font-size:20px;
+    font-size: 20px;
 }
+
 .theroot {
-  max-height: 80%;
-  background-color: #ffffff;
-  color: #387EF5
+    max-height: 80%;
+    background-color: #ffffff;
+    color: #387EF5
 }
 
 .round-button-delete {
-     margin: 0 auto;
-    display:block;
-    width:60px;
-    height:60px;
-    line-height:50px;
+    margin: 0 auto;
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 50px;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
-    color:#f5f5f5;
-    text-align:center;
-    text-decoration:none;
+    color: #f5f5f5;
+    text-align: center;
+    text-decoration: none;
     background: #ef4e3a;
     box-shadow: 0 0 3px gray;
-    font-size:20px;
+    font-size: 20px;
 }
 
 
 /* Landscape height*/
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
 
-  .bg{
-      
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    .bg {
         background-color: #ffffff;
         background: url('../img/brainline_bg.png') no-repeat center center fixed;
         background-size: cover;
-    
     }
-
-   
 }
 
+
 /* Fix modal backdrop for smaller devices */
+
 @media (max-width: 679px) {
-  .active .modal-backdrop-bg {
-    opacity: .5; }
-  .modal-backdrop-bg {
-    -webkit-transition: opacity 300ms ease-in-out;
-    transition: opacity 300ms ease-in-out;
-    background-color: #000;
-    opacity: 0; } }
+    .active .modal-backdrop-bg {
+        opacity: .5;
+    }
+    .modal-backdrop-bg {
+        -webkit-transition: opacity 300ms ease-in-out;
+        transition: opacity 300ms ease-in-out;
+        background-color: #000;
+        opacity: 0;
+    }
+}
 
 @media screen and (min-width: 768px) {
-  
-  /* .pane.menu-content {
+    /* .pane.menu-content {
     /* !important for disabling dragging */
-  /*  width: calc(100% - 275px) !important;
+    /*  width: calc(100% - 275px) !important;
     -webkit-transform: translate3d(275px,0,0) !important;
        -moz-transform: translate3d(275px,0,0) !important;
             transform: translate3d(275px,0,0) !important;
@@ -439,13 +438,11 @@ img.logo {
     display: none;
   }
 */
-   .main-content{
+    .main-content {
         margin: 10% auto;
         max-width: 50%;
     }
-
-    div.acc-buttons{
+    div.acc-buttons {
         max-width: 50%;
     }
-  
 }
