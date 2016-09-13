@@ -254,5 +254,15 @@
         <ion-spinner icon="lines" class="spinner-android"></ion-spinner>
         <p>Deleting user...</p>
     </script>
+
+    <script id="progress.html" type="text/ng-template">
+        <progressbar class="progress-striped active" animate="true" max="100" value="progressValue" type="success"><i><span count-to="{{countTo}}" duration="1" count-from="{{countFrom}}"></span> / 100</i></progressbar>
+    </script>
+
+    <script id="downloading.html" type="text/ng-template">
+        <ion-spinner icon="lines" class="spinner-android"></ion-spinner>
+        <p>Download will start shortly...</p>
+    </script>
+
   </body>
 </html>
