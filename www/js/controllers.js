@@ -202,7 +202,7 @@ angular.module('brainApp.controllers', [])
 
         };
     })
-    .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, $cordovaFileTransfer, $cordovaKeyboard) {
+    .controller('AddUserCtrl', function($scope, $state, $cordovaSQLite, $ionicLoading, activateAccount, getSubjects, $ionicPopup, $cordovaDialogs, $filter, $cordovaFileTransfer, $cordovaKeyboard, $cordovaNetwork) {
 
         // Set the default value of inputType
         $scope.inputType = 'password';
@@ -271,7 +271,11 @@ angular.module('brainApp.controllers', [])
                         title: 'You need internet connection!!!'
                     });
                     break;
-
+                case "Unknown connection":
+                    $ionicPopup.alert({
+                        title: 'Unknown internet connection!!!'
+                    });
+                    break;
                 case "Cell 2G connection":
                 case "Cell 3G connection":
                 case "Cell 4G connection":
@@ -1182,7 +1186,7 @@ angular.module('brainApp.controllers', [])
 
         function saveFile(fileData, fileName, subj_name) {
 
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(directoryEntry) {
+            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(directoryEntry) {
 
                 directoryEntry.getFile(fileName, { create: true }, function(fileEntry) {
 
@@ -1336,7 +1340,7 @@ angular.module('brainApp.controllers', [])
             var downloadLink = subject.download_link + "/data.zip"; // file to download
             var subj_name = subject.name;
 
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory + targetPath, function fileExists() {
+            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory + targetPath, function fileExists() {
                     var params = { subject_name: subj_name, dir: targetPath, unzip_dir: unZipTargetPath }
                     $state.go('eventmenu.contents', params);
                 },

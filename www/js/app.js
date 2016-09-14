@@ -55,1505 +55,1506 @@ angular.module('brainApp', ['ionic', 'brainApp.controllers', 'brainApp.services'
         function fail(dirEntry) {
             console.log("Unable to create new directory: " + dirEntry.name);
         }
+
         document.addEventListener("deviceready", function() {
             // CREATE
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad0", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad0", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad1", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad1", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad2", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad2", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad3", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad3", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade0", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade0", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade1", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade1", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade2", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade2", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade3", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade3", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade0/Grade R", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade0/Grade R", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade1/Grade 1 Content", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade1/Grade 1 Content", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade2/Grade 2 Content", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade2/Grade 2 Content", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade3/Grade 3 Content", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade3/Grade 3 Content", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Graad0/Graad R", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Graad0/Graad R", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad1/Graad 1 inhoud", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad1/Graad 1 inhoud", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad2/Graad 2 inhoud", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad2/Graad 2 inhoud", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad3/Graad 3 inhoud", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad3/Graad 3 inhoud", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 Life Skills", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Life Skills", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade4/Grade 4 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade4/Grade 4 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 Life Skills", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Life Skills", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade5/Grade 5 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade5/Grade 5 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 Life Skills", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Life Skills", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade6/Grade 6 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade6/Grade 6 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Creative Arts", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Creative Arts", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Economic and Management Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Economic and Management Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Life Orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Life Orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade7/Grade 7 Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade7/Grade 7 Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Creative Arts", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Creative Arts", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Economic and Management Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Economic and Management Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Life Orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Life Orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade8/Grade 8 Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade8/Grade 8 Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Creative Arts", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Creative Arts", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Economic and Management Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Economic and Management Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Life Orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Life Orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Natural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Natural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Social Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Social Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade9/Grade 9 Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade9/Grade 9 Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Accounting", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Accounting", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Afrikaans Eerste Addisionele Taal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Afrikaans Eerste Addisionele Taal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Agricultural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Agricultural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Business Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Business Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Computer Applications Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Computer Applications Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Consumer Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Consumer Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Economics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Economics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 English Home Language", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 English Home Language", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Geography", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Geography", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 History", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 History", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Life orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Life orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Life Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Life Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Mathematical Literacy", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Mathematical Literacy", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Physical Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Physical Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade10/Grade 10 Tourism", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade10/Grade 10 Tourism", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Accounting", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Accounting", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Afrikaans Eerste Addisionele Taal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Afrikaans Eerste Addisionele Taal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Agricultural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Agricultural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Business Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Business Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Computer Applications Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Computer Applications Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Consumer Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Consumer Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Economics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Economics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 English Home Language", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 English Home Language", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Geography", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Geography", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 History", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 History", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Life orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Life orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Life Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Life Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Mathematical Literacy", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Mathematical Literacy", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Physical Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Physical Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade11/Grade 11 Tourism", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade11/Grade 11 Tourism", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Accounting", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Accounting", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Afrikaans Eerste Addisionele Taal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Afrikaans Eerste Addisionele Taal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Agricultural Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Agricultural Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Business Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Business Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Computer Applications Technology", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Computer Applications Technology", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Consumer Studies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Consumer Studies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Economics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Economics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 English Home Language", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 English Home Language", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Geography", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Geography", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 History", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 History", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Life orientation", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Life orientation", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Life Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Life Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Mathematical Literacy", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Mathematical Literacy", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Mathematics", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Mathematics", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Physical Sciences", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Physical Sciences", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "eng/Grade12/Grade 12 Tourism", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "eng/Grade12/Grade 12 Tourism", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Lewensvaardighede", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Lewensvaardighede", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad4/Graad 4 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad4/Graad 4 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Lewensvaardighede", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Lewensvaardighede", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad5/Graad 5 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad5/Graad 5 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Lewensvaardighede", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Lewensvaardighede", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad6/Graad 6 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad6/Graad 6 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Ekonomiese en Bestuurswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Lewensorientering", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Lewensorientering", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Skeppende Kunste", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Skeppende Kunste", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Tegnologie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Tegnologie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad7/Graad 7 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad7/Graad 7 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Ekonomiese en Bestuurswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Lewensorientering", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Lewensorientering", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Skeppende Kunste", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Skeppende Kunste", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Tegnologie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Tegnologie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad8/Graad 8 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad8/Graad 8 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Afrikaans", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Afrikaans", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Ekonomiese en Bestuurswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Engels", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Engels", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Lewensorientering", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Lewensorientering", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Natuurwetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Natuurwetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Skeppende Kunste", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Skeppende Kunste", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Sosiale Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Sosiale Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Tegnologie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Tegnologie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad9/Graad 9 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad9/Graad 9 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Afrikaans Huistaal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Afrikaans Huistaal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Besigheidstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Besigheidstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Ekonomie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Ekonomie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Fisiese Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Fisiese Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Geografie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Geografie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Geskiedenis", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Geskiedenis", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Lewenswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Lewenswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Rekeningkunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Rekeningkunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Toerisme", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Toerisme", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Verbruikerstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Verbruikerstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad10/Graad 10 Wiskunde geletterheid", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad10/Graad 10 Wiskunde geletterheid", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Afrikaans Huistaal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Afrikaans Huistaal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Besigheidstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Besigheidstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Ekonomie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Ekonomie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Fisiese Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Fisiese Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Geografie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Geografie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Geskiedenis", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Geskiedenis", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Lewenswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Lewenswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Rekeningkunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Rekeningkunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Toerisme", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Toerisme", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Verbruikerstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Verbruikerstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad11/Graad 11 Wiskunde geletterheid", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad11/Graad 11 Wiskunde geletterheid", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Afrikaans Huistaal", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Afrikaans Huistaal", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Besigheidstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Besigheidstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Ekonomie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Ekonomie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 English", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 English", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Fisiese Wetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Fisiese Wetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Geografie", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Geografie", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Geskiedenis", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Geskiedenis", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Lewenswetenskappe", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Lewenswetenskappe", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Rekeningkunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Rekeningkunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Toerisme", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Toerisme", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Verbruikerstudies", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Verbruikerstudies", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Wiskunde", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Wiskunde", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
-            $cordovaFile.createDir(cordova.file.dataDirectory, "afr/Graad12/Graad 12 Wiskunde geletterheid", false)
+            $cordovaFile.createDir(cordova.file.externalDataDirectory, "afr/Graad12/Graad 12 Wiskunde geletterheid", false)
                 .then(function(success) {
-                    console.log("Directory Name: " + success);
+                    console.log(JSON.stringify("Directory Created: " + success));
                 }, function(error) {
-                    console.log("Directory Name: " + error);
+                    console.log(JSON.stringify("Directory Failed: " + error));
                 });
 
 
