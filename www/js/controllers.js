@@ -298,7 +298,7 @@ angular.module('brainApp.controllers', [])
 
                             // var query = ;
                             $cordovaSQLite.execute(db, "SELECT student_no FROM users where student_no = ? and password = ?", [u, p]).then(function(res) {
-                                console.log(JSON.stringify(res.data, null, 4));
+                                //console.log(JSON.stringify(res.data, null, 4));
                                 if (res.rows.length > 0) {
                                     $ionicLoading.hide();
 
@@ -553,8 +553,6 @@ angular.module('brainApp.controllers', [])
                                                             });
 
                                                             s++;
-                                                            console.log(downloadLink);
-                                                            console.log(link_to_content);
 
                                                         }
 
@@ -1137,7 +1135,7 @@ angular.module('brainApp.controllers', [])
                         $scope.subjects.push({ name: res.rows.item(j).name, grade: grade, icon: res.rows.item(j).icon, link: res.rows.item(j).content_link, download_link: res.rows.item(j).download_link });
 
                     }
-                    console.log(JSON.stringify($scope.subjects, null, 4));
+                    
                     $ionicLoading.hide();
 
                 } else {
@@ -1186,7 +1184,7 @@ angular.module('brainApp.controllers', [])
 
         function saveFile(fileData, fileName, subj_name) {
 
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(directoryEntry) {
+            window.resolveLocalFileSystemURL(cordova.file.documentsDirectory, function(directoryEntry) {
 
                 directoryEntry.getFile(fileName, { create: true }, function(fileEntry) {
 
@@ -1340,7 +1338,7 @@ angular.module('brainApp.controllers', [])
             var downloadLink = subject.download_link + "/data.zip"; // file to download
             var subj_name = subject.name;
 
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory + targetPath, function fileExists() {
+            window.resolveLocalFileSystemURL(cordova.file.documentsDirectory + targetPath, function fileExists() {
                     var params = { subject_name: subj_name, dir: targetPath, unzip_dir: unZipTargetPath }
                     $state.go('eventmenu.contents', params);
                 },
